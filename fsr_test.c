@@ -19,11 +19,9 @@ int main(void)
 
 	for(;;)
 	{
-		if(digitalRead(FSR) == 0)
-		{
-			printf("pressed\n");
 
-			delay(1000);
-		}
+		printf(digitalRead(FSR));
+
+		delay(1000);
 	}
 }
