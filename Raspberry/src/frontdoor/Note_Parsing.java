@@ -51,9 +51,4 @@ public class Note_Parsing {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void main(String[] args)
-	{
-		Note_Parsing temp = new Note_Parsing();
-	}
 }

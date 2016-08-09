@@ -157,9 +157,7 @@ class Weather_Parsing {
 				ws[i] = node_ws.getTextContent();
 				
 			}
-			
-			System.out.println(weather);
-					
+								
 		}
 		catch(Exception e)
 		{

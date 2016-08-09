@@ -49,7 +49,7 @@ public class MainFrame extends JFrame{
 	
 	
 	// weather and Finedust parsing object
-	Weather_Parsing weatherinfo = new Weather_Parsing();
+//	Weather_Parsing weatherinfo = new Weather_Parsing();
 //	Finedust_Parsing dustinfo;
 
 
@@ -59,13 +59,14 @@ public class MainFrame extends JFrame{
 	{
 		this.setTitle("");
 		this.setLayout(null);
+		this.setBounds(0,0,fulldim.width, fulldim.height);
 
 		
 		// full Screen
-		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		GraphicsDevice gd = ge.getDefaultScreenDevice();
+//		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+//		GraphicsDevice gd = ge.getDefaultScreenDevice();
 		this.setUndecorated(true);
-		gd.setFullScreenWindow(this);
+//		gd.setFullScreenWindow(this);
 		
 
 		// screensave screen initial
@@ -95,7 +96,7 @@ public class MainFrame extends JFrame{
 		
 		// weather
 //		dustinfo = new Finedust_Parsing();
-		weather_panel = new WeatherPanel(fulldim, weatherinfo);
+		weather_panel = new WeatherPanel(fulldim);
 		this.add(weather_panel);
 		
 		
