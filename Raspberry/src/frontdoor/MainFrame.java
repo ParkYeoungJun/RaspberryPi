@@ -49,7 +49,7 @@ public class MainFrame extends JFrame{
 	
 	
 	// weather and Finedust parsing object
-	Weather_Parsing weatherinfo;
+	Weather_Parsing weatherinfo = new Weather_Parsing();
 //	Finedust_Parsing dustinfo;
 
 
@@ -83,16 +83,17 @@ public class MainFrame extends JFrame{
 
 		
 		// Initial date panel
-//		date = new JPanel();
-//		date.setBounds(0, 0, fulldim.width, fulldim.height/15);
+		date = new JPanel();
+		date.setBounds(0, 0, fulldim.width, fulldim.height/15);
+		date.setBackground(Color.BLUE);
 		date_label = new JLabel(today);
 		date_label.setBounds(fulldim.width/2-100, 20, fulldim.width, 30);
 		date_label.setFont(new Font(null,10,30));
-//		date.add(date_label);
-		this.add(date_label);
+		date_label.setForeground(Color.white);;
+		date.add(date_label);
+		this.add(date);
 		
 		// weather
-		weatherinfo = new Weather_Parsing();
 //		dustinfo = new Finedust_Parsing();
 		weather_panel = new WeatherPanel(fulldim, weatherinfo);
 		this.add(weather_panel);

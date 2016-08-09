@@ -21,43 +21,41 @@ class WeatherPanel extends JPanel{
 		
 	public WeatherPanel(Dimension fulldim, Weather_Parsing weather)
 	{
-		this.setBackground(Color.BLUE);
+		this.setBackground(Color.white);
 		this.setBounds((fulldim.width/3)*2, 72, fulldim.width/3, fulldim.height);
 				
-//		this.weather = weather;
+		this.weather = weather;
 //		this.dust = dust;
 		
-//		locate_label = new JLabel();
-//		time_label = new JLabel();
-//		
-//		locate_label.setBounds(300, fulldim.height/4, 100, 30);
-//		time_label = 
+		locate_label = new JLabel();
 		
-//		this.add(locate_label);
+		locate_label.setBounds(0, 0, 100, 30);
+
+		this.add(locate_label);
 		
-//		update();
+		update();
 	}
 	
-//	public int update()
-//	{
-//		// detect parsing error
-//		boolean success = true;
-//		
-//		locate = weather.get_locate_time().split("//")[0];
-//		time = weather.get_locate_time().split("//")[1];
-//		
-//		locate_label.setText(locate+time+" 발표");
-//				
-//		
-//		if(success)
+	public int update()
+	{
+		// detect parsing error
+		boolean success = true;
+		
+		locate = weather.get_locate_time().split("//")[0];
+		time = weather.get_locate_time().split("//")[1];
+		
+		locate_label.setText(locate+time+" 발표");
+				
+		
+		if(success)
 	
-//		{
-//			return 1;
-//		}
-//		else
-//		{
-//			return 0;
-//		}
-//	}
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+	}
 	
 }

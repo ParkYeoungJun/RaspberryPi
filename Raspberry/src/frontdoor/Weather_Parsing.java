@@ -21,6 +21,7 @@ class Weather_Parsing {
 	String[] day = new String[8];
 	String max_tmp;
 	String min_tmp;
+	String weather = "";
 	
 	String temp_day;
 	String temp_pty;
@@ -38,17 +39,17 @@ class Weather_Parsing {
 			
 			String url = "http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1162069500";
 			xmldoc = parser.parse(url);
-			
+						
 			Element root = xmldoc.getDocumentElement();
 			
 			Node category = root.getElementsByTagName("category").item(0);
-			locate =category.getTextContent();
+			locate = category.getTextContent();
 //			System.out.println(category.getTextContent());
 			Node pubDate = root.getElementsByTagName("pubDate").item(0);
 //			System.out.println("¹ßÇ¥½Ã°£ : " + pubDate.getTextContent());
 			time = pubDate.getTextContent();
 //			System.out.println();
-			
+					
 			
 			for(int i = 0 ; i < temp.length ; ++i)
 			{
@@ -92,6 +93,34 @@ class Weather_Parsing {
 					temp_day = "¸ð·¹";
 				
 				
+				// store weather
+				if(temp_day.equals("¿À´Ã"))
+				{
+					if(temp_pty.equals("ºñ"))
+					{
+						if(weather.equals("´«") && weather.equals("ºñ³ª ´«"))
+							weather = "ºñ³ª ´«";
+						else
+						{
+							weather = "ºñ";
+						}
+					}
+					else if(temp_pty.equals("´«"))
+					{
+						if(weather.equals("ºñ") && weather.equals("ºñ³ª ´«"))
+							weather = "ºñ³ª ´«";
+						else
+						{
+							weather = "´«";
+						}
+					}
+					else if(temp_pty.equals("ºñ³ª ´«"))
+					{
+						weather = "ºñ³ª ´«";
+					}
+				}
+				
+				
 				// max, min temp
 				Node node_max = ((Element) xmlNode1).getElementsByTagName("tmx").item(0);
 				Node node_min = ((Element) xmlNode1).getElementsByTagName("tmn").item(0);
@@ -126,8 +155,11 @@ class Weather_Parsing {
 				pty[i] = temp_pty;
 				pop[i] = node_pop.getTextContent();
 				ws[i] = node_ws.getTextContent();
+				
 			}
 			
+			System.out.println(weather);
+					
 		}
 		catch(Exception e)
 		{
@@ -181,6 +213,11 @@ class Weather_Parsing {
 	public String[] get_ws()
 	{
 		return ws;
+	}
+	
+	public String get_weather()
+	{
+		return weather;
 	}
 	
 //	public static void main(String[] args)
