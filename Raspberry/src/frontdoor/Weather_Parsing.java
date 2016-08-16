@@ -23,8 +23,8 @@ class Weather_Parsing {
 	String[] pop = new String[8];
 	String[] ws = new String[8];
 	String[] day = new String[8];
-	String[] max_tmp = new String[2];
-	String[] min_tmp = new String[2];
+	Double max_tmp;
+	Double min_tmp;
 	String weather = "";
 	
 	String temp_day;
@@ -176,8 +176,29 @@ class Weather_Parsing {
 				pty[i] = temp_pty;
 				pop[i] = node_pop.getTextContent();
 				ws[i] = node_ws.getTextContent();
-				
 			}
+			
+			max_tmp = -999.0;
+			min_tmp = 999.0;
+			
+			for(int i = 0 ; i < temp.length ; ++i)
+			{
+				if(day[i].equals("¿À´Ã"))
+				{
+					if(Double.parseDouble(temp[i]) > max_tmp)
+					{
+						max_tmp = Double.parseDouble(temp[i]);
+					}
+					
+					if(Double.parseDouble(temp[i]) < min_tmp)
+					{
+						min_tmp = Double.parseDouble(temp[i]);
+					}
+				}
+			}
+			
+			System.out.println(max_tmp);
+			System.out.println(min_tmp);
 								
 		}
 		catch(Exception e)
@@ -237,6 +258,16 @@ class Weather_Parsing {
 	public String get_weather()
 	{
 		return weather;
+	}
+	
+	public Double get_maxtmp()
+	{
+		return max_tmp;
+	}
+	
+	public Double get_mintmp()
+	{
+		return min_tmp;
 	}
 	
 //	public static void main(String[] args)

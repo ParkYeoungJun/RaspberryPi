@@ -33,9 +33,12 @@ class WeatherPanel extends JPanel{
 	JLabel locate_label;
 	JLabel time_label;
 	
+	// max, min
+	JLabel max_tmp;
 	
 	// Finedust
 	JLabel dust_label;
+
 	
 	
 	//ImageIcon
@@ -54,7 +57,7 @@ class WeatherPanel extends JPanel{
 		this.setBounds((fulldim.width/3)*2, 72, fulldim.width/3, fulldim.height);
 //		this.setLayout(new FlowLayout(FlowLayout.CENTER, 0,0));		
 //		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setLayout(new GridLayout(6,1));
+		this.setLayout(new GridLayout(4,1));
 		
 //		this.weather = weather;
 		weather = new Weather_Parsing();
@@ -76,15 +79,29 @@ class WeatherPanel extends JPanel{
 		
 		
 		// umb panel
+		JPanel umb_minmax = new JPanel();
+		umb_minmax.setLayout(new GridLayout(2,1));
 		weather_label = new JLabel("");
 		weather_text = new JLabel("",JLabel.CENTER);
 //		weather_text.setBounds(fulldim.width/15, fulldim.height/2, fulldim.width/5, 30);
 //		weather_label.setBounds(fulldim.width/4, fulldim.height/2, 50, 50);
 //		this.add(weather_text);
 //		this.add(weather_label);
-		test.add(weather_label,BorderLayout.EAST);
-		this.add(test);
+		umb_minmax.add(weather_label);
+//		test.add(weather_label,BorderLayout.EAST);
 		
+		// max, min temp;
+		max_tmp = new JLabel("",JLabel.RIGHT);
+		max_tmp.setFont(new Font(null,10,20));
+		umb_minmax.add(max_tmp);
+
+//		test.add(max_tmp, BorderLayout.EAST);
+//		test.add(min_tmp, BorderLayout.EAST);
+		test.add(umb_minmax, BorderLayout.EAST);
+
+		
+		this.add(test);
+
 		// dust
 		dust_label = new JLabel("", JLabel.RIGHT);
 		dust_label.setFont(new Font(null, 10,20));
@@ -145,12 +162,13 @@ class WeatherPanel extends JPanel{
 			weather_text.setText("오늘은 우산이 필요 없는 날이 될 것 같아요!!");
 		}
 		
+		max_tmp.setText("<html>최고 : " + weather.get_maxtmp() + "<br>최저 : "+weather.get_mintmp()+"</html>");
+
 		
 		
 		/*
 		 *  dust
 		 */
-		
 		dust_label.setText(dust.get_pm10_seoul());
 		
 						
