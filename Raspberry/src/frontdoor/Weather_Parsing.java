@@ -197,9 +197,6 @@ class Weather_Parsing {
 				}
 			}
 			
-			System.out.println(max_tmp);
-			System.out.println(min_tmp);
-								
 		}
 		catch(Exception e)
 		{

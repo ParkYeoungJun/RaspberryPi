@@ -55,61 +55,50 @@ class WeatherPanel extends JPanel{
 	{
 		this.setBackground(Color.white);
 		this.setBounds((fulldim.width/3)*2, 72, fulldim.width/3, fulldim.height);
-//		this.setLayout(new FlowLayout(FlowLayout.CENTER, 0,0));		
-//		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setLayout(new GridLayout(4,1));
+		this.setLayout(new GridLayout(3,1));
 		
-//		this.weather = weather;
 		weather = new Weather_Parsing();
 		dust = new Finedust_Parsing();
 		
 		
 		// 발표 장소, 시간
 		locate_label = new JLabel("",JLabel.CENTER);
-		locate_label.setSize(fulldim.width/3, 30);
+		locate_label.setFont(new Font(null, Font.BOLD, 15));
 		this.add(locate_label);
 		
 		JPanel test = new JPanel();
+		test.setBackground(Color.WHITE);
 		test.setLayout(new BorderLayout());
 		current = new JLabel("",JLabel.CENTER);
-//		current.setBounds(0, fulldim.height/5, fulldim.width/3, 200);
 		test.add(current,BorderLayout.CENTER);
-//		this.add(current);
-//		this.add(test);
 		
 		
 		// umb panel
 		JPanel umb_minmax = new JPanel();
-		umb_minmax.setLayout(new GridLayout(2,1));
+		umb_minmax.setBackground(Color.WHITE);
+		umb_minmax.setLayout(new BorderLayout());
 		weather_label = new JLabel("");
 		weather_text = new JLabel("",JLabel.CENTER);
-//		weather_text.setBounds(fulldim.width/15, fulldim.height/2, fulldim.width/5, 30);
-//		weather_label.setBounds(fulldim.width/4, fulldim.height/2, 50, 50);
-//		this.add(weather_text);
-//		this.add(weather_label);
-		umb_minmax.add(weather_label);
-//		test.add(weather_label,BorderLayout.EAST);
+		umb_minmax.add(weather_label, BorderLayout.NORTH);
 		
 		// max, min temp;
 		max_tmp = new JLabel("",JLabel.RIGHT);
-		max_tmp.setFont(new Font(null,10,20));
-		umb_minmax.add(max_tmp);
+		max_tmp.setFont(new Font(null,Font.BOLD,15));
+		umb_minmax.add(max_tmp, BorderLayout.SOUTH);
 
-//		test.add(max_tmp, BorderLayout.EAST);
-//		test.add(min_tmp, BorderLayout.EAST);
 		test.add(umb_minmax, BorderLayout.EAST);
 
-		
+		// dust
+		JPanel dustpanel = new JPanel();
+		dustpanel.setBackground(Color.WHITE);
+		dustpanel.setLayout(new BorderLayout());
+		dust_label = new JLabel("", JLabel.RIGHT);
+		dust_label.setFont(new Font(null, Font.BOLD,15));
+		dustpanel.add(dust_label, BorderLayout.SOUTH);
+		test.add(dustpanel, BorderLayout.WEST);
+
 		this.add(test);
 
-		// dust
-		dust_label = new JLabel("", JLabel.RIGHT);
-		dust_label.setFont(new Font(null, 10,20));
-//		dust_label.setBounds(0, fulldim.height/2+100, fulldim.width/3 , 30);
-		this.add(dust_label);
-		
-
-		
 		update();
 	}
 	
@@ -169,7 +158,26 @@ class WeatherPanel extends JPanel{
 		/*
 		 *  dust
 		 */
-		dust_label.setText(dust.get_pm10_seoul());
+		String duststr;
+		String dustcolor;
+		Double pm10 = Double.parseDouble(dust.get_pm10_seoul());
+		if(pm10 < 30.0)
+		{
+			duststr = "좋음";
+			dustcolor = "#0054FF";
+		}
+		else if(pm10 > 30 && pm10 < 80)
+		{
+			duststr = "보통";
+			dustcolor = "#2FED28";
+		}
+		else
+		{
+			duststr = "나쁨";
+			dustcolor = "#FF0000";
+		}
+			
+		dust_label.setText("<html>미세먼지 : <br><font color = "+dustcolor+">"+duststr+"</font>"+"("+dust.get_pm10_seoul()+"μg/m³)</html>");
 		
 						
 		
