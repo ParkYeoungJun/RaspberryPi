@@ -31,10 +31,7 @@ public class MainFrame extends JFrame{
 	
 	// weather panel
 	WeatherPanel weather_panel;
-	
-	// dust panel
-	FinedustPanel dust_panel;
-	
+	NotePanel note_panel;
 	
 	// for get date
 	Date date_object;
@@ -63,11 +60,8 @@ public class MainFrame extends JFrame{
 
 		
 		// full Screen
-//		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-//		GraphicsDevice gd = ge.getDefaultScreenDevice();
-		this.setUndecorated(true);
-//		gd.setFullScreenWindow(this);
-		
+//		this.setUndecorated(true);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		// screensave screen initial
 		screensaver.setBounds(0,0,fulldim.width,fulldim.height);
@@ -95,9 +89,11 @@ public class MainFrame extends JFrame{
 		this.add(date);
 		
 		// weather
-//		dustinfo = new Finedust_Parsing();
 		weather_panel = new WeatherPanel(fulldim);
 		this.add(weather_panel);
+		
+		note_panel = new NotePanel(fulldim);
+		this.add(note_panel);
 		
 		
 //		// dust

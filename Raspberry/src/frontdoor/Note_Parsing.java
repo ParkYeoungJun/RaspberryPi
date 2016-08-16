@@ -3,6 +3,7 @@ package frontdoor;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.json.simple.JSONArray;
@@ -15,6 +16,8 @@ public class Note_Parsing {
 	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 	Date current;
 	String date;
+	
+	ArrayList dataArray = new ArrayList<String>();
 	
 	// JSON rul
 	URL url;
@@ -39,16 +42,34 @@ public class Note_Parsing {
 					
 			for(int i = 0 ; i < resultArray.size() ; ++i)
 			{
+				String tempstr;
+				
 				JSONObject data = (JSONObject) resultArray.get(i);
 				
-				System.out.println(data.get("id").toString());
-				System.out.println(data.get("date").toString());
-				System.out.println(data.get("memo").toString());
+				tempstr = data.get("date").toString().split(" ")[1] + "\n";
+				tempstr += data.get("memo").toString();
+				
+				dataArray.add(tempstr);
+			}
+			
+			for(int i = 0 ; i < dataArray.size() ; ++i)
+			{
+				System.out.println(dataArray.get(i));
 			}
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	public ArrayList getdata()
+	{
+		return dataArray;
+	}
+	
+	public static void main(String args[])
+	{
+		Note_Parsing test = new Note_Parsing();
 	}
 }

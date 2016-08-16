@@ -54,11 +54,8 @@ class WeatherPanel extends JPanel{
 	public WeatherPanel(Dimension fulldim)
 	{
 		this.setBackground(Color.white);
-		this.setBounds((fulldim.width/3)*2, 72, fulldim.width/3, fulldim.height);
+		this.setBounds((fulldim.width/3)*2, fulldim.height/15, fulldim.width/3, fulldim.height-fulldim.height/15);
 		this.setLayout(new GridLayout(3,1));
-		
-		weather = new Weather_Parsing();
-		dust = new Finedust_Parsing();
 		
 		
 		// 발표 장소, 시간
@@ -106,6 +103,10 @@ class WeatherPanel extends JPanel{
 	{
 		// detect parsing error
 		boolean success = true;
+		
+
+		weather = new Weather_Parsing();
+		dust = new Finedust_Parsing();
 		
 		locate = weather.get_locate_time().split("//")[0];
 		time = weather.get_locate_time().split("//")[1];
