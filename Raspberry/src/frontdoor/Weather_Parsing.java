@@ -1,5 +1,9 @@
 package frontdoor;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -19,12 +23,17 @@ class Weather_Parsing {
 	String[] pop = new String[8];
 	String[] ws = new String[8];
 	String[] day = new String[8];
-	String max_tmp;
-	String min_tmp;
+	String[] max_tmp = new String[2];
+	String[] min_tmp = new String[2];
 	String weather = "";
 	
 	String temp_day;
 	String temp_pty;
+	
+	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	Date current;
+	String date;
+	String today;
 	
 	
 	public Weather_Parsing()
@@ -32,6 +41,9 @@ class Weather_Parsing {
 
 		try
 		{
+			
+			current = new Date();
+			date = format.format(current);
 		 
 			DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();
 			DocumentBuilder parser = f.newDocumentBuilder();
@@ -44,11 +56,8 @@ class Weather_Parsing {
 			
 			Node category = root.getElementsByTagName("category").item(0);
 			locate = category.getTextContent();
-//			System.out.println(category.getTextContent());
 			Node pubDate = root.getElementsByTagName("pubDate").item(0);
-//			System.out.println("¹ßÇ¥½Ã°£ : " + pubDate.getTextContent());
 			time = pubDate.getTextContent();
-//			System.out.println();
 					
 			
 			for(int i = 0 ; i < temp.length ; ++i)
@@ -121,19 +130,31 @@ class Weather_Parsing {
 				}
 				
 				
-				// max, min temp
-				Node node_max = ((Element) xmlNode1).getElementsByTagName("tmx").item(0);
-				Node node_min = ((Element) xmlNode1).getElementsByTagName("tmn").item(0);
-
+//				// max, min temp
+//				Node node_max = ((Element) xmlNode1).getElementsByTagName("tmx").item(0);
+//				Node node_min = ((Element) xmlNode1).getElementsByTagName("tmn").item(0);
+//
+//				
+//				if(!node_max.getTextContent().equals("-999.0") && temp_day.equals("³»ÀÏ"))
+//				{
+//					max_tmp[1] = node_max.getTextContent();
+//				}
+//				if(!node_min.getTextContent().equals("-999.0") && temp_day.equals("³»ÀÏ"))
+//				{
+//					min_tmp[1] = node_min.getTextContent();
+//				}
+//				
+//				
+//				if(!node_max.getTextContent().equals("-999.0") && temp_day.equals("¿À´Ã"))
+//				{
+//					max_tmp[0] = node_max.getTextContent();
+//				}
+//				if(!node_min.getTextContent().equals("-999.0") && temp_day.equals("¿À´Ã"))
+//				{
+//					min_tmp[0] = node_min.getTextContent();
+//				}
 				
-				if(!node_max.getTextContent().equals("-999.0") && temp_day.equals("¿À´Ã"))
-				{
-					max_tmp = node_max.getTextContent();
-				}
-				if(!node_min.getTextContent().equals("-999.0") && temp_day.equals("¿À´Ã"))
-				{
-					min_tmp = node_min.getTextContent();
-				}
+				
 				
 //				System.out.println(temp_day);
 //				System.out.println(node_hour.getTextContent() + "½Ã");
