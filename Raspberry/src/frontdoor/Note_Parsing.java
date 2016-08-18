@@ -51,11 +51,7 @@ public class Note_Parsing {
 				
 				dataArray.add(tempstr);
 			}
-			
-			for(int i = 0 ; i < dataArray.size() ; ++i)
-			{
-				System.out.println(dataArray.get(i));
-			}
+		
 		}
 		catch(Exception e)
 		{
@@ -66,10 +62,5 @@ public class Note_Parsing {
 	public ArrayList getdata()
 	{
 		return dataArray;
-	}
-	
-	public static void main(String args[])
-	{
-		Note_Parsing test = new Note_Parsing();
 	}
 }

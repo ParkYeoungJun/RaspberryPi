@@ -1,10 +1,18 @@
 package frontdoor;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.TextArea;
 import java.util.ArrayList;
 
+import javax.swing.GrayFilter;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 public class NotePanel extends JPanel
 {
@@ -15,19 +23,42 @@ public class NotePanel extends JPanel
 	
 	Dimension fulldim;
 	
-	TextArea note;
+	JTextArea note;
+	JScrollPane scroll;
 	
 	public NotePanel(Dimension fulldim)
 	{
 		this.fulldim = fulldim;
 		this.setBounds(0, fulldim.height/15, fulldim.width/3*2, fulldim.height-fulldim.height/15);
 		this.setLayout(null);
+				
+		Image tempimg = new ImageIcon("post.PNG").getImage();
 		
-		note = new TextArea();
-		note.setBounds(0, 0, fulldim.width/3*2, fulldim.height-fulldim.height/15);
+		Image aimg = tempimg.getScaledInstance(fulldim.width/3*2, fulldim.height-fulldim.height/15, java.awt.Image.SCALE_SMOOTH);
+		
+		ImageIcon tmpicon = new ImageIcon(aimg);
+		
+		Image img = tmpicon.getImage();
+		
+		note = new JTextArea();//{
+//			{setOpaque(false);}
+//			
+//			public void paintComponent(Graphics g){
+//				g.drawImage(img,0,0,null);
+//				super.paintComponent(g);
+//			}
+//		};
+		//	note.setBounds(0, 0, fulldim.width/3*2, fulldim.height-fulldim.height/15);
 		note.setEditable(false);
+		note.setFont(new Font(null, Font.BOLD, 20));
+		note.setBackground(Color.WHITE);
+		note.setLineWrap(true);
 		
-		this.add(note);
+		scroll = new JScrollPane(note, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scroll.setBounds(0, 0, fulldim.width/3*2, fulldim.height-fulldim.height/15);
+//		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		
+		this.add(scroll);
 		
 		update();
 		
