@@ -42,12 +42,12 @@ class WeatherPanel extends JPanel{
 	
 	
 	//ImageIcon
-	ImageIcon rain = new ImageIcon("비.PNG");	
-	ImageIcon snow = new ImageIcon("눈.PNG");
-	ImageIcon cloud = new ImageIcon("구름.PNG");
-	ImageIcon extrasunny = new ImageIcon("해.PNG");	
-	ImageIcon sunny = new ImageIcon("구름해.PNG");
-	ImageIcon umb = new ImageIcon("우산.PNG");
+	ImageIcon rain = new ImageIcon("/home/pi/RaspberryPi/Raspberry/rain.PNG");	
+	ImageIcon snow = new ImageIcon("/home/pi/RaspberryPi/Raspberry/snow.PNG");
+	ImageIcon cloud = new ImageIcon("/home/pi/RaspberryPi/Raspberry/cloud.PNG");
+	ImageIcon extrasunny = new ImageIcon("/home/pi/RaspberryPi/Raspberry/sun.PNG");	
+	ImageIcon sunny = new ImageIcon("/home/pi/RaspberryPi/Raspberry/cloudsunny.PNG");
+	ImageIcon umb = new ImageIcon("/home/pi/RaspberryPi/Raspberry/umb.PNG");
 	JLabel current;
 
 			
