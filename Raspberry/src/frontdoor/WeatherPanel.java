@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.net.URL;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -42,12 +43,12 @@ class WeatherPanel extends JPanel{
 	
 	
 	//ImageIcon
-	ImageIcon rain = new ImageIcon("/home/pi/RaspberryPi/Raspberry/rain.PNG");	
-	ImageIcon snow = new ImageIcon("/home/pi/RaspberryPi/Raspberry/snow.PNG");
-	ImageIcon cloud = new ImageIcon("/home/pi/RaspberryPi/Raspberry/cloud.PNG");
-	ImageIcon extrasunny = new ImageIcon("/home/pi/RaspberryPi/Raspberry/sun.PNG");	
-	ImageIcon sunny = new ImageIcon("/home/pi/RaspberryPi/Raspberry/cloudsunny.PNG");
-	ImageIcon umb = new ImageIcon("/home/pi/RaspberryPi/Raspberry/umb.PNG");
+	ImageIcon rain;	
+	ImageIcon snow;
+	ImageIcon cloud;
+	ImageIcon extrasunny;	
+	ImageIcon sunny;
+	ImageIcon umb;
 	JLabel current;
 
 			
@@ -56,6 +57,21 @@ class WeatherPanel extends JPanel{
 		this.setBackground(Color.WHITE);
 		this.setBounds((fulldim.width/3)*2, fulldim.height/15, fulldim.width/3, fulldim.height-fulldim.height/15);
 		this.setLayout(new GridLayout(3,1));
+		
+		// Initial icon
+		try
+		{
+			rain = new ImageIcon(new URL("http://i.imgur.com/IExRq0E.png"));	
+			snow = new ImageIcon(new URL("http://i.imgur.com/HNz9fBo.png"));
+			cloud = new ImageIcon(new URL("http://i.imgur.com/HJi8OG0.png"));
+			extrasunny = new ImageIcon(new URL("http://i.imgur.com/kHSN4fU.png"));	
+			sunny = new ImageIcon(new URL("http://i.imgur.com/LnxfP8Y.png"));
+			umb = new ImageIcon(new URL("http://i.imgur.com/Q7NPHLb.png"));
+		}
+		catch(Exception e)
+		{
+			System.err.println(e);
+		}
 		
 		
 		// 발표 장소, 시간

@@ -5,6 +5,23 @@
 	<item value="false" key="TypeHierarchyViewPart.linkeditors"/>
 	<item value="C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib" key="org.eclipse.jdt.ui.lastextjar"/>
 	<item value="2" key="TypeHierarchyViewPart.hierarchyview"/>
+	<section name="FatJarPackageWizard">
+		<item value="C:\Users\Park\Documents\GitHub\RaspberryPi" key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION"/>
+		<item value="MainFrame - Raspberry" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
+		<item value="Raspberry\exefilejar.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
+		<item value="false" key="FatJarPackageWizardPage.ANTSCRIPT_SAVE"/>
+		<item value="1" key="FatJarPackageWizardPage.LIBRARY_HANDLING"/>
+		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="Raspberry\exefilejar.jar"/>
+			<item value="Raspberry/exefilejar.jar"/>
+			<item value="Raspberry\exefile.jar"/>
+			<item value="Raspberry/exefile.jar"/>
+		</list>
+		<list key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION_HISTORY">
+			<item value="C:\Users\Park\Documents\GitHub\RaspberryPi.xml"/>
+			<item value=".xml"/>
+		</list>
+	</section>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item value="2" key="layout"/>
 		<item value="true" key="group_libraries"/>
