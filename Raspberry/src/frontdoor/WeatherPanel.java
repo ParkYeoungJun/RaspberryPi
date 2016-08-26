@@ -147,13 +147,13 @@ class WeatherPanel extends JPanel{
 		{
 			img = rain.getImage();
 		
-			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/15, fulldim.height/9, Image.SCALE_SMOOTH)));
+			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/11, fulldim.height/7, Image.SCALE_SMOOTH)));
 		}
 		else if(current_weather[0].equals("눈"))
 		{
 			img = snow.getImage();
 			
-			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/15, fulldim.height/9, Image.SCALE_SMOOTH)));
+			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/11, fulldim.height/7, Image.SCALE_SMOOTH)));
 		
 			
 //			current.setIcon(snow);
@@ -162,7 +162,7 @@ class WeatherPanel extends JPanel{
 		{
 			img = snow.getImage();
 			
-			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/15, fulldim.height/9, Image.SCALE_SMOOTH)));
+			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/11, fulldim.height/7, Image.SCALE_SMOOTH)));
 
 			
 			//			current.setIcon(snow);
@@ -171,7 +171,7 @@ class WeatherPanel extends JPanel{
 		{
 			img = sunny.getImage();
 			
-			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/15, fulldim.height/9, Image.SCALE_SMOOTH)));
+			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/11, fulldim.height/7, Image.SCALE_SMOOTH)));
 
 			
 			
@@ -181,7 +181,7 @@ class WeatherPanel extends JPanel{
 		{
 			img = extrasunny.getImage();
 			
-			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/15, fulldim.height/9, Image.SCALE_SMOOTH)));
+			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/11, fulldim.height/7, Image.SCALE_SMOOTH)));
 
 			
 			//			current.setIcon(extrasunny);
@@ -190,13 +190,17 @@ class WeatherPanel extends JPanel{
 		
 		if(rain_or_snow.contains("비") || rain_or_snow.contains("눈"))
 		{
-			weather_label.setIcon(umb);
+			img = umb.getImage();
+			
+			weather_label.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/25, fulldim.height/15, Image.SCALE_SMOOTH)));
 		
 			weather_text.setText("비나 눈이와요. 우산을 챙기세요!!");
 		}
 		else
 		{
-//			weather_label.setIcon(umb);
+			img = umb.getImage();
+			
+			weather_label.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/25, fulldim.height/15, Image.SCALE_SMOOTH)));
 			
 			weather_text.setText("오늘은 우산이 필요 없는 날이 될 것 같아요!!");
 		}
