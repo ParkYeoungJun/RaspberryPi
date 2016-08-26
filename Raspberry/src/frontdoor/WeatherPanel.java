@@ -198,10 +198,6 @@ class WeatherPanel extends JPanel{
 		}
 		else
 		{
-			img = umb.getImage();
-			
-			weather_label.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/25, fulldim.height/15, Image.SCALE_SMOOTH)));
-			
 			weather_text.setText("오늘은 우산이 필요 없는 날이 될 것 같아요!!");
 		}
 		
