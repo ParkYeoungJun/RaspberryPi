@@ -147,13 +147,13 @@ class WeatherPanel extends JPanel{
 		{
 			img = rain.getImage();
 		
-			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/17, fulldim.height/11, Image.SCALE_SMOOTH)));
+			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/15, fulldim.height/9, Image.SCALE_SMOOTH)));
 		}
 		else if(current_weather[0].equals("´«"))
 		{
 			img = snow.getImage();
 			
-			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/17, fulldim.height/11, Image.SCALE_SMOOTH)));
+			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/15, fulldim.height/9, Image.SCALE_SMOOTH)));
 		
 			
 //			current.setIcon(snow);
@@ -162,7 +162,7 @@ class WeatherPanel extends JPanel{
 		{
 			img = snow.getImage();
 			
-			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/17, fulldim.height/11, Image.SCALE_SMOOTH)));
+			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/15, fulldim.height/9, Image.SCALE_SMOOTH)));
 
 			
 			//			current.setIcon(snow);
@@ -171,7 +171,7 @@ class WeatherPanel extends JPanel{
 		{
 			img = sunny.getImage();
 			
-			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/17, fulldim.height/11, Image.SCALE_SMOOTH)));
+			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/15, fulldim.height/9, Image.SCALE_SMOOTH)));
 
 			
 			
@@ -181,7 +181,7 @@ class WeatherPanel extends JPanel{
 		{
 			img = extrasunny.getImage();
 			
-			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/17, fulldim.height/11, Image.SCALE_SMOOTH)));
+			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/15, fulldim.height/9, Image.SCALE_SMOOTH)));
 
 			
 			//			current.setIcon(extrasunny);
