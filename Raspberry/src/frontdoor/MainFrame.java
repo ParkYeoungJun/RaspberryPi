@@ -60,7 +60,7 @@ public class MainFrame extends JFrame{
 
 		
 		// full Screen
-		this.setUndecorated(true);
+//		this.setUndecorated(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		// screensave screen initial
