@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.net.URL;
 
 import javax.swing.BoxLayout;
@@ -16,6 +17,8 @@ import javax.swing.JPanel;
 
 class WeatherPanel extends JPanel{
 
+	Dimension fulldim;
+	
 	Weather_Parsing weather;
 	Finedust_Parsing dust;
 	
@@ -49,6 +52,7 @@ class WeatherPanel extends JPanel{
 	ImageIcon extrasunny;	
 	ImageIcon sunny;
 	ImageIcon umb;
+	
 	JLabel current;
 
 			
@@ -57,6 +61,8 @@ class WeatherPanel extends JPanel{
 		this.setBackground(Color.WHITE);
 		this.setBounds((fulldim.width/3)*2, fulldim.height/15, fulldim.width/3, fulldim.height-fulldim.height/15);
 		this.setLayout(new GridLayout(3,1));
+		
+		this.fulldim = fulldim;
 		
 		// Initial icon
 		try
@@ -84,7 +90,7 @@ class WeatherPanel extends JPanel{
 		test.setLayout(new BorderLayout());
 		current = new JLabel("",JLabel.CENTER);
 		test.add(current,BorderLayout.CENTER);
-		
+	
 		
 		// umb panel
 		JPanel umb_minmax = new JPanel();
@@ -135,27 +141,52 @@ class WeatherPanel extends JPanel{
 		
 		current_weather = weather.get_wfKor();
 		
+		Image img;
+		
 		if(current_weather[0].equals("ºñ"))
 		{
-			current.setIcon(rain);
+			img = rain.getImage();
+			
+			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/9, fulldim.height/6, Image.SCALE_SMOOTH)));
 		}
 		else if(current_weather[0].equals("´«"))
 		{
-			current.setIcon(snow);
+			img = snow.getImage();
+			
+			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/9, fulldim.height/6, Image.SCALE_SMOOTH)));
+		
+			
+//			current.setIcon(snow);
 		}
 		else if(current_weather[0].equals("ºñ³ª ´«"))
 		{
-			current.setIcon(snow);
+			img = snow.getImage();
+			
+			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/9, fulldim.height/6, Image.SCALE_SMOOTH)));
+
+			
+			//			current.setIcon(snow);
 		}
 		else if(current_weather[0].equals("±¸¸§ ¸¹À½"))
 		{
-			current.setIcon(sunny);
+			img = sunny.getImage();
+			
+			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/9, fulldim.height/6, Image.SCALE_SMOOTH)));
+
+			
+			
+			//			current.setIcon(sunny);
 		}
 		else if(current_weather[0].equals("±¸¸§ Á¶±Ý"))
 		{
-			current.setIcon(extrasunny);
+			img = extrasunny.getImage();
+			
+			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/9, fulldim.height/6, Image.SCALE_SMOOTH)));
+
+			
+			//			current.setIcon(extrasunny);
 		}
-		
+	
 		
 		if(rain_or_snow.contains("ºñ") || rain_or_snow.contains("´«"))
 		{
