@@ -119,9 +119,9 @@
           </children>
         </children>
       </children>
-      <children xsi:type="basic:PartStack" xmi:id="_ecAUkV35EeafZOSCLxMYVw" elementId="stickyFolderRight" containerData="2500" selectedElement="_ecAUk135EeafZOSCLxMYVw">
+      <children xsi:type="basic:PartStack" xmi:id="_ecAUkV35EeafZOSCLxMYVw" elementId="stickyFolderRight" toBeRendered="false" containerData="2500">
         <children xsi:type="advanced:Placeholder" xmi:id="_ecAUkl35EeafZOSCLxMYVw" elementId="org.eclipse.help.ui.HelpView" toBeRendered="false" ref="_eb8qMF35EeafZOSCLxMYVw"/>
-        <children xsi:type="advanced:Placeholder" xmi:id="_ecAUk135EeafZOSCLxMYVw" elementId="org.eclipse.ui.internal.introview" ref="_eb_GcF35EeafZOSCLxMYVw"/>
+        <children xsi:type="advanced:Placeholder" xmi:id="_ecAUk135EeafZOSCLxMYVw" elementId="org.eclipse.ui.internal.introview" toBeRendered="false" ref="_eb_GcF35EeafZOSCLxMYVw"/>
         <children xsi:type="advanced:Placeholder" xmi:id="_ecAUlF35EeafZOSCLxMYVw" elementId="org.eclipse.ui.cheatsheets.views.CheatSheetView" toBeRendered="false" ref="_eb_GcV35EeafZOSCLxMYVw"/>
       </children>
     </children>
@@ -137,14 +137,14 @@
         <tags>ViewMenu</tags>
         <tags>menuContribution:menu</tags>
       </menus>
-      <toolbar xmi:id="_fShs4V35EeafZOSCLxMYVw" elementId="org.eclipse.ui.internal.introview"/>
+      <toolbar xmi:id="_fShs4V35EeafZOSCLxMYVw" elementId="org.eclipse.ui.internal.introview" visible="false"/>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_eb_GcV35EeafZOSCLxMYVw" elementId="org.eclipse.ui.cheatsheets.views.CheatSheetView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Cheat Sheets" iconURI="platform:/plugin/org.eclipse.ui.cheatsheets/icons/view16/cheatsheet_view.gif" tooltip="" closeable="true">
       <tags>View</tags>
       <tags>categoryTag:Help</tags>
     </sharedElements>
     <sharedElements xsi:type="advanced:Area" xmi:id="_ez2z4F35EeafZOSCLxMYVw" elementId="org.eclipse.ui.editorss" selectedElement="_ez2z4V35EeafZOSCLxMYVw">
-      <children xsi:type="basic:PartStack" xmi:id="_ez2z4V35EeafZOSCLxMYVw" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_SeT2sF39EeafZOSCLxMYVw">
+      <children xsi:type="basic:PartStack" xmi:id="_ez2z4V35EeafZOSCLxMYVw" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_Sf81cF39EeafZOSCLxMYVw">
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
         <tags>active</tags>
@@ -159,14 +159,14 @@
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
-          <tags>active</tags>
-          <tags>activeOnClose</tags>
         </children>
         <children xsi:type="basic:Part" xmi:id="_Sf81cF39EeafZOSCLxMYVw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="MainFrame.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;MainFrame.java&quot; partName=&quot;MainFrame.java&quot; title=&quot;MainFrame.java&quot; tooltip=&quot;Raspberry/src/frontdoor/MainFrame.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Raspberry/src/frontdoor/MainFrame.java&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
+          <tags>active</tags>
+          <tags>activeOnClose</tags>
         </children>
         <children xsi:type="basic:Part" xmi:id="_U1E5wF39EeafZOSCLxMYVw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Finedust_Parsing.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Finedust_Parsing.java&quot; partName=&quot;Finedust_Parsing.java&quot; title=&quot;Finedust_Parsing.java&quot; tooltip=&quot;Raspberry/src/frontdoor/Finedust_Parsing.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Raspberry/src/frontdoor/Finedust_Parsing.java&quot;/>&#xD;&#xA;&lt;/editor>"/>
@@ -312,7 +312,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_egaTcF35EeafZOSCLxMYVw" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_2Q8QQGtpEeaXm6adV1evCg" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_eFNlMl35EeafZOSCLxMYVw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_LGl0AGtrEeajpdhwEQlbMg" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_eFNlMl35EeafZOSCLxMYVw"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_egaTcV35EeafZOSCLxMYVw" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -336,7 +336,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_ega6gl35EeafZOSCLxMYVw" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_2RAhsGtpEeaXm6adV1evCg" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_eFMXI135EeafZOSCLxMYVw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_LGqsgGtrEeajpdhwEQlbMg" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_eFMXI135EeafZOSCLxMYVw"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_zys-IGtnEeaN3ecknrH1UA" elementId="org.eclipse.jdt.ui.CompilationUnitEditor" visible="false">
         <tags>Draggable</tags>
