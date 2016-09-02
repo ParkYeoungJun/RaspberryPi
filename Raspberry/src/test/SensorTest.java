@@ -9,6 +9,7 @@ import java.util.concurrent.Callable;
  * Use the pi4j classes to watch a gpio trigger. This uses the pin number scheme as outlined in:
  * http://pi4j.com/pins/model-2b-rev1.html
  */
+
 public class SensorTest {
     public static void main(String[] args) throws InterruptedException {
  
@@ -16,6 +17,7 @@ public class SensorTest {
  
         // create gpio controller
         final GpioController gpio = GpioFactory.getInstance();
+        
         // provision gpio pin #29, (header pin 40) as an input pin with its internal pull down resistor enabled
         final GpioPinDigitalInput pir = gpio.provisionDigitalInputPin(RaspiPin.GPIO_29);
         System.out.printf("Ready\n");
@@ -25,6 +27,7 @@ public class SensorTest {
             System.out.println(" --> GPIO TRIGGER CALLBACK RECEIVED ");
             return null;
         };
+        
         // create a gpio callback trigger on the PIR device pin for when it's state goes high
         pir.addTrigger(new GpioCallbackTrigger(PinState.HIGH, callback));
  
