@@ -10,8 +10,9 @@ import java.util.concurrent.Callable;
  * http://pi4j.com/pins/model-2b-rev1.html
  */
 public class SensorTest {
-    public static void main(String[] args) throws InterruptedException {
- 
+
+	public SensorTest() throws InterruptedException
+	{
         System.out.printf("PIR Module Test (CTRL+C to exit)\n");
  
         // create gpio controller
@@ -42,5 +43,10 @@ public class SensorTest {
             Thread.sleep(100);
         }
  
+    }
+    
+    public static void main(String[] args) throws InterruptedException
+    {
+    	SensorTest temp = new SensorTest();
     }
 }
