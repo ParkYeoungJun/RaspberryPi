@@ -475,3 +475,53 @@ java.lang.NullPointerException
 
 !ENTRY org.eclipse.epp.logging.aeri.ui 2 6 2016-09-02 15:23:05.313
 !MESSAGE Failed to determine ETAG for remote problems database. Stopping update. Version: 1.0.0.v20150617-0732
+
+!ENTRY org.eclipse.recommenders.types.rcp 1 3 2016-09-02 15:53:51.767
+!MESSAGE Full project indexing required:
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\json-simple-1.1.1.jar
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\junit.jar
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-core-javadoc.jar
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-core-sources.jar
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-core.jar
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-device-javadoc.jar
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-device-sources.jar
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-device.jar
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-example-javadoc.jar
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-example-sources.jar
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-example.jar
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-gpio-extension-javadoc.jar
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-gpio-extension-sources.jar
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-gpio-extension.jar
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-service-javadoc.jar
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-service-sources.jar
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-service.jar
+
+!STACK 0
+org.eclipse.recommenders.utils.Logs$LogTraceException
+	at org.eclipse.recommenders.utils.Logs$LogTraceException.newTrace(Logs.java:381)
+	at org.eclipse.recommenders.utils.Logs.log(Logs.java:134)
+	at org.eclipse.recommenders.internal.types.rcp.ProjectTypesIndex.needsRebuild(ProjectTypesIndex.java:172)
+	at org.eclipse.recommenders.internal.types.rcp.ProjectTypesIndex.startUp(ProjectTypesIndex.java:128)
+	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
+	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
+	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY org.eclipse.recommenders.rcp 4 5 2016-09-02 15:54:18.565
+!MESSAGE Failed to resolve selection in ‘=Raspberry/src<test{SensorTest.java’ at offset 514
+!STACK 0
+org.eclipse.recommenders.utils.Logs$LogTraceException
+	at org.eclipse.recommenders.utils.Logs$LogTraceException.newTrace(Logs.java:381)
+	at org.eclipse.recommenders.utils.Logs.log(Logs.java:134)
+	at org.eclipse.recommenders.internal.rcp.JavaElementSelections.resolveJavaElementFromTypeRootInEditor(JavaElementSelections.java:164)
+	at org.eclipse.recommenders.internal.rcp.JavaElementSelections.resolveJavaElementFromEditor(JavaElementSelections.java:119)
+	at org.eclipse.recommenders.internal.rcp.JavaElementSelections.resolveJavaElementFromEditor(JavaElementSelections.java:102)
+	at org.eclipse.recommenders.internal.rcp.JavaElementSelectionService.handleSelectionInEditor(JavaElementSelectionService.java:108)
+	at org.eclipse.recommenders.internal.rcp.JavaElementSelectionService.access$1(JavaElementSelectionService.java:105)
+	at org.eclipse.recommenders.internal.rcp.JavaElementSelectionService$1.run(JavaElementSelectionService.java:82)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
