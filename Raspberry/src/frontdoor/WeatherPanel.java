@@ -144,7 +144,7 @@ class WeatherPanel extends JPanel{
 		Image img;
 		
 		if(current_weather[0].equals("ºñ"))
-		{
+		{	
 			img = rain.getImage();
 		
 			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/11, fulldim.height/7, Image.SCALE_SMOOTH)));
