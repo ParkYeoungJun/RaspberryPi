@@ -1,56 +1,46 @@
 package test;
 
-import com.pi4j.io.gpio.GpioController;
-import com.pi4j.io.gpio.GpioFactory;
-import com.pi4j.io.gpio.GpioPinDigitalInput;
-import com.pi4j.io.gpio.Pin;
-import com.pi4j.io.gpio.PinPullResistance;
-import com.pi4j.io.gpio.RaspiPin;
-import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
-import com.pi4j.io.gpio.event.GpioPinListenerDigital;
-
-/*
- * PIR: PyroElectric Infra Red
+import com.pi4j.io.gpio.*;
+import com.pi4j.io.gpio.trigger.GpioCallbackTrigger;
+ 
+import java.util.concurrent.Callable;
+ 
+/**
+ * Use the pi4j classes to watch a gpio trigger. This uses the pin number scheme as outlined in:
+ * http://pi4j.com/pins/model-2b-rev1.html
  */
-public class SensorTest
-{
-	final GpioController gpioSensor = GpioFactory.getInstance();
-	final GpioPinDigitalInput sensor = gpioSensor.provisionDigitalInputPin(RaspiPin.GPIO_04, PinPullResistance.PULL_DOWN);
-	
-	public SensorTest()
-	{
-		sensor.addListener(new GpioPinListenerDigital(){
-
-			@Override
-			public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-				// TODO Auto-generated method stub
-				
-				if(event.getState().isHigh())
-				{
-					System.out.println("Motion Detected!!!!");
-				}
-				else if(event.getState().isLow())
-				{
-					System.out.println("All is quiet....");
-				}
-			}
-		});
-		
-		try
-		{
-			for(;;)
-			{
-				Thread.sleep(100);
-			}
-		}
-		catch(Exception e)
-		{
-			System.err.println(e);
-		}
-	}
-	
-	public static void main(String[] args)
-	{
-		SensorTest temp = new SensorTest();
-	}
+public class SensorTest {
+    public static void main(String[] args) throws InterruptedException {
+ 
+        System.out.printf("PIR Module Test (CTRL+C to exit)\n");
+ 
+        // create gpio controller
+        final GpioController gpio = GpioFactory.getInstance();
+        // provision gpio pin #29, (header pin 40) as an input pin with its internal pull down resistor enabled
+        final GpioPinDigitalInput pir = gpio.provisionDigitalInputPin(RaspiPin.GPIO_29);
+        System.out.printf("Ready\n");
+ 
+        // create a gpio callback trigger on the gpio pin
+        Callable<Void> callback = () -> {
+            System.out.println(" --> GPIO TRIGGER CALLBACK RECEIVED ");
+            return null;
+        };
+        // create a gpio callback trigger on the PIR device pin for when it's state goes high
+        pir.addTrigger(new GpioCallbackTrigger(PinState.HIGH, callback));
+ 
+        // stop all GPIO activity/threads by shutting down the GPIO controller
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() {
+                System.out.println("Interrupted, stopping...\n");
+                gpio.shutdown();
+            }
+        });
+ 
+        // keep program running until user aborts (CTRL-C)
+        for (;;) {
+            Thread.sleep(100);
+        }
+ 
+    }
 }
