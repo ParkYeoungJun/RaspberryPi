@@ -15,7 +15,7 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 public class SensorTest
 {
 	final GpioController gpioSensor = GpioFactory.getInstance();
-	final GpioPinDigitalInput sensor = gpioSensor.provisionDigitalInputPin(RaspiPin.GPIO_29, PinPullResistance.PULL_DOWN);
+	final GpioPinDigitalInput sensor = gpioSensor.provisionDigitalInputPin(RaspiPin.GPIO_04, PinPullResistance.PULL_DOWN);
 	
 	public SensorTest()
 	{
@@ -29,8 +29,7 @@ public class SensorTest
 				{
 					System.out.println("Motion Detected!!!!");
 				}
-				
-				if(event.getState().isLow())
+				else if(event.getState().isLow())
 				{
 					System.out.println("All is quiet....");
 				}
@@ -40,7 +39,9 @@ public class SensorTest
 		try
 		{
 			for(;;)
+			{
 				Thread.sleep(500);
+			}
 		}
 		catch(Exception e)
 		{
