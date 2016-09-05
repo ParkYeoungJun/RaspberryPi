@@ -72,12 +72,19 @@ public class NotePanel extends JPanel
 	
 		notedata = noteparse.getdata();
 		
-		for(int i = 0 ; i < notedata.size() ; ++i)
+		if(notedata.size() == 0)
 		{
-			note.append(notedata.get(i).toString());
+			note.append("금일 노트가 비었어요\n\n좋은하루 되세요~");
+		}
+		else
+		{
+			for(int i = 0 ; i < notedata.size() ; ++i)
+			{
+				note.append(notedata.get(i).toString());
 			
-			if(notedata.size()-1 != i)
-				note.append("\n\n----------------------------\n\n");
+				if(notedata.size()-1 != i)
+					note.append("\n\n----------------------------\n\n");
+			}
 		}
 	}
 	

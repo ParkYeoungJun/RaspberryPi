@@ -32,8 +32,8 @@ public class Note_Parsing {
 			date = format.format(current);
 				
 			// initial
-			url = new URL("http://52.78.88.182/getdata.php?date=2016-08-03");
-//			url = new URL("http://52.78.88.182/getdata.php?date="+date);
+//			url = new URL("http://52.78.88.182/getdata.php?date=2016-08-03");
+			url = new URL("http://52.78.88.182/getdata.php?date="+date);
 			isr = new InputStreamReader(url.openConnection().getInputStream(), "UTF-8");
 			object = (JSONObject)JSONValue.parse(isr);
 

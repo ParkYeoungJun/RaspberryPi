@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -48,9 +49,17 @@ public class MainFrame extends JFrame{
 	// PlusPanel
 	PlusPanel pluspanel;
 	
+	// summary panel
+	FreezePanel s_freezepanel;
+	ColdPanel s_coldpanel;
+	PressPanel s_presspanel;
 	
 	int bound_x = 0;
 	Timer timer;
+	
+	int from = -fulldim.width/4;
+	int to = 0;
+
 
 	
 	
@@ -60,12 +69,16 @@ public class MainFrame extends JFrame{
 		this.setLayout(null);
 		this.setBounds(0, 0, fulldim.width, fulldim.height);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		//this.isUndecorated(true);
+//		this.setUndecorated(true);
 		
 		
 		menupanel = new MenuPanel(fulldim);
 		this.add(menupanel);
 		
+		
+		/*
+		 * date panel
+		 */
 		
 		ceilingpanel = new JPanel();
 		ceilingpanel.setLayout(null);
@@ -76,8 +89,15 @@ public class MainFrame extends JFrame{
 		date.setFont(new Font(null,10,20));
 		ceilingpanel.add(date);		
 		
+		/*
+		 * 
+		 */
 		
-		// menu, plus button
+		
+		/*
+		 *  menu, plus button
+		 */
+		
 		try
 		{
 			menuicon = new ImageIcon(new URL("http://i.imgur.com/FKCvv3e.png"));
@@ -106,43 +126,42 @@ public class MainFrame extends JFrame{
 		{
 			System.err.println(e);
 		}
+		
+		/*
+		 * 
+		 */
 	
+		/*
+		 *  listeners
+		 */
 		
 		menulabel.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
+				menupanel.setSize(fulldim.width/4, fulldim.height);
 				
-				MainFrame.this.setEnabled(false);
+				timer = new Timer(5, new ActionListener(){
+					public void actionPerformed(ActionEvent ae){
 
-//				AppearAnimate temp = new AppearAnimate();
-//				temp.run();
-//				
-//				
-//				
-//				while(true)
-//				{
-//					menupanel.setLocation(++bound_x, fulldim.height/15);
-//			
-//					System.out.println(bound_x);
-//
-//					menupanel.repaint();
-//					menupanel.revalidate();
-//					MainFrame.this.repaint();
-//					MainFrame.this.revalidate();
-//					
-//					if(bound_x > fulldim.width/5)
-//						break;
-//					
-//					try
-//					{
-//						Thread.sleep(10);
-//					}
-//					catch(Exception er)
-//					{
-//						System.err.println(er);
-//					}
-//				}		
+						System.out.println(from);
+						
+						if(from < to)
+						{
+							from = from+10;
+							menupanel.setLocation(from, 0);
+							menupanel.repaint();
+						}
+						else
+							timer.stop();
+						
+						menupanel.setLocation(from, 0);
+						menupanel.repaint();
+						
+					}
+				});
+				
+				timer.start();
 			}
 		});
 		
@@ -156,10 +175,32 @@ public class MainFrame extends JFrame{
 			}
 		});
 		
-		this.add(ceilingpanel);
-
-		update();
+		/*
+		 * 
+		 */
 		
+		this.add(ceilingpanel);
+		
+		/*
+		 *	  Initial summary panels
+		 */
+		
+		s_freezepanel = new FreezePanel(fulldim);
+		s_coldpanel = new ColdPanel(fulldim);
+		s_presspanel = new PressPanel(fulldim);
+	
+	
+		this.add(s_freezepanel);
+		this.add(s_coldpanel);
+		this.add(s_presspanel);
+	
+		
+		/*
+		 * 
+		 */
+		
+		update();
+
 		this.setVisible(true);
 	}
 	

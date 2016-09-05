@@ -20,10 +20,10 @@ public class PlusPanel extends JFrame{
 		
 		this.setTitle("Add");
 		this.setLayout(null);
-		this.setBounds(fulldim.width/3, fulldim.height/3, fulldim.width/3, fulldim.height/3);
+		this.setBounds(fulldim.width/3, fulldim.height/3, fulldim.width/3, fulldim.height/3-fulldim.height/15);
+		
 		
 		this.setVisible(true);
-	
 		
 		this.addWindowListener(new java.awt.event.WindowAdapter(){
 			
@@ -35,5 +35,4 @@ public class PlusPanel extends JFrame{
 			
 		});	
 	}
-
 }
