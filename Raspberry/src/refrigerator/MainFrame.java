@@ -38,8 +38,15 @@ public class MainFrame extends JFrame{
 	ImageIcon menuicon;
 	JLabel menulabel;
 	
+	// Plus icon
+	ImageIcon plusicon;
+	JLabel pluslabel;
+	
 	// MenuPanel
 	MenuPanel menupanel;
+	
+	// PlusPanel
+	PlusPanel pluspanel;
 	
 	
 	int bound_x = 0;
@@ -68,21 +75,32 @@ public class MainFrame extends JFrame{
 		date.setBounds(0,0, fulldim.width-50, fulldim.height/15);
 		date.setFont(new Font(null,10,20));
 		ceilingpanel.add(date);		
-		// menu button
+		
+		
+		// menu, plus button
 		try
 		{
 			menuicon = new ImageIcon(new URL("http://i.imgur.com/FKCvv3e.png"));
 			menulabel = new JLabel();
 			
+			plusicon = new ImageIcon(new URL("http://i.imgur.com/s11YLYf.png"));
+			pluslabel = new JLabel();
+			
+			
+			// menu
 			Image img;
-			
+	
 			img = menuicon.getImage();
-			
 			menulabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/30, fulldim.height/20, Image.SCALE_SMOOTH)));
-			
 			menulabel.setBounds(0,10,fulldim.width/30,fulldim.height/20);
-		
 			ceilingpanel.add(menulabel);
+			
+			// plus
+			img = plusicon.getImage();
+			pluslabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/35, fulldim.height/20, Image.SCALE_SMOOTH)));
+			pluslabel.setBounds(fulldim.width-fulldim.width/21, fulldim.height-fulldim.height/6, fulldim.width/35, fulldim.height/15);
+			this.add(pluslabel);
+			
 		}
 		catch(Exception e)
 		{
@@ -94,6 +112,9 @@ public class MainFrame extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
+				
+				MainFrame.this.setEnabled(false);
+
 //				AppearAnimate temp = new AppearAnimate();
 //				temp.run();
 //				
@@ -124,12 +145,19 @@ public class MainFrame extends JFrame{
 //				}		
 			}
 		});
-	
-				
+		
+		pluslabel.addMouseListener(new MouseAdapter(){
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				MainFrame.this.setEnabled(false);
+			
+				pluspanel = new PlusPanel(fulldim, MainFrame.this);
+			}
+		});
+		
 		this.add(ceilingpanel);
 
-		
-		
 		update();
 		
 		this.setVisible(true);
