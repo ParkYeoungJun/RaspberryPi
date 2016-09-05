@@ -72,7 +72,7 @@ public class MainFrame extends JFrame{
 //		this.setUndecorated(true);
 		
 		
-		menupanel = new MenuPanel(fulldim);
+		menupanel = new MenuPanel(fulldim, this);
 		this.add(menupanel);
 		
 		
@@ -139,12 +139,13 @@ public class MainFrame extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
+				
+				panels_enable(false);
+				
 				menupanel.setSize(fulldim.width/4, fulldim.height);
 				
 				timer = new Timer(5, new ActionListener(){
 					public void actionPerformed(ActionEvent ae){
-
-						System.out.println(from);
 						
 						if(from < to)
 						{
@@ -153,11 +154,12 @@ public class MainFrame extends JFrame{
 							menupanel.repaint();
 						}
 						else
+						{
+							from = -fulldim.width/4;
+							to = 0;
+							
 							timer.stop();
-						
-						menupanel.setLocation(from, 0);
-						menupanel.repaint();
-						
+						}
 					}
 				});
 				
@@ -204,6 +206,14 @@ public class MainFrame extends JFrame{
 		this.setVisible(true);
 	}
 	
+	public void panels_enable(boolean flag)
+	{
+//		s_freezepanel.setEnabled(flag);
+//		s_coldpanel.setEnabled(flag);
+//		s_presspanel.setEnabled(flag);
+		pluslabel.setEnabled(flag);
+	}
+	
 	public void update()
 	{
 		// get date
@@ -213,44 +223,7 @@ public class MainFrame extends JFrame{
 				
 		date.setText(today);
 	}
-	
-	class AppearAnimate extends Thread
-	{
-		int bound_x = 0;
-		
-		public void run()
-		{
-			while(true)
-			{
-				menupanel.setLocation(++bound_x, fulldim.height/15);
-			
-								
-//				menupanel.setSize(++bound_x, fulldim.height);
-				
-				System.out.println(bound_x);
 
-				menupanel.repaint();
-				
-				if(bound_x > fulldim.width/5)
-					break;
-				
-				try
-				{
-					Thread.sleep(10);
-				}
-				catch(Exception e)
-				{
-					System.err.println(e);
-				}
-			}
-		}
-	}
-	
-	public void repain()
-	{
-		this.repaint();
-	}
-	
 	public static void main(String[] args)
 	{
 		MainFrame temp = new MainFrame();
