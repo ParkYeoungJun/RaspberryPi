@@ -20,8 +20,7 @@ public class PlusPanel extends JFrame{
 		
 		this.setTitle("Add");
 		this.setLayout(null);
-		this.setBounds(fulldim.width/3, fulldim.height/3, fulldim.width/3, fulldim.height/3-fulldim.height/15);
-		
+		this.setBounds(fulldim.width/7, fulldim.height/10, fulldim.width/2+fulldim.width/4, fulldim.height/2+fulldim.height/3);
 		
 		this.setVisible(true);
 		

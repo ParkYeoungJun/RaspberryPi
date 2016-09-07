@@ -42,12 +42,14 @@ public class MainFrame extends JFrame{
 	// Plus icon
 	ImageIcon plusicon;
 	JLabel pluslabel;
+	boolean plusflag = true;
 	
 	// MenuPanel
 	MenuPanel menupanel;
 	
 	// PlusPanel
 	PlusPanel pluspanel;
+	
 	
 	// summary panel
 	FreezePanel s_freezepanel;
@@ -83,7 +85,7 @@ public class MainFrame extends JFrame{
 		ceilingpanel = new JPanel();
 		ceilingpanel.setLayout(null);
 		ceilingpanel.setBounds(0, 0, fulldim.width, fulldim.height/15);
-		ceilingpanel.setBackground(Color.WHITE);
+		ceilingpanel.setBackground(Color.BLUE);
 		date = new JLabel("",JLabel.CENTER);
 		date.setBounds(0,0, fulldim.width-50, fulldim.height/15);
 		date.setFont(new Font(null,10,20));
@@ -142,6 +144,8 @@ public class MainFrame extends JFrame{
 				
 				panels_enable(false);
 				
+				menupanel.setLocation(from, 0);
+				
 				menupanel.setSize(fulldim.width/4, fulldim.height);
 				
 				timer = new Timer(5, new ActionListener(){
@@ -171,15 +175,19 @@ public class MainFrame extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
-				MainFrame.this.setEnabled(false);
+				if(plusflag)
+				{
+					MainFrame.this.setEnabled(false);
 			
-				pluspanel = new PlusPanel(fulldim, MainFrame.this);
+					pluspanel = new PlusPanel(fulldim, MainFrame.this);
+				}			
 			}
 		});
 		
 		/*
 		 * 
 		 */
+		
 		
 		this.add(ceilingpanel);
 		
@@ -208,10 +216,7 @@ public class MainFrame extends JFrame{
 	
 	public void panels_enable(boolean flag)
 	{
-//		s_freezepanel.setEnabled(flag);
-//		s_coldpanel.setEnabled(flag);
-//		s_presspanel.setEnabled(flag);
-		pluslabel.setEnabled(flag);
+		plusflag = flag;
 	}
 	
 	public void update()
@@ -221,7 +226,7 @@ public class MainFrame extends JFrame{
 		today = format.format(date_object);
 		today += " "+day[date_object.getDay()];
 				
-		date.setText(today);
+		date.setText("<html><font color = #FFFFFFF>"+today+"</font><html>");
 	}
 
 	public static void main(String[] args)
