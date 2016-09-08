@@ -102,10 +102,10 @@ public class MainFrame extends JFrame{
 		
 		try
 		{
-			menuicon = new ImageIcon(new URL("http://i.imgur.com/FKCvv3e.png"));
+			menuicon = new ImageIcon("icon/menu_icon.png");
 			menulabel = new JLabel();
 			
-			plusicon = new ImageIcon(new URL("http://i.imgur.com/s11YLYf.png"));
+			plusicon = new ImageIcon("icon/PlusButton.png");
 			pluslabel = new JLabel();
 			
 			

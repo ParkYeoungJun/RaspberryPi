@@ -104,7 +104,7 @@ public class MenuPanel extends JPanel{
 			 *  profile
 			 */
 			
-			hanulcon = new ImageIcon(new URL("http://i.imgur.com/ZBO3GwO.png"));
+			hanulcon = new ImageIcon("icon/hanul.png");
 			profile_icon = new JLabel();
 			
 			img = hanulcon.getImage();
@@ -124,7 +124,7 @@ public class MenuPanel extends JPanel{
 					Image goodimage;
 					try
 					{
-						goodicon = new ImageIcon(new URL("http://i.imgur.com/D2OvckL.png"));
+						goodicon = new ImageIcon("icon/hanul_big.png");
 						goodlabel.setIcon(goodicon);
 						
 						good.add(goodlabel);
@@ -147,7 +147,6 @@ public class MenuPanel extends JPanel{
 			this.add(profile_text);
 			
 			settingbutton = new JLabel("<html><font color = #000000>--------------------------------------------------------------------<br>  Setting<br>--------------------------------------------------------------------</font></html>", JLabel.LEFT);
-			
 			settingbutton.setFont(new Font(null, 10, 20));
 			settingbutton.setBounds(0,fulldim.height/2, fulldim.width/4, 70);
 			this.add(settingbutton);

@@ -69,12 +69,12 @@ class WeatherPanel extends JPanel{
 		// Initial icon
 		try
 		{
-			rain = new ImageIcon(new URL("http://i.imgur.com/AWMa7gQ.png"));	
-			snow = new ImageIcon(new URL("http://i.imgur.com/h4CMaCF.png"));
-			cloud = new ImageIcon(new URL("http://i.imgur.com/MDbF2OO.png"));
-			extrasunny = new ImageIcon(new URL("http://i.imgur.com/u1Bzd2n.png"));	
-			sunny = new ImageIcon(new URL("http://i.imgur.com/PNzaYE9.png"));
-			umb = new ImageIcon(new URL("http://i.imgur.com/Qa8JcUI.png"));
+			rain = new ImageIcon("icon/rain.png");	
+			snow = new ImageIcon("icon/snow.png");
+			cloud = new ImageIcon("icon/cloud.png");
+			extrasunny = new ImageIcon("icon/sun.png");	
+			sunny = new ImageIcon("icon/cloudsunny.png");
+			umb = new ImageIcon("icon/umb.png");
 		}
 		catch(Exception e)
 		{
