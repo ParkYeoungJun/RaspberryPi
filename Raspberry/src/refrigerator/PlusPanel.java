@@ -5,6 +5,10 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
@@ -16,6 +20,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.SoftBevelBorder;
@@ -27,7 +32,15 @@ public class PlusPanel extends JFrame{
 	
 	Dimension fulldim;
 	
-	JLabel explain = new JLabel("<html><font color=#FFFFFFF><strong>상품을 선택해 주세요</strong></font></html>", JLabel.LEFT);
+	String explainstring = new String("<html><font color=#FFFFFFF><strong>상품을 선택해 주세요</strong></font></html>");
+	JLabel explain = new JLabel(explainstring, JLabel.LEFT);
+	
+	// Small group
+	JPanel smallgroup;
+	int x;
+	int y;
+	int temp;
+	Timer timer;
 	
 	// Image JLabel
 	JLabel meatlabel = new JLabel("", JLabel.CENTER);
@@ -63,12 +76,16 @@ public class PlusPanel extends JFrame{
 	public PlusPanel(Dimension fulldim, JFrame mainframe)
 	{
 		this.fulldim = fulldim;
+		x = fulldim.width-(fulldim.width*2)/7;
+		y = fulldim.height/2+fulldim.height/3;
+		temp = 0;
 		this.mainframe = mainframe;
 		
 		this.setTitle("Add");
 		this.setLayout(null);
 		this.setBounds(fulldim.width/7, fulldim.height/10, fulldim.width-(fulldim.width*2)/7, fulldim.height/2+fulldim.height/3);
-	
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		
 		try
 		{
 			BufferedImage im = ImageIO.read(new File("icon/plus_background_up.png"));
@@ -114,6 +131,78 @@ public class PlusPanel extends JFrame{
 			img = vegetable.getImage();
 			vegetablelabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/10, fulldim.height/7, Image.SCALE_SMOOTH)));
 //			vegetablelabel.setIcon(vegetable);
+			
+			
+			/*
+			 *  MouseListenr
+			 */
+			
+			meatlabel.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e)
+				{
+					smallgroup = new MeatPanel(x,y);
+					
+					PlusPanel.this.add(smallgroup);
+					
+					animate();
+				
+					explain.setVisible(false);
+				}
+			});
+			beveragelabel.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e)
+				{
+					smallgroup = new BeveragePanel(x,y);
+				}
+			});
+			fishlabel.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e)
+				{
+					smallgroup = new FishPanel(x,y);
+				}
+			});
+			fruitlabel.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e)
+				{
+					smallgroup = new FruitPanel(x,y);
+				}
+			});
+			marinelabel.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e)
+				{
+					smallgroup = new MarinePanel(x,y);
+				}
+			});
+			etclabel.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e)
+				{
+					smallgroup = new EtcPanel(x,y);
+				}
+			});
+			vegetablelabel.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e)
+				{
+					smallgroup = new VegetablePanel(x,y);
+				}
+			});
+			dairylabel.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e)
+				{
+					smallgroup = new DairyPanel(x,y);
+				}
+			});
+			
+			/*
+			 * 
+			 */
 			
 			
 			// explain label
@@ -210,6 +299,34 @@ public class PlusPanel extends JFrame{
 		
 		this.setVisible(true);
 		
+	}
+	
+	public void animate()
+	{
+		timer = new Timer(5, new ActionListener(){
+			public void actionPerformed(ActionEvent ae){
+
+//				int temp = fulldim.width-(fulldim.width*2)/7;
+				
+				if(x > 0)
+				{
+					x = x-20;
+					temp = temp - 20;
+										
+					imagepanel.setLocation(temp, 40);
+					imagepanel.repaint();
+					
+					smallgroup.setLocation(x, 0);
+					smallgroup.repaint();
+				}
+				else
+				{
+					timer.stop();
+				}							
+			}
+		});
+		
+		timer.start();
 	}
 
 	class ImagePanel extends JComponent {
