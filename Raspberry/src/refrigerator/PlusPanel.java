@@ -85,6 +85,7 @@ public class PlusPanel extends JFrame{
 		this.setLayout(null);
 		this.setBounds(fulldim.width/7, fulldim.height/10, fulldim.width-(fulldim.width*2)/7, fulldim.height/2+fulldim.height/3);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setResizable(false);
 		
 		try
 		{
@@ -132,7 +133,6 @@ public class PlusPanel extends JFrame{
 			vegetablelabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/10, fulldim.height/7, Image.SCALE_SMOOTH)));
 //			vegetablelabel.setIcon(vegetable);
 			
-			
 			/*
 			 *  MouseListenr
 			 */
@@ -141,7 +141,7 @@ public class PlusPanel extends JFrame{
 				@Override
 				public void mouseClicked(MouseEvent e)
 				{
-					smallgroup = new MeatPanel(x,y);
+					smallgroup = new MeatPanel(x,y, PlusPanel.this);
 					
 					PlusPanel.this.add(smallgroup);
 					
@@ -154,49 +154,91 @@ public class PlusPanel extends JFrame{
 				@Override
 				public void mouseClicked(MouseEvent e)
 				{
-					smallgroup = new BeveragePanel(x,y);
+					smallgroup = new BeveragePanel(x,y, PlusPanel.this);
+					
+					PlusPanel.this.add(smallgroup);
+					
+					animate();
+				
+					explain.setVisible(false);	
 				}
 			});
 			fishlabel.addMouseListener(new MouseAdapter(){
 				@Override
 				public void mouseClicked(MouseEvent e)
 				{
-					smallgroup = new FishPanel(x,y);
+					smallgroup = new FishPanel(x,y, PlusPanel.this);
+					
+					PlusPanel.this.add(smallgroup);
+					
+					animate();
+				
+					explain.setVisible(false);
 				}
 			});
 			fruitlabel.addMouseListener(new MouseAdapter(){
 				@Override
 				public void mouseClicked(MouseEvent e)
 				{
-					smallgroup = new FruitPanel(x,y);
+					smallgroup = new FruitPanel(x,y, PlusPanel.this);
+					
+					PlusPanel.this.add(smallgroup);
+					
+					animate();
+				
+					explain.setVisible(false);
 				}
 			});
 			marinelabel.addMouseListener(new MouseAdapter(){
 				@Override
 				public void mouseClicked(MouseEvent e)
 				{
-					smallgroup = new MarinePanel(x,y);
+					smallgroup = new MarinePanel(x,y, PlusPanel.this);
+					
+					PlusPanel.this.add(smallgroup);
+					
+					animate();
+				
+					explain.setVisible(false);
 				}
 			});
 			etclabel.addMouseListener(new MouseAdapter(){
 				@Override
 				public void mouseClicked(MouseEvent e)
 				{
-					smallgroup = new EtcPanel(x,y);
+					smallgroup = new EtcPanel(x,y, PlusPanel.this);
+					
+					PlusPanel.this.add(smallgroup);
+					
+					animate();
+				
+					explain.setVisible(false);
 				}
 			});
 			vegetablelabel.addMouseListener(new MouseAdapter(){
 				@Override
 				public void mouseClicked(MouseEvent e)
 				{
-					smallgroup = new VegetablePanel(x,y);
+					smallgroup = new VegetablePanel(x,y, PlusPanel.this);
+					
+					PlusPanel.this.add(smallgroup);
+					
+					animate();
+				
+					explain.setVisible(false);
 				}
 			});
 			dairylabel.addMouseListener(new MouseAdapter(){
 				@Override
 				public void mouseClicked(MouseEvent e)
 				{
-					smallgroup = new DairyPanel(x,y);
+					smallgroup = new DairyPanel(x,y, PlusPanel.this);
+					
+					PlusPanel.this.add(smallgroup);
+					
+					animate();
+				
+					explain.setVisible(false);
 				}
 			});
 			
@@ -249,21 +291,21 @@ public class PlusPanel extends JFrame{
 			imagepanel.setLayout(new GridLayout(4,4,10,0));
 			imagepanel.setBounds(0, 40, fulldim.width-(fulldim.width*2)/7, fulldim.height/2+fulldim.height/3-40);
 			imagepanel.add(meatlabel);
-			imagepanel.add(beveragelabel);
 			imagepanel.add(fishlabel);
 			imagepanel.add(marinelabel);
+			imagepanel.add(vegetablelabel);
 			imagepanel.add(meat_tlabel);
-			imagepanel.add(beverage_tlabel);
 			imagepanel.add(fish_tlabel);
 			imagepanel.add(marine_tlabel);
+			imagepanel.add(vegetable_tlabel);
 			imagepanel.add(fruitlabel);
 			imagepanel.add(dairylabel);
+			imagepanel.add(beveragelabel);
 			imagepanel.add(etclabel);
-			imagepanel.add(vegetablelabel);
 			imagepanel.add(fruit_tlabel);
 			imagepanel.add(dairy_tlabel);
+			imagepanel.add(beverage_tlabel);
 			imagepanel.add(etc_tlabel);
-			imagepanel.add(vegetable_tlabel);
 			this.add(imagepanel);
 			
 			
@@ -327,6 +369,36 @@ public class PlusPanel extends JFrame{
 		});
 		
 		timer.start();
+	}
+	
+	public void animate_return()
+	{
+		explain.setVisible(true);
+		
+		timer = new Timer(1, new ActionListener(){
+			public void actionPerformed(ActionEvent ae){
+
+//				int temp = fulldim.width-(fulldim.width*2)/7;
+				
+				if(x < fulldim.width-(fulldim.width*2)/7)
+				{
+					x = x+30;
+					temp = temp + 30;
+										
+					imagepanel.setLocation(temp, 40);
+					imagepanel.repaint();
+					
+					smallgroup.setLocation(x, 0);
+					smallgroup.repaint();
+				}
+				else
+				{
+					timer.stop();
+				}							
+			}
+		});
+		
+		timer.start();	
 	}
 
 	class ImagePanel extends JComponent {
