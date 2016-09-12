@@ -303,15 +303,15 @@ public class PlusPanel extends JFrame{
 	
 	public void animate()
 	{
-		timer = new Timer(5, new ActionListener(){
+		timer = new Timer(1, new ActionListener(){
 			public void actionPerformed(ActionEvent ae){
 
 //				int temp = fulldim.width-(fulldim.width*2)/7;
 				
 				if(x > 0)
 				{
-					x = x-20;
-					temp = temp - 20;
+					x = x-30;
+					temp = temp - 30;
 										
 					imagepanel.setLocation(temp, 40);
 					imagepanel.repaint();

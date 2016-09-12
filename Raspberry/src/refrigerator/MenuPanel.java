@@ -59,7 +59,7 @@ public class MenuPanel extends JPanel{
 			
 			Image img;
 			
-			xicon = new ImageIcon(new URL("http://i.imgur.com/yYe29Ya.png"));
+			xicon = new ImageIcon("icon/xicon.png");
 			xlabel = new JLabel();
 		
 			img = xicon.getImage();
@@ -174,7 +174,7 @@ public class MenuPanel extends JPanel{
 
 		try
 		{
-			background = new ImageIcon(new URL("http://i.imgur.com/a6q6C1F.png"));
+			background = new ImageIcon("icon/menupanel_background.png");
 			img = background.getImage();
 
 //			g.drawImage(img.getScaledInstance(fulldim.width/4, fulldim.height-fulldim.height/15, Image.SCALE_SMOOTH), 0,0,this.getWidth(),this.getHeight(),this);
