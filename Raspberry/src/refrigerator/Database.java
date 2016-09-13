@@ -99,9 +99,8 @@ public class Database {
 			}
 	}
 	
-	public String[] getShelflife(String group, String name)
+	public Data getShelflife(String group, String name)
 	{
-		String[] re = new String[3];
 		
 		if(group.equals("À°·ù"))
 		{
@@ -111,8 +110,7 @@ public class Database {
 				
 				if(temp.getName().equals(name))
 				{
-					re[0] = temp.getcold();
-					re[1] = temp.getfreeze();
+					return temp;
 				}
 			}
 		}
@@ -124,8 +122,7 @@ public class Database {
 				
 				if(temp.getName().equals(name))
 				{
-					re[0] = temp.getcold();
-					re[1] = temp.getfreeze();
+					return temp;
 				}
 			}
 		}
@@ -137,8 +134,7 @@ public class Database {
 				
 				if(temp.getName().equals(name))
 				{
-					re[0] = temp.getcold();
-					re[1] = temp.getfreeze();
+					return temp;
 				}
 			}	
 		}
@@ -150,8 +146,7 @@ public class Database {
 				
 				if(temp.getName().equals(name))
 				{
-					re[0] = temp.getcold();
-					re[1] = temp.getfreeze();
+					return temp;
 				}
 			}
 		}
@@ -163,8 +158,7 @@ public class Database {
 				
 				if(temp.getName().equals(name))
 				{
-					re[0] = temp.getcold();
-					re[1] = temp.getfreeze();
+					return temp;
 				}
 			}
 		}
@@ -176,8 +170,7 @@ public class Database {
 				
 				if(temp.getName().equals(name))
 				{
-					re[0] = temp.getcold();
-					re[1] = temp.getfreeze();
+					return temp;
 				}
 			}
 		}
@@ -189,12 +182,11 @@ public class Database {
 				
 				if(temp.getName().equals(name))
 				{
-					re[0] = temp.getcold();
-					re[1] = temp.getfreeze();
+					return temp;
 				}
 			}
 		}
-		else if(group.equals("±âÅ¸"))
+		else
 		{
 			for(int i = 0 ; i < etc.size() ; ++i)
 			{
@@ -202,12 +194,10 @@ public class Database {
 				
 				if(temp.getName().equals(name))
 				{
-					re[0] = temp.getcold();
-					re[1] = temp.getfreeze();
+					return temp;
 				}
 			}
 		}
-		
-		return re;
+		return null;
 	}
 }

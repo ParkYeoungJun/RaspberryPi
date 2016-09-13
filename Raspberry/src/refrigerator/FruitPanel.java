@@ -41,10 +41,13 @@ public class FruitPanel extends JPanel{
 	String test[] = {"귤","딸기","레몬","메론","바나나","배","복숭아","사과","산딸기","살구","석류"
 			,"수박","오렌지","자두","자몽","체리","키위","파인애플","포도","기타"};
 	JScrollPane scroll;
+	
+	Database db;
 
 	public FruitPanel(int x, int y, PlusPanel plusclass){
 		
 		this.plusclass = plusclass;
+		this.db = plusclass.db;
 		
 		this.setBounds(x, 0, x, y);
 		this.setLayout(null);
@@ -107,7 +110,7 @@ public class FruitPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				plusclass.animate_return();
+				plusclass.animate_return(1);
 			}
 			
 		});

@@ -40,10 +40,14 @@ public class MarinePanel extends JPanel{
 	JList list;
 	String test[] = {"게","굴","문어","미역","새우","알","오징어","조개","기타"};
 	JScrollPane scroll;
+	
+	Database db;
 
 	public MarinePanel(int x, int y, PlusPanel plusclass){
 		
 		this.plusclass = plusclass;
+		this.db = plusclass.db;
+
 		
 		this.setBounds(x, 0, x, y);
 		this.setLayout(null);
@@ -106,7 +110,7 @@ public class MarinePanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				plusclass.animate_return();
+				plusclass.animate_return(1);
 			}
 			
 		});

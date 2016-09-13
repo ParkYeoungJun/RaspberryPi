@@ -41,10 +41,13 @@ public class VegetablePanel extends JPanel{
 	String test[] = {"가지","감자","고추","깻잎","꽃양배추","당근","무","버섯","브로콜리","블루베리","빨간무","상추"
 			,"애호박","양배추","양파","오이","완두콩","콩","토마토","파","파슬리","파프리카","호박","마늘","기타"};
 	JScrollPane scroll;
+	
+	Database db;
 
 	public VegetablePanel(int x, int y, PlusPanel plusclass){
 		
 		this.plusclass = plusclass;
+		this.db = plusclass.db;
 		
 		this.setBounds(x, 0, x, y);
 		this.setLayout(null);
@@ -107,7 +110,7 @@ public class VegetablePanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				plusclass.animate_return();
+				plusclass.animate_return(1);
 			}
 			
 		});

@@ -61,6 +61,9 @@ public class MainFrame extends JFrame{
 	
 	int from = -fulldim.width/4;
 	int to = 0;
+	
+	
+	Database db;
 
 
 	
@@ -73,6 +76,7 @@ public class MainFrame extends JFrame{
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 //		this.setUndecorated(true);
 		
+		db = new Database();
 		
 		menupanel = new MenuPanel(fulldim, this);
 		this.add(menupanel);
@@ -180,7 +184,7 @@ public class MainFrame extends JFrame{
 				{
 					MainFrame.this.setEnabled(false);
 			
-					pluspanel = new PlusPanel(fulldim, MainFrame.this);
+					pluspanel = new PlusPanel(fulldim, MainFrame.this, db);
 				}			
 			}
 		});

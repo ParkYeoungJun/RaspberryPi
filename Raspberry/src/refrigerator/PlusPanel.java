@@ -39,8 +39,16 @@ public class PlusPanel extends JFrame{
 	JPanel smallgroup;
 	int x;
 	int y;
+	int x_2;
+	int y_2;
 	int temp;
 	Timer timer;
+	
+	JPanel lastpanel;
+	
+	
+	// Database
+	Database db;
 	
 	// Image JLabel
 	JLabel meatlabel = new JLabel("", JLabel.CENTER);
@@ -73,14 +81,18 @@ public class PlusPanel extends JFrame{
 	ImageIcon etc;
 	ImageIcon vegetable;
 	
-	public PlusPanel(Dimension fulldim, JFrame mainframe)
+	public PlusPanel(Dimension fulldim, JFrame mainframe, Database db)
 	{
+		this.db = db;
 		this.fulldim = fulldim;
+		
 		x = fulldim.width-(fulldim.width*2)/7;
 		y = fulldim.height/2+fulldim.height/3;
+		x_2 = 2*x;
+		y_2 = 2*y;
 		temp = 0;
-		this.mainframe = mainframe;
 		
+		this.mainframe = mainframe;
 		this.setTitle("Add");
 		this.setLayout(null);
 		this.setBounds(fulldim.width/7, fulldim.height/10, fulldim.width-(fulldim.width*2)/7, fulldim.height/2+fulldim.height/3);
@@ -145,7 +157,7 @@ public class PlusPanel extends JFrame{
 					
 					PlusPanel.this.add(smallgroup);
 					
-					animate();
+					animate(1);
 				
 					explain.setVisible(false);
 				}
@@ -158,7 +170,11 @@ public class PlusPanel extends JFrame{
 					
 					PlusPanel.this.add(smallgroup);
 					
-					animate();
+					lastpanel = new LastPlusPanel(x,y,PlusPanel.this);
+					
+					PlusPanel.this.add(lastpanel);
+					
+					animate(1);
 				
 					explain.setVisible(false);	
 				}
@@ -171,7 +187,7 @@ public class PlusPanel extends JFrame{
 					
 					PlusPanel.this.add(smallgroup);
 					
-					animate();
+					animate(1);
 				
 					explain.setVisible(false);
 				}
@@ -184,7 +200,7 @@ public class PlusPanel extends JFrame{
 					
 					PlusPanel.this.add(smallgroup);
 					
-					animate();
+					animate(1);
 				
 					explain.setVisible(false);
 				}
@@ -197,7 +213,7 @@ public class PlusPanel extends JFrame{
 					
 					PlusPanel.this.add(smallgroup);
 					
-					animate();
+					animate(1);
 				
 					explain.setVisible(false);
 				}
@@ -210,7 +226,7 @@ public class PlusPanel extends JFrame{
 					
 					PlusPanel.this.add(smallgroup);
 					
-					animate();
+					animate(1);
 				
 					explain.setVisible(false);
 				}
@@ -223,7 +239,7 @@ public class PlusPanel extends JFrame{
 					
 					PlusPanel.this.add(smallgroup);
 					
-					animate();
+					animate(1);
 				
 					explain.setVisible(false);
 				}
@@ -236,7 +252,7 @@ public class PlusPanel extends JFrame{
 					
 					PlusPanel.this.add(smallgroup);
 					
-					animate();
+					animate(1);
 				
 					explain.setVisible(false);
 				}
@@ -343,61 +359,124 @@ public class PlusPanel extends JFrame{
 		
 	}
 	
-	public void animate()
+	public void animate(int flag)
 	{
-		timer = new Timer(1, new ActionListener(){
-			public void actionPerformed(ActionEvent ae){
+		if(flag == 1)
+		{
+			timer = new Timer(1, new ActionListener(){
+				public void actionPerformed(ActionEvent ae){
 
-//				int temp = fulldim.width-(fulldim.width*2)/7;
-				
-				if(x > 0)
-				{
-					x = x-30;
-					temp = temp - 30;
+					if(x > 0)
+					{
+						x = x-30;
+						temp = temp - 30;
+						x_2 = x_2-30;
 										
-					imagepanel.setLocation(temp, 40);
-					imagepanel.repaint();
+						imagepanel.setLocation(temp, 40);
+						imagepanel.repaint();
 					
-					smallgroup.setLocation(x, 0);
-					smallgroup.repaint();
+						smallgroup.setLocation(x, 0);
+						smallgroup.repaint();
+						
+						lastpanel.setLocation(x_2,0);
+						lastpanel.repaint();
+					}
+					else
+					{
+						timer.stop();
+					}							
 				}
-				else
-				{
-					timer.stop();
-				}							
-			}
-		});
+			});
+		}
+		else if(flag == 2)
+		{
+			timer = new Timer(1, new ActionListener(){
+				public void actionPerformed(ActionEvent ae){
+
+					if(x_2 > 0)
+					{
+						x = x-30;
+						temp = temp - 30;
+						x_2 = x_2-30;
+										
+						imagepanel.setLocation(temp, 40);
+						imagepanel.repaint();
+					
+						smallgroup.setLocation(x, 0);
+						smallgroup.repaint();
+						
+						lastpanel.setLocation(x_2,0);
+						lastpanel.repaint();
+					}
+					else
+					{
+						timer.stop();
+					}							
+				}
+			});	
+		}
 		
 		timer.start();
 	}
 	
-	public void animate_return()
-	{
-		explain.setVisible(true);
-		
-		timer = new Timer(1, new ActionListener(){
-			public void actionPerformed(ActionEvent ae){
+	public void animate_return(int flag)
+	{		
+		if(flag == 1)
+		{
+			explain.setVisible(true);
 
-//				int temp = fulldim.width-(fulldim.width*2)/7;
-				
-				if(x < fulldim.width-(fulldim.width*2)/7)
-				{
-					x = x+30;
-					temp = temp + 30;
+			timer = new Timer(1, new ActionListener(){
+				public void actionPerformed(ActionEvent ae){
+
+					if(x < fulldim.width-(fulldim.width*2)/7)
+					{
+						x = x+30;
+						temp = temp + 30;
+						x_2 = x_2 + 30;
 										
-					imagepanel.setLocation(temp, 40);
-					imagepanel.repaint();
+						imagepanel.setLocation(temp, 40);
+						imagepanel.repaint();
 					
-					smallgroup.setLocation(x, 0);
-					smallgroup.repaint();
+						smallgroup.setLocation(x, 0);
+						smallgroup.repaint();
+						
+						lastpanel.setLocation(x_2,0);
+						lastpanel.repaint();
+					}
+					else
+					{
+						timer.stop();
+					}							
 				}
-				else
-				{
-					timer.stop();
-				}							
-			}
-		});
-		
+			});
+		}
+		else if(flag == 2)
+		{
+			timer = new Timer(1, new ActionListener(){
+				public void actionPerformed(ActionEvent ae){
+
+					if(x_2 < (fulldim.width-(fulldim.width*2)/7)-10)
+					{
+						x = x+30;
+						temp = temp + 30;
+						x_2 = x_2+30;
+										
+						imagepanel.setLocation(temp, 40);
+						imagepanel.repaint();
+					
+						smallgroup.setLocation(x, 0);
+						smallgroup.repaint();
+						
+						lastpanel.setLocation(x_2,0);
+						lastpanel.repaint();
+					}
+					else
+					{
+						timer.stop();
+					}							
+				}
+			});
+		}
 		timer.start();	
 	}
 

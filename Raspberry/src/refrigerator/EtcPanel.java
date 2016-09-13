@@ -41,10 +41,14 @@ public class EtcPanel extends JPanel{
 	String test[] = {"°£Àå","°Ç¾î¹°","°ß°ú·ù","°íÃßÀå","´Þ°¿","µÈÀå","µÎºÎ","¶±","¸¶¿ä³×Áî","¸¸µÎ","¹¬","»§","¼Ò½ÃÁö","¾ÆÀÌ½ºÅ©¸²",
 			"Àë","ÄÉÀÍ","ÄÉÂý","Äá³ª¹°","ÇÁ¶ûÅ©¼Ò¼¼Áö","ÇÜ","Èæ»§","±âÅ¸"};
 	JScrollPane scroll;
+	
+	Database db;
 
 	public EtcPanel(int x, int y, PlusPanel plusclass){
 		
 		this.plusclass = plusclass;
+		db = plusclass.db;
+
 		
 		this.setBounds(x, 0, x, y);
 		this.setLayout(null);
@@ -108,7 +112,7 @@ public class EtcPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				plusclass.animate_return();
+				plusclass.animate_return(1);
 			}
 			
 		});

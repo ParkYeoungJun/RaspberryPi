@@ -39,9 +39,12 @@ public class MeatPanel extends JPanel{
 	String test[] = {"닭고기","돼지고기","소고기","오리고기","기타"};
 	JScrollPane scroll;
 
+	Database db;
+	
 	public MeatPanel(int x, int y, PlusPanel plusclass){
 		
 		this.plusclass = plusclass;
+		this.db = plusclass.db;
 		
 		this.setBounds(x, 0, x, y);
 		this.setLayout(null);
@@ -104,7 +107,7 @@ public class MeatPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				plusclass.animate_return();
+				plusclass.animate_return(1);
 			}
 			
 		});

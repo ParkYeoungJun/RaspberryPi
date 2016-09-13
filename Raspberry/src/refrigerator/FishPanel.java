@@ -42,9 +42,12 @@ public class FishPanel extends JPanel{
 			,"송어","연어","임연수","장어","조기","참치","청어","기타"};
 	JScrollPane scroll;
 
+	Database db;
+	
 	public FishPanel(int x, int y, PlusPanel plusclass){
 		
 		this.plusclass = plusclass;
+		this.db = plusclass.db;
 		
 		this.setBounds(x, 0, x, y);
 		this.setLayout(null);
@@ -107,7 +110,7 @@ public class FishPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				plusclass.animate_return();
+				plusclass.animate_return(1);
 			}
 			
 		});
