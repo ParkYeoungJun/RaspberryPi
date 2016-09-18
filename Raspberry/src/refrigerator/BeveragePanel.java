@@ -49,7 +49,7 @@ public class BeveragePanel extends JPanel{
 		this.plusclass = plusclass;
 		this.db = plusclass.db;
 		
-		this.setBounds(x, 0, x+5, y);
+		this.setBounds(x, 0, x, y);
 		this.setLayout(null);
 
 		list = new ImageList(test);
@@ -61,7 +61,7 @@ public class BeveragePanel extends JPanel{
 		});
 		
 		scroll = new JScrollPane(list);		
-		scroll.setBounds(0, 0, x+5, y - y/8);
+		scroll.setBounds(0, 0, x, y - y/8);
 		scroll.setBorder(BorderFactory.createEmptyBorder());
 		scroll.getVerticalScrollBar().setPreferredSize(new Dimension(30,0));
 		
@@ -90,7 +90,7 @@ public class BeveragePanel extends JPanel{
 			}
 		};
 		check_panel.setLayout(null);
-		check_panel.setBounds(0, y - y/8, x+5, y/8);
+		check_panel.setBounds(0, y - y/8, x, y/8);
 		yes_button = new JButton("확인");
 		yes_button.setBounds(x/5,0, x/8,50);
 		yes_button.setBorder(BorderFactory.createRaisedBevelBorder());
@@ -103,8 +103,8 @@ public class BeveragePanel extends JPanel{
 				if(!list.isSelectionEmpty())
 				{
 					Data getData = db.getShelflife("음료", list.getSelectedValue().toString());
-				
-					plusclass.add(new LastPlusPanel(x, y, plusclass));
+
+					plusclass.lastpanel.setDB(getData);
 				
 					plusclass.animate(2);
 				}

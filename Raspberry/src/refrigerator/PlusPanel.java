@@ -27,7 +27,7 @@ import javax.swing.border.SoftBevelBorder;
 
 public class PlusPanel extends JFrame{
 	
-	JFrame mainframe;
+	MainFrame mainframe;
 	JPanel imagepanel;
 	
 	Dimension fulldim;
@@ -44,7 +44,7 @@ public class PlusPanel extends JFrame{
 	int temp;
 	Timer timer;
 	
-	JPanel lastpanel;
+	LastPlusPanel lastpanel;
 	
 	
 	// Database
@@ -61,14 +61,14 @@ public class PlusPanel extends JFrame{
 	JLabel vegetablelabel = new JLabel("", JLabel.CENTER);
 	
 	// text JLabel
-	JLabel meat_tlabel = new JLabel("<html>Meat<br><br><br><br><br><br><br><br></html>", JLabel.CENTER);
-	JLabel beverage_tlabel = new JLabel("<html>Beverage<br><br><br><br><br><br><br><br></html>", JLabel.CENTER);
-	JLabel fish_tlabel = new JLabel("<html>Fish<br><br><br><br><br><br><br><br></html>", JLabel.CENTER);
-	JLabel marine_tlabel = new JLabel("<html>Marine<br><br><br><br><br><br><br><br></html>", JLabel.CENTER);
-	JLabel fruit_tlabel = new JLabel("<html>Fruit<br><br><br><br><br><br><br><br></html>", JLabel.CENTER);
-	JLabel dairy_tlabel = new JLabel("<html>Dairy<br><br><br><br><br><br><br><br></html>", JLabel.CENTER);
-	JLabel etc_tlabel = new JLabel("<html>Etc<br><br><br><br><br><br><br><br></html>", JLabel.CENTER);
-	JLabel vegetable_tlabel = new JLabel("<html>Vegetable<br><br><br><br><br><br><br><br></html>", JLabel.CENTER);
+	JLabel meat_tlabel = new JLabel("<html><font color = #FFFFFFF>Meat<br><br><br><br><br><br><br><br></font></html>", JLabel.CENTER);
+	JLabel beverage_tlabel = new JLabel("<html><font color = #FFFFFFF>Beverage<br><br><br><br><br><br><br><br></font></html>", JLabel.CENTER);
+	JLabel fish_tlabel = new JLabel("<html><font color = #FFFFFFF>Fish<br><br><br><br><br><br><br><br></font></html>", JLabel.CENTER);
+	JLabel marine_tlabel = new JLabel("<html><font color = #FFFFFFF>Marine<br><br><br><br><br><br><br><br></font></html>", JLabel.CENTER);
+	JLabel fruit_tlabel = new JLabel("<html><font color = #FFFFFFF>Fruit<br><br><br><br><br><br><br><br></font></html>", JLabel.CENTER);
+	JLabel dairy_tlabel = new JLabel("<html><font color = #FFFFFFF>Dairy<br><br><br><br><br><br><br><br></font></html>", JLabel.CENTER);
+	JLabel etc_tlabel = new JLabel("<html><font color = #FFFFFFF>Etc<br><br><br><br><br><br><br><br></font></html>", JLabel.CENTER);
+	JLabel vegetable_tlabel = new JLabel("<html><font color = #FFFFFFF>Vegetable<br><br><br><br><br><br><br><br></font></html>", JLabel.CENTER);
 	
 	
 	// Image URL
@@ -81,7 +81,7 @@ public class PlusPanel extends JFrame{
 	ImageIcon etc;
 	ImageIcon vegetable;
 	
-	public PlusPanel(Dimension fulldim, JFrame mainframe, Database db)
+	public PlusPanel(Dimension fulldim, MainFrame mainframe, Database db)
 	{
 		this.db = db;
 		this.fulldim = fulldim;
@@ -98,6 +98,7 @@ public class PlusPanel extends JFrame{
 		this.setBounds(fulldim.width/7, fulldim.height/10, fulldim.width-(fulldim.width*2)/7, fulldim.height/2+fulldim.height/3);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setResizable(false);
+	
 		
 		try
 		{
@@ -122,28 +123,20 @@ public class PlusPanel extends JFrame{
 			Image img;
 			img = meat.getImage();
 			meatlabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/10, fulldim.height/7, Image.SCALE_SMOOTH)));
-//			meatlabel.setIcon(meat);
 			img = beverage.getImage();
 			beveragelabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/10, fulldim.height/7, Image.SCALE_SMOOTH)));
-//			beveragelabel.setIcon(beverage);
 			img = fish.getImage();
 			fishlabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/10, fulldim.height/7, Image.SCALE_SMOOTH)));
-//			fishlabel.setIcon(fish);
 			img = marine.getImage();
 			marinelabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/10, fulldim.height/7, Image.SCALE_SMOOTH)));
-//			marinelabel.setIcon(marine);
 			img = fruit.getImage();
 			fruitlabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/10, fulldim.height/7, Image.SCALE_SMOOTH)));
-//			fruitlabel.setIcon(fruit);
 			img = dairy.getImage();
 			dairylabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/10, fulldim.height/7, Image.SCALE_SMOOTH)));
-//			dairylabel.setIcon(dairy);
 			img = etc.getImage();
 			etclabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/10, fulldim.height/7, Image.SCALE_SMOOTH)));
-//			etclabel.setIcon(etc);
 			img = vegetable.getImage();
 			vegetablelabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/10, fulldim.height/7, Image.SCALE_SMOOTH)));
-//			vegetablelabel.setIcon(vegetable);
 			
 			/*
 			 *  MouseListenr
@@ -157,6 +150,10 @@ public class PlusPanel extends JFrame{
 					
 					PlusPanel.this.add(smallgroup);
 					
+					lastpanel = new LastPlusPanel(x,y,PlusPanel.this);
+					
+					PlusPanel.this.add(lastpanel);
+
 					animate(1);
 				
 					explain.setVisible(false);
@@ -187,6 +184,10 @@ public class PlusPanel extends JFrame{
 					
 					PlusPanel.this.add(smallgroup);
 					
+					lastpanel = new LastPlusPanel(x,y,PlusPanel.this);
+					
+					PlusPanel.this.add(lastpanel);
+										
 					animate(1);
 				
 					explain.setVisible(false);
@@ -199,6 +200,10 @@ public class PlusPanel extends JFrame{
 					smallgroup = new FruitPanel(x,y, PlusPanel.this);
 					
 					PlusPanel.this.add(smallgroup);
+
+					lastpanel = new LastPlusPanel(x,y,PlusPanel.this);
+					
+					PlusPanel.this.add(lastpanel);
 					
 					animate(1);
 				
@@ -212,6 +217,10 @@ public class PlusPanel extends JFrame{
 					smallgroup = new MarinePanel(x,y, PlusPanel.this);
 					
 					PlusPanel.this.add(smallgroup);
+
+					lastpanel = new LastPlusPanel(x,y,PlusPanel.this);
+					
+					PlusPanel.this.add(lastpanel);
 					
 					animate(1);
 				
@@ -225,7 +234,11 @@ public class PlusPanel extends JFrame{
 					smallgroup = new EtcPanel(x,y, PlusPanel.this);
 					
 					PlusPanel.this.add(smallgroup);
+				
+					lastpanel = new LastPlusPanel(x,y,PlusPanel.this);
 					
+					PlusPanel.this.add(lastpanel);
+
 					animate(1);
 				
 					explain.setVisible(false);
@@ -239,6 +252,10 @@ public class PlusPanel extends JFrame{
 					
 					PlusPanel.this.add(smallgroup);
 					
+					lastpanel = new LastPlusPanel(x,y,PlusPanel.this);
+					
+					PlusPanel.this.add(lastpanel);
+
 					animate(1);
 				
 					explain.setVisible(false);
@@ -252,6 +269,10 @@ public class PlusPanel extends JFrame{
 					
 					PlusPanel.this.add(smallgroup);
 					
+					lastpanel = new LastPlusPanel(x,y,PlusPanel.this);
+					
+					PlusPanel.this.add(lastpanel);
+
 					animate(1);
 				
 					explain.setVisible(false);
@@ -383,6 +404,24 @@ public class PlusPanel extends JFrame{
 					}
 					else
 					{
+						x = 0;
+						temp = -(fulldim.width-(fulldim.width*2)/7);
+						x_2 = fulldim.width-(fulldim.width*2)/7;
+						
+						imagepanel.setLocation(temp,40);
+						imagepanel.repaint();
+					
+						smallgroup.setLocation(x, 0);
+						smallgroup.repaint();
+						
+						lastpanel.setLocation(x_2,0);
+						lastpanel.repaint();
+						
+						
+						x = x-15;
+						temp = temp - 15;
+						x_2 = x_2-15;
+						
 						timer.stop();
 					}							
 				}
@@ -410,6 +449,19 @@ public class PlusPanel extends JFrame{
 					}
 					else
 					{
+						x = -(fulldim.width-(fulldim.width*2)/7);
+						temp = -2*(fulldim.width-(fulldim.width*2)/7);
+						x_2 = 0;
+						
+						imagepanel.setLocation(temp,40);
+						imagepanel.repaint();
+					
+						smallgroup.setLocation(x, 0);
+						smallgroup.repaint();
+						
+						lastpanel.setLocation(x_2,0);
+						lastpanel.repaint();
+						
 						timer.stop();
 					}							
 				}
@@ -445,6 +497,20 @@ public class PlusPanel extends JFrame{
 					}
 					else
 					{
+						x = fulldim.width-(fulldim.width*2)/7;
+						x_2 = 2*(fulldim.width-(fulldim.width*2)/7);
+						temp = 0;
+						
+						imagepanel.setLocation(temp,40);
+						imagepanel.repaint();
+					
+						smallgroup.setLocation(x, 0);
+						smallgroup.repaint();
+						
+						lastpanel.setLocation(x_2,0);
+						lastpanel.repaint();
+					
+						
 						timer.stop();
 					}							
 				}
@@ -455,7 +521,7 @@ public class PlusPanel extends JFrame{
 			timer = new Timer(1, new ActionListener(){
 				public void actionPerformed(ActionEvent ae){
 
-					if(x_2 < (fulldim.width-(fulldim.width*2)/7)-10)
+					if(x_2 < (fulldim.width-(fulldim.width*2)/7))
 					{
 						x = x+30;
 						temp = temp + 30;
@@ -472,6 +538,20 @@ public class PlusPanel extends JFrame{
 					}
 					else
 					{
+						x = 0;
+						x_2 = fulldim.width-(fulldim.width*2)/7;
+						temp = -(fulldim.width-(fulldim.width*2)/7);
+						
+						imagepanel.setLocation(temp,40);
+						imagepanel.repaint();
+					
+						smallgroup.setLocation(x, 0);
+						smallgroup.repaint();
+						
+						lastpanel.setLocation(x_2,0);
+						lastpanel.repaint();
+					
+						
 						timer.stop();
 					}							
 				}

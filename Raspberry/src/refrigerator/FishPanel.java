@@ -19,6 +19,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -26,6 +27,9 @@ import refrigerator.MeatPanel.ImageList;
 
 public class FishPanel extends JPanel{
 
+	String test[] = {"가자미","갈치","고등어","도미","메기","멸치","명태","삼치"
+			,"송어","연어","임연수","장어","조기","참치","청어","기타"};
+	
 	PlusPanel plusclass;
 	
 	JPanel list_panel;
@@ -38,12 +42,10 @@ public class FishPanel extends JPanel{
 	ImageIcon check_background;
 	
 	JList list;
-	String test[] = {"가자미","갈치","고등어","도미","메기","멸치","명태","삼치"
-			,"송어","연어","임연수","장어","조기","참치","청어","기타"};
 	JScrollPane scroll;
-
-	Database db;
 	
+	Database db;
+
 	public FishPanel(int x, int y, PlusPanel plusclass){
 		
 		this.plusclass = plusclass;
@@ -59,8 +61,9 @@ public class FishPanel extends JPanel{
 				return CENTER;
 			}
 		});
+		
 		scroll = new JScrollPane(list);		
-		scroll.setBounds(5, 0, x, y - y/8);
+		scroll.setBounds(0, 0, x, y - y/8);
 		scroll.setBorder(BorderFactory.createEmptyBorder());
 		scroll.getVerticalScrollBar().setPreferredSize(new Dimension(30,0));
 		
@@ -89,7 +92,7 @@ public class FishPanel extends JPanel{
 			}
 		};
 		check_panel.setLayout(null);
-		check_panel.setBounds(0, y - y/8, x, y/16);
+		check_panel.setBounds(0, y - y/8, x, y/8);
 		yes_button = new JButton("확인");
 		yes_button.setBounds(x/5,0, x/8,50);
 		yes_button.setBorder(BorderFactory.createRaisedBevelBorder());
@@ -99,6 +102,16 @@ public class FishPanel extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				
+				if(!list.isSelectionEmpty())
+				{
+					Data getData = db.getShelflife("생선", list.getSelectedValue().toString());
+
+					plusclass.lastpanel.setDB(getData);
+				
+					plusclass.animate(2);
+				}
+				else
+					JOptionPane.showMessageDialog(null, "Please Choose");
 			}
 			
 		});
@@ -154,5 +167,5 @@ public class FishPanel extends JPanel{
             super.paintComponent(g);
         }
 
-	}	
+	}
 }

@@ -19,6 +19,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -26,6 +27,9 @@ import refrigerator.MeatPanel.ImageList;
 
 public class DairyPanel extends JPanel{
 	
+	String test[] = {"백색치즈","버터","사워크림","요구르트","요플레","우유","치즈","크림치즈","기타"};
+
+
 	PlusPanel plusclass;
 	
 	JPanel list_panel;
@@ -37,16 +41,15 @@ public class DairyPanel extends JPanel{
 	ImageIcon background;
 	ImageIcon check_background;
 	
-	Database db;
-	
 	JList list;
-	String test[] = {"백색치즈","버터","사워크림","요구르트","요플레","우유","치즈","크림치즈","기타"};
 	JScrollPane scroll;
+	
+	Database db;
 
 	public DairyPanel(int x, int y, PlusPanel plusclass){
 		
 		this.plusclass = plusclass;
-		db = plusclass.db;
+		this.db = plusclass.db;
 		
 		this.setBounds(x, 0, x, y);
 		this.setLayout(null);
@@ -58,11 +61,11 @@ public class DairyPanel extends JPanel{
 				return CENTER;
 			}
 		});
+		
 		scroll = new JScrollPane(list);		
-		scroll.setBounds(5, 0, x, y - y/8);
+		scroll.setBounds(0, 0, x, y - y/8);
 		scroll.setBorder(BorderFactory.createEmptyBorder());
 		scroll.getVerticalScrollBar().setPreferredSize(new Dimension(30,0));
-
 		
 		this.add(scroll);
 		
@@ -89,7 +92,7 @@ public class DairyPanel extends JPanel{
 			}
 		};
 		check_panel.setLayout(null);
-		check_panel.setBounds(0, y - y/8, x, y/16);
+		check_panel.setBounds(0, y - y/8, x, y/8);
 		yes_button = new JButton("확인");
 		yes_button.setBounds(x/5,0, x/8,50);
 		yes_button.setBorder(BorderFactory.createRaisedBevelBorder());
@@ -99,6 +102,16 @@ public class DairyPanel extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				
+				if(!list.isSelectionEmpty())
+				{
+					Data getData = db.getShelflife("유제품", list.getSelectedValue().toString());
+
+					plusclass.lastpanel.setDB(getData);
+				
+					plusclass.animate(2);
+				}
+				else
+					JOptionPane.showMessageDialog(null, "Please Choose");
 			}
 			
 		});
@@ -154,5 +167,5 @@ public class DairyPanel extends JPanel{
             super.paintComponent(g);
         }
 
-	}	
+	}
 }

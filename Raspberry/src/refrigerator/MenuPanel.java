@@ -9,15 +9,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class MenuPanel extends JPanel{
+public class MenuPanel extends JFrame{
 
 	Dimension fulldim;
 	
@@ -39,6 +46,8 @@ public class MenuPanel extends JPanel{
 	int from;
 	int to;
 	
+	JButton alarm;
+	
 	public MenuPanel(Dimension fulldim, MainFrame mainframe)
 	{
 		this.fulldim = fulldim;
@@ -47,7 +56,16 @@ public class MenuPanel extends JPanel{
 		from = 0;
 		to = -fulldim.width/4;
 		
+		this.setUndecorated(true);
 		this.setLayout(null);
+		BufferedImage image = null;
+		try {
+			image = ImageIO.read(new File("icon/menupanel_background.png"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		this.setContentPane(new ImagePanel(image));
 
 		
 		try
@@ -70,6 +88,7 @@ public class MenuPanel extends JPanel{
 				public void mouseClicked(MouseEvent e)
 				{
 					mainframe.panels_enable(true);
+					mainframe.setEnabled(true);
 					
 					timer = new Timer(5, new ActionListener(){
 						public void actionPerformed(ActionEvent ae){
@@ -84,7 +103,8 @@ public class MenuPanel extends JPanel{
 							{
 								from = 0;
 								to = -fulldim.width/4;
-																
+													
+								MenuPanel.this.setVisible(false);
 								timer.stop();
 							}							
 						}
@@ -146,10 +166,35 @@ public class MenuPanel extends JPanel{
 			profile_text.setBounds(0, fulldim.height/3+fulldim.height/20, fulldim.width/4, 30);
 			this.add(profile_text);
 			
-			settingbutton = new JLabel("<html><font color = #000000>--------------------------------------------------------------------<br>  Setting<br>--------------------------------------------------------------------</font></html>", JLabel.LEFT);
+			settingbutton = new JLabel("<html><font color = #FFFFFFF>  ¾Ë¶÷  </font></html>", JLabel.LEFT);
 			settingbutton.setFont(new Font(null, 10, 20));
-			settingbutton.setBounds(0,fulldim.height/2, fulldim.width/4, 70);
+			settingbutton.setBounds(0,fulldim.height/2, fulldim.width/6, 70);
 			this.add(settingbutton);
+			
+			alarm = new JButton("ON");
+			alarm.setFont(new Font(null, Font.BOLD, 20));
+			alarm.setBounds(fulldim.width/4-fulldim.width/10, fulldim.height/2+fulldim.height/40, fulldim.width/10, 30);
+			alarm.setBorder(BorderFactory.createRaisedBevelBorder());
+			alarm.setBackground(Color.BLUE);
+			alarm.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+					if(mainframe.getalarmflag())
+					{
+						alarm.setText("OFF");
+						mainframe.setalarmflag(false);
+					}
+					else
+					{
+						alarm.setText("ON");
+						mainframe.setalarmflag(true);
+					}
+				}
+				
+			});
+			this.add(alarm);
 			
 			/*
 			 * 
@@ -165,25 +210,19 @@ public class MenuPanel extends JPanel{
 		this.setVisible(true);
 	}
 	
-	@Override
-	protected void paintComponent(Graphics g)
+	class ImagePanel extends JComponent
 	{
-		super.paintComponent(g);
-		
-		Image img;
-
-		try
+		private Image image;
+		public ImagePanel(Image image)
 		{
-			background = new ImageIcon("icon/menupanel_background.png");
-			img = background.getImage();
-
-//			g.drawImage(img.getScaledInstance(fulldim.width/4, fulldim.height-fulldim.height/15, Image.SCALE_SMOOTH), 0,0,this.getWidth(),this.getHeight(),this);
-			g.drawImage(img, 0,0,this.getWidth(),this.getHeight(),this);
-
+			this.image = image;
 		}
-		catch(Exception e)
+		@Override
+		protected void paintComponent(Graphics g)
 		{
-			System.err.println(e);
+			super.paintComponent(g);
+			
+			g.drawImage(image, 0, 0, this.getWidth(), this.getHeight()+100,this);
 		}
 	}
 }

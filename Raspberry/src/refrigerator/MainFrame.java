@@ -11,7 +11,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -19,7 +25,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingWorker;
 import javax.swing.Timer;
+
+import org.json.simple.JSONObject;
 
 public class MainFrame extends JFrame{
 
@@ -64,9 +73,12 @@ public class MainFrame extends JFrame{
 	
 	
 	Database db;
-
-
 	
+	FoodParsing fooddata;
+	
+	boolean alarmflag = true;
+
+	int k  = 0;
 	
 	public MainFrame()
 	{
@@ -74,12 +86,15 @@ public class MainFrame extends JFrame{
 		this.setLayout(null);
 		this.setBounds(0, 0, fulldim.width, fulldim.height);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setResizable(false);
 //		this.setUndecorated(true);
 		
 		db = new Database();
+		fooddata = new FoodParsing();
 		
-		menupanel = new MenuPanel(fulldim, this);
-		this.add(menupanel);
+		menupanel = new MenuPanel(fulldim, MainFrame.this);
+		menupanel.setVisible(false);
+//		this.add(menupanel);
 		
 		
 		/*
@@ -147,6 +162,10 @@ public class MainFrame extends JFrame{
 			public void mouseClicked(MouseEvent e)
 			{
 				
+				menupanel.setVisible(true);
+
+				MainFrame.this.setEnabled(false);
+				
 				panels_enable(false);
 				
 				menupanel.setLocation(from, 0);
@@ -200,8 +219,8 @@ public class MainFrame extends JFrame{
 		 *	  Initial summary panels
 		 */
 		
-		s_freezepanel = new FreezePanel(fulldim);
-		s_coldpanel = new ColdPanel(fulldim);
+		s_freezepanel = new FreezePanel(fulldim, fooddata, this);
+		s_coldpanel = new ColdPanel(fulldim, fooddata, this);
 		s_presspanel = new PressPanel(fulldim);
 	
 	
@@ -215,8 +234,12 @@ public class MainFrame extends JFrame{
 		 */
 		
 		update();
-
+		
+		timeThread timethread = new timeThread();
+		timethread.start();
+				
 		this.setVisible(true);
+
 	}
 	
 	public void panels_enable(boolean flag)
@@ -230,8 +253,186 @@ public class MainFrame extends JFrame{
 		date_object = new Date();
 		today = format.format(date_object);
 		today += " "+day[date_object.getDay()];
-				
 		date.setText("<html><font color = #FFFFFFF>"+today+"</font><html>");
+		
+		s_freezepanel = new FreezePanel(fulldim, fooddata, this);
+		s_coldpanel = new ColdPanel(fulldim, fooddata, this);
+		
+	}
+	
+	public void setalarmflag(boolean flag)
+	{
+		alarmflag = flag;
+	}
+	public boolean getalarmflag()
+	{
+		return alarmflag;
+	}
+	
+	public void InsertData(String group, String purchase_date, String name, int image_num
+			, String shelf_life, int num, int position)
+	{
+		  class Insert extends SwingWorker {
+
+				@Override
+				protected Object doInBackground() throws Exception {
+				
+			            try {
+
+			                String uri = "http://52.78.88.182/insertFood.php";
+			                JSONObject jsonObj = new JSONObject();
+			            
+			                System.out.println(group);
+			                System.out.println(name);
+
+			                jsonObj.put("group", group);
+			                jsonObj.put("purchase_date", purchase_date);
+			                jsonObj.put("name", name);
+			                jsonObj.put("image_num", image_num);
+			                jsonObj.put("shelf_life", shelf_life);
+			                jsonObj.put("num", num);
+			                jsonObj.put("position", position);
+
+			                BufferedWriter bufferedWriter = null;
+			                URL url = new URL(uri);
+			                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+			                StringBuilder sb = new StringBuilder();
+			                con.setDoOutput(true);
+			                con.setDoInput(true);
+			                
+			                String data ="&" + URLEncoder.encode("data", "UTF-8") + "="+ URLEncoder.encode(jsonObj.toString(), "UTF-8");
+			                
+			                System.out.println(data);
+			                
+			                OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
+			                
+			           
+			                wr.write(data);
+			                wr.flush();
+			                
+			                BufferedReader reader=new BufferedReader(new InputStreamReader(con.getInputStream()));
+			                String line=null;
+			                while((line=reader.readLine())!=null){
+			                    //서버응답값을 String 형태로 추가함
+			                	System.out.println(line);
+			                }
+			           
+			                return sb.toString().trim();
+			                
+			           
+			            }catch(Exception e){
+			            	System.out.println(e);
+			            	return null;
+			            }
+			        }
+
+			}
+		  
+		  Insert g = new Insert();
+		  g.execute();   
+	}
+	
+	public void DeleteData(String id)
+	{
+	    class Delete extends SwingWorker {
+
+			@Override
+			protected Object doInBackground() throws Exception {
+
+                BufferedReader bufferedReader = null;
+                try {
+                    URL url = new URL("http://52.78.88.182/deleteFood.php?id=" + id);
+                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                    StringBuilder sb = new StringBuilder();
+
+                    bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                    String json;
+                    while((json = bufferedReader.readLine())!= null){
+                        sb.append(json+"\n");
+                    }
+                    return sb.toString().trim();
+
+                }catch(Exception e){
+                    return null;
+                }
+            }
+
+        }
+	    Delete g = new Delete();
+        g.execute();
+	}
+	public void UpgradeData(String id, String group, String purchase_date, String name, int image_num
+			, String shelf_life, int num, int position)
+	{
+        class updateFoodJSON extends SwingWorker {
+
+			@Override
+			protected Object doInBackground() throws Exception {
+
+
+            	try {
+                    String uri = "http://52.78.88.182/updateFood.php";
+                    JSONObject jsonObj = new JSONObject();
+                    jsonObj.put("id", id);
+                    jsonObj.put("group", group);
+                    jsonObj.put("name", name);
+                    jsonObj.put("purchase_date", purchase_date);
+                    jsonObj.put("image_num", image_num);
+                    jsonObj.put("shelf_life", shelf_life);
+                    jsonObj.put("num", num);
+                    jsonObj.put("position", position);
+
+                    BufferedWriter bufferedWriter = null;
+                    URL url = new URL(uri);
+                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                    StringBuilder sb = new StringBuilder();
+                    con.setDoOutput(true);
+
+	                String data ="&" + URLEncoder.encode("data", "UTF-8") + "="+ URLEncoder.encode(jsonObj.toString(), "UTF-8");
+
+                    OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
+                    wr.write(data);
+                    wr.flush();
+
+                    BufferedReader reader=new BufferedReader(new InputStreamReader(con.getInputStream()));
+                    String line=null;
+                    while((line=reader.readLine())!=null){
+                        //서버응답값을 String 형태로 추가함
+                    }
+                    return sb.toString().trim();
+
+                }catch(Exception e){
+                    return null;
+                }
+            }
+        }
+        updateFoodJSON g = new updateFoodJSON();
+        g.execute();
+
+	}
+	
+	class timeThread extends Thread
+	{
+		public void run()
+		{
+			while(true)
+			{
+				// get date
+				date_object = new Date();
+				today = format.format(date_object);
+				today += " "+day[date_object.getDay()];
+				date.setText("<html><font color = #FFFFFFF>"+today+"</font><html>");
+	
+				try
+				{
+					Thread.sleep(60000);
+				}
+				catch(Exception e)
+				{
+					System.err.println(e);
+				}
+			}
+		}
 	}
 
 	public static void main(String[] args)

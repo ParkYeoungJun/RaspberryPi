@@ -22,5 +22,6 @@
 	<classpathentry kind="lib" path="lib/pi4j-service-sources.jar"/>
 	<classpathentry kind="lib" path="lib/pi4j-service.jar"/>
 	<classpathentry kind="lib" path="lib/poi-3.10.1-20140818.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.13-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

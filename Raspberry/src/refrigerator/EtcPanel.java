@@ -19,12 +19,16 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import refrigerator.MeatPanel.ImageList;
 
 public class EtcPanel extends JPanel{
+	
+	String test[] = {"°£Àå","°Ç¾î¹°","°ß°ú·ù","°íÃßÀå","´Þ°¿","µÈÀå","µÎºÎ","¶±","¸¶¿ä³×Áî","¸¸µÎ","¹¬","»§","¼Ò½ÃÁö","¾ÆÀÌ½ºÅ©¸²",
+			"Àë","ÄÉÀÍ","ÄÉÂý","Äá³ª¹°","ÇÁ¶ûÅ©¼Ò¼¼Áö","ÇÜ","Èæ»§","±âÅ¸"};
 	
 	PlusPanel plusclass;
 	
@@ -38,8 +42,6 @@ public class EtcPanel extends JPanel{
 	ImageIcon check_background;
 	
 	JList list;
-	String test[] = {"°£Àå","°Ç¾î¹°","°ß°ú·ù","°íÃßÀå","´Þ°¿","µÈÀå","µÎºÎ","¶±","¸¶¿ä³×Áî","¸¸µÎ","¹¬","»§","¼Ò½ÃÁö","¾ÆÀÌ½ºÅ©¸²",
-			"Àë","ÄÉÀÍ","ÄÉÂý","Äá³ª¹°","ÇÁ¶ûÅ©¼Ò¼¼Áö","ÇÜ","Èæ»§","±âÅ¸"};
 	JScrollPane scroll;
 	
 	Database db;
@@ -47,8 +49,7 @@ public class EtcPanel extends JPanel{
 	public EtcPanel(int x, int y, PlusPanel plusclass){
 		
 		this.plusclass = plusclass;
-		db = plusclass.db;
-
+		this.db = plusclass.db;
 		
 		this.setBounds(x, 0, x, y);
 		this.setLayout(null);
@@ -60,11 +61,11 @@ public class EtcPanel extends JPanel{
 				return CENTER;
 			}
 		});
+		
 		scroll = new JScrollPane(list);		
-		scroll.setBounds(5, 0, x, y - y/8);
+		scroll.setBounds(0, 0, x, y - y/8);
 		scroll.setBorder(BorderFactory.createEmptyBorder());
 		scroll.getVerticalScrollBar().setPreferredSize(new Dimension(30,0));
-
 		
 		this.add(scroll);
 		
@@ -91,7 +92,7 @@ public class EtcPanel extends JPanel{
 			}
 		};
 		check_panel.setLayout(null);
-		check_panel.setBounds(0, y - y/8, x, y/16);
+		check_panel.setBounds(0, y - y/8, x, y/8);
 		yes_button = new JButton("È®ÀÎ");
 		yes_button.setBounds(x/5,0, x/8,50);
 		yes_button.setBorder(BorderFactory.createRaisedBevelBorder());
@@ -101,6 +102,16 @@ public class EtcPanel extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				
+				if(!list.isSelectionEmpty())
+				{
+					Data getData = db.getShelflife("±âÅ¸", list.getSelectedValue().toString());
+
+					plusclass.lastpanel.setDB(getData);
+				
+					plusclass.animate(2);
+				}
+				else
+					JOptionPane.showMessageDialog(null, "Please Choose");
 			}
 			
 		});
@@ -156,5 +167,5 @@ public class EtcPanel extends JPanel{
             super.paintComponent(g);
         }
 
-	}	
+	}
 }

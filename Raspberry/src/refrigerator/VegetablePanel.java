@@ -19,6 +19,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -26,6 +27,9 @@ import refrigerator.MeatPanel.ImageList;
 
 public class VegetablePanel extends JPanel{
 	
+	String test[] = {"가지","감자","고추","깻잎","꽃양배추","당근","무","버섯","브로콜리","블루베리","빨간무","상추"
+			,"애호박","양배추","양파","오이","완두콩","콩","토마토","파","파슬리","파프리카","호박","마늘","기타"};
+
 	PlusPanel plusclass;
 	
 	JPanel list_panel;
@@ -38,8 +42,6 @@ public class VegetablePanel extends JPanel{
 	ImageIcon check_background;
 	
 	JList list;
-	String test[] = {"가지","감자","고추","깻잎","꽃양배추","당근","무","버섯","브로콜리","블루베리","빨간무","상추"
-			,"애호박","양배추","양파","오이","완두콩","콩","토마토","파","파슬리","파프리카","호박","마늘","기타"};
 	JScrollPane scroll;
 	
 	Database db;
@@ -59,8 +61,9 @@ public class VegetablePanel extends JPanel{
 				return CENTER;
 			}
 		});
+		
 		scroll = new JScrollPane(list);		
-		scroll.setBounds(5, 0, x, y - y/8);
+		scroll.setBounds(0, 0, x, y - y/8);
 		scroll.setBorder(BorderFactory.createEmptyBorder());
 		scroll.getVerticalScrollBar().setPreferredSize(new Dimension(30,0));
 		
@@ -89,7 +92,7 @@ public class VegetablePanel extends JPanel{
 			}
 		};
 		check_panel.setLayout(null);
-		check_panel.setBounds(0, y - y/8, x, y/16);
+		check_panel.setBounds(0, y - y/8, x, y/8);
 		yes_button = new JButton("확인");
 		yes_button.setBounds(x/5,0, x/8,50);
 		yes_button.setBorder(BorderFactory.createRaisedBevelBorder());
@@ -99,6 +102,16 @@ public class VegetablePanel extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				
+				if(!list.isSelectionEmpty())
+				{
+					Data getData = db.getShelflife("채소", list.getSelectedValue().toString());
+
+					plusclass.lastpanel.setDB(getData);
+				
+					plusclass.animate(2);
+				}
+				else
+					JOptionPane.showMessageDialog(null, "Please Choose");
 			}
 			
 		});
@@ -155,5 +168,4 @@ public class VegetablePanel extends JPanel{
         }
 
 	}
-
 }

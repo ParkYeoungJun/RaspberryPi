@@ -19,12 +19,16 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import refrigerator.MeatPanel.ImageList;
 
 public class FruitPanel extends JPanel{
+
+	String test[] = {"귤","딸기","레몬","메론","바나나","배","복숭아","사과","산딸기","살구","석류"
+			,"수박","오렌지","자두","자몽","체리","키위","파인애플","포도","기타"};
 
 	PlusPanel plusclass;
 	
@@ -38,8 +42,6 @@ public class FruitPanel extends JPanel{
 	ImageIcon check_background;
 	
 	JList list;
-	String test[] = {"귤","딸기","레몬","메론","바나나","배","복숭아","사과","산딸기","살구","석류"
-			,"수박","오렌지","자두","자몽","체리","키위","파인애플","포도","기타"};
 	JScrollPane scroll;
 	
 	Database db;
@@ -59,8 +61,9 @@ public class FruitPanel extends JPanel{
 				return CENTER;
 			}
 		});
+		
 		scroll = new JScrollPane(list);		
-		scroll.setBounds(5, 0, x, y - y/8);
+		scroll.setBounds(0, 0, x, y - y/8);
 		scroll.setBorder(BorderFactory.createEmptyBorder());
 		scroll.getVerticalScrollBar().setPreferredSize(new Dimension(30,0));
 		
@@ -89,7 +92,7 @@ public class FruitPanel extends JPanel{
 			}
 		};
 		check_panel.setLayout(null);
-		check_panel.setBounds(0, y - y/8, x, y/16);
+		check_panel.setBounds(0, y - y/8, x, y/8);
 		yes_button = new JButton("확인");
 		yes_button.setBounds(x/5,0, x/8,50);
 		yes_button.setBorder(BorderFactory.createRaisedBevelBorder());
@@ -99,6 +102,16 @@ public class FruitPanel extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				
+				if(!list.isSelectionEmpty())
+				{
+					Data getData = db.getShelflife("과일", list.getSelectedValue().toString());
+
+					plusclass.lastpanel.setDB(getData);
+				
+					plusclass.animate(2);
+				}
+				else
+					JOptionPane.showMessageDialog(null, "Please Choose");
 			}
 			
 		});
@@ -155,5 +168,4 @@ public class FruitPanel extends JPanel{
         }
 
 	}
-	
 }
