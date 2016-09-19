@@ -6,12 +6,11 @@ public class processTest {
 	{
 		try
 		{
-			while(true)
-			{
-				Process p = Runtime.getRuntime().exec("sudo tvservice -p");
+				Process p = Runtime.getRuntime().exec("sudo tvservice -o");
 		
-				Thread.sleep(1200000);
-			}
+				Thread.sleep(60000);
+				
+				Process s = Runtime.getRuntime().exec("sudo tvservice -p");
 		}
 		catch(Exception e)
 		{
