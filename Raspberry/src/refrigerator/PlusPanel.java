@@ -289,14 +289,14 @@ public class PlusPanel extends JFrame{
 			explain.setBounds(10, 0, fulldim.width/2+fulldim.width/4, 30);
 			this.add(explain);
 			
-			meat_tlabel.setFont(new Font(null,10,20));
-			beverage_tlabel.setFont(new Font(null,10,20));
-			fish_tlabel.setFont(new Font(null,10,20));
-			marine_tlabel.setFont(new Font(null,10,20));
-			fruit_tlabel.setFont(new Font(null,10,20));
-			dairy_tlabel.setFont(new Font(null,10,20));
-			etc_tlabel.setFont(new Font(null,10,20));
-			vegetable_tlabel.setFont(new Font(null,10,20));
+			meat_tlabel.setFont(new Font(null,10,10));
+			beverage_tlabel.setFont(new Font(null,10,10));
+			fish_tlabel.setFont(new Font(null,10,10));
+			marine_tlabel.setFont(new Font(null,10,10));
+			fruit_tlabel.setFont(new Font(null,10,10));
+			dairy_tlabel.setFont(new Font(null,10,10));
+			etc_tlabel.setFont(new Font(null,10,10));
+			vegetable_tlabel.setFont(new Font(null,10,10));
 			
 			
 			

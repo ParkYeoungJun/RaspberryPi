@@ -104,13 +104,13 @@ public class LastPlusPanel extends JPanel{
 		
 		whe_c_f = new JLabel("<html><font color = #FFFFFFF>어디에 저장할지 선택하세요 : </font></html>");
 		whe_c_f.setFont(new Font(null, Font.BOLD, 20));
-		whe_c_f.setBounds(30, y/3+y/5, x/3, 50);
+		whe_c_f.setBounds(30, y/3+y/5, x/2, 50);
 		this.add(whe_c_f);
 
 		cold = new JRadioButton("<html><font color = #FFFFFFF>냉장실</font></html>");
 		freeze = new JRadioButton("<html><font color = #FFFFFFF>냉동실</font><html>");
-		cold.setBounds(x/4, y/3+y/5, x/6, 50);
-		freeze.setBounds(x/3+x/12, y/3+y/5, x/6, 50);
+		cold.setBounds(x/2+40, y/3+y/5, x/6, 50);
+		freeze.setBounds(x/2+40+x/6, y/3+y/5, x/6, 50);
 		cold.setFont(new Font(null, Font.BOLD, 20));
 		freeze.setFont(new Font(null, Font.BOLD, 20));
 		cold.setOpaque(false);

@@ -88,11 +88,11 @@ public class ColdPanel extends JPanel{
 		
 		// label
 		cold.setBounds(0, 0, x, 30);
-		cold.setFont(new Font(null,Font.BOLD,30));
+		cold.setFont(new Font(null,Font.BOLD,20));
 		this.add(cold);
 
 		list = new ImageList(model);
-		list.setFont(new Font(null,Font.BOLD,30));
+		list.setFont(new Font(null,Font.BOLD,20));
 		
 //		update();
 		
