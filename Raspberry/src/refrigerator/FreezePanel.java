@@ -27,6 +27,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -34,6 +35,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import refrigerator.ColdPanel.ImagePanel;
 import refrigerator.ColdPanel.updateThread;
 
 public class FreezePanel extends JPanel{
@@ -67,7 +69,7 @@ public class FreezePanel extends JPanel{
     boolean whe = true;
 
 	
-	public FreezePanel(Dimension fulldim, FoodParsing fooddata, MainFrame mainframe)
+	public FreezePanel(Dimension fulldim, MainFrame mainframe)
 	{
 		this.fulldim = fulldim;
 		this.mainframe = mainframe;
@@ -75,7 +77,7 @@ public class FreezePanel extends JPanel{
 		x = fulldim.width/2;
 		y = fulldim.height/2 + fulldim.height/15;
 		
-		this.fooddata = fooddata;
+		this.fooddata = new FoodParsing();
 		
 		this.setBounds(0, fulldim.height/15, x, y);
 		
@@ -101,22 +103,18 @@ public class FreezePanel extends JPanel{
 					
 					public void mousePressed(MouseEvent e)
 					{
-						try {
-							update.sleep(1000);;
-						} catch (Exception e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
 						
-						if(t == null)
-						{
-							t = new java.util.Timer();
-						}
-						
-						t.schedule(new TimerTask()
-						{
-							public void run()
-							{	
+//						if(t == null)
+//						{
+//							update.interrupt();
+//							
+//							t = new java.util.Timer();
+//						}
+//						
+//						t.schedule(new TimerTask()
+//						{
+//							public void run()
+//							{	
 								/*
 								 * Run
 								 */
@@ -126,12 +124,21 @@ public class FreezePanel extends JPanel{
 								
 								JFrame adjustframe = new JFrame();
 								adjustframe.setResizable(false);
+								adjustframe.setUndecorated(true);
+								try {
+									BufferedImage im = ImageIO.read(new File("icon/adjust.png"));
+									adjustframe.setContentPane(new ImagePanel(im));
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
 								adjustframe.addWindowListener(new WindowListener(){
 
 									@Override
 									public void windowActivated(WindowEvent arg0) {
 										// TODO Auto-generated method stub
-										
+										mainframe.setEnabled(true);
+
 									}
 
 									@Override
@@ -161,7 +168,10 @@ public class FreezePanel extends JPanel{
 									@Override
 									public void windowIconified(WindowEvent arg0) {
 										// TODO Auto-generated method stub
-										
+
+										mainframe.setEnabled(true);
+										adjustframe.setState(JFrame.NORMAL);
+										mainframe.setEnabled(false);
 									}
 
 									@Override
@@ -172,9 +182,16 @@ public class FreezePanel extends JPanel{
 									
 								});
 								adjustframe.setBounds(fulldim.width/2-fulldim.width/15, fulldim.height/2-fulldim.height/15, fulldim.width/8, fulldim.height/10);
-								adjustframe.setLayout(new FlowLayout());
+								adjustframe.setLayout(new FlowLayout(FlowLayout.CENTER,50,20));
 								JButton adjust = new JButton("수정");
+								adjust.setBorder(BorderFactory.createRaisedBevelBorder());
+								adjust.setFont(new Font(null, Font.BOLD, 17));
 								JButton delete = new JButton("삭제");
+								delete.setBorder(BorderFactory.createRaisedBevelBorder());
+								delete.setFont(new Font(null, Font.BOLD, 17));
+								JButton cancel = new JButton("취소");
+								cancel.setBorder(BorderFactory.createRaisedBevelBorder());
+								cancel.setFont(new Font(null, Font.BOLD, 17));
 
 								adjust.addActionListener(new ActionListener(){
 
@@ -185,14 +202,16 @@ public class FreezePanel extends JPanel{
 										UserData temp = (UserData) userdata.get(index);
 									
 										adjustframe.remove(adjust);
-										adjustframe.remove(delete);
-										adjustframe.setBounds(fulldim.width/2-fulldim.width/13, fulldim.height/2-fulldim.height/5, fulldim.width/5, fulldim.height/5);
-										adjustframe.setLayout(new BorderLayout());
+										adjustframe.remove(delete);				
+										adjustframe.remove(cancel);
+//										adjustframe = new JFrame("수정");
+										adjustframe.setBounds(fulldim.width/2-fulldim.width/10, fulldim.height/2-fulldim.height/10, fulldim.width/5, fulldim.height/7);
+										adjustframe.setLayout(new FlowLayout(FlowLayout.CENTER,40,20));
 								
 										
-										JLabel info = new JLabel("변경할 수량을 선택 하세요");
+										JLabel info = new JLabel("<html><font color=#FFFFFFF>변경할 수량을 선택 하세요</font></html>");
 										info.setFont(new Font(null, Font.BOLD, 20));
-										adjustframe.add(info, BorderLayout.NORTH);
+										adjustframe.add(info);
 										JComboBox num = new JComboBox();
 										num.setBounds(x/10, y/3-y/24, x/13, 30);
 										num.setFont(new Font(null,Font.BOLD,30));
@@ -200,9 +219,10 @@ public class FreezePanel extends JPanel{
 										{
 											num.addItem(i);
 										}
-										adjustframe.add(num, BorderLayout.CENTER);
+										adjustframe.add(num);
 										
 										JButton yes = new JButton("확인");
+										yes.setBorder(BorderFactory.createRaisedBevelBorder());
 										yes.addActionListener(new ActionListener(){
 
 											@Override
@@ -221,7 +241,7 @@ public class FreezePanel extends JPanel{
 											}
 											
 										});
-										adjustframe.add(yes, BorderLayout.SOUTH);
+										adjustframe.add(yes);
 										
 									}
 									
@@ -247,23 +267,38 @@ public class FreezePanel extends JPanel{
 									
 								});
 								
+								cancel.addActionListener(new ActionListener(){
+
+									@Override
+									public void actionPerformed(ActionEvent arg0) {
+										// TODO Auto-generated method stub
+
+										mainframe.setEnabled(true);
+										adjustframe.dispose();
+									}	
+									
+								});
+								
 								adjustframe.add(adjust);
 								adjustframe.add(delete);
+								adjustframe.add(cancel);
 								
 								adjustframe.setVisible(true);
 								
 														
-							}
-						}, 500);
+//							}
+//						}, 500);
 					}
 					
 					public void mouseReleased(MouseEvent e)
 					{
-						if(t != null)
-						{	
-							t.cancel();
-							t = null;
-						}
+//						if(t != null)
+//						{	
+//							update.notify();
+//							
+//							t.cancel();
+//							t = null;
+//						}
 					}
 				});
 
@@ -402,6 +437,18 @@ public class FreezePanel extends JPanel{
             super.paintComponent(g);
         }
 
+	}
+	
+	class ImagePanel extends JComponent {
+	    private Image image;
+	    public ImagePanel(Image image) {
+	        this.image = image;
+	    }
+	    @Override
+	    protected void paintComponent(Graphics g) {
+	        super.paintComponent(g);
+	        g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(),this);
+	    }
 	}
 	
 }

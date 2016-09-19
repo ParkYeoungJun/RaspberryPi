@@ -5,8 +5,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -26,6 +28,7 @@ import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -33,6 +36,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.GroupLayout.Alignment;
+
+import refrigerator.PlusPanel.ImagePanel;
 
 public class ColdPanel extends JPanel{
 
@@ -63,11 +68,12 @@ public class ColdPanel extends JPanel{
 	boolean paneflag = false;
 	boolean whe = true;
 	
-	public ColdPanel(Dimension fulldim, FoodParsing fooddata , MainFrame mainframe)
+	public ColdPanel(Dimension fulldim, MainFrame mainframe)
 	{
 		this.fulldim = fulldim;
 		this.mainframe = mainframe;
-		this.fooddata = fooddata;
+		
+		this.fooddata = new FoodParsing();
 		
 		x = fulldim.width/2;
 		y = fulldim.height/2+fulldim.height/15;		
@@ -92,28 +98,26 @@ public class ColdPanel extends JPanel{
 		
 		list.addMouseListener(
 				new MouseAdapter(){
-					private java.util.Timer t;
 					
-					@SuppressWarnings("deprecation")
 					public void mousePressed(MouseEvent e)
 					{
-						try {
-							update.sleep(500);
-						} catch (Exception e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+//						try {
+//							update.sleep(500);
+//						} catch (Exception e1) {
+//							// TODO Auto-generated catch block
+//							e1.printStackTrace();
+//						}
 						
-						if(t == null)
-						{
-							t = new java.util.Timer();
-						}
-						
-						
-						t.schedule(new TimerTask()
-						{
-							public void run()
-							{	
+//						if(t == null)
+//						{
+//							t = new java.util.Timer();
+//						}
+//						
+//						
+//						t.schedule(new TimerTask()
+//						{
+//							public void run()
+//							{	
 								/*
 								 * Run
 								 */
@@ -121,16 +125,22 @@ public class ColdPanel extends JPanel{
 								
 								mainframe.setEnabled(false);
 								
+								
 								JFrame adjustframe = new JFrame();
-								adjustframe.setBounds(fulldim.width/2-fulldim.width/15, fulldim.height/2-fulldim.height/15, fulldim.width/8, fulldim.height/10);
-								adjustframe.setLayout(new FlowLayout());
 								adjustframe.setResizable(false);
+								adjustframe.setUndecorated(true);
+								try {
+									BufferedImage im = ImageIO.read(new File("icon/adjust.png"));
+									adjustframe.setContentPane(new ImagePanel(im));
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
 								adjustframe.addWindowListener(new WindowListener(){
 
 									@Override
 									public void windowActivated(WindowEvent arg0) {
 										// TODO Auto-generated method stub
-										
 									}
 
 									@Override
@@ -154,13 +164,16 @@ public class ColdPanel extends JPanel{
 									@Override
 									public void windowDeiconified(WindowEvent arg0) {
 										// TODO Auto-generated method stub
-										
 									}
 
 									@Override
 									public void windowIconified(WindowEvent arg0) {
 										// TODO Auto-generated method stub
 										
+										mainframe.setEnabled(true);
+										adjustframe.setState(JFrame.NORMAL);
+										mainframe.setEnabled(false);
+
 									}
 
 									@Override
@@ -170,8 +183,18 @@ public class ColdPanel extends JPanel{
 									}
 									
 								});
+								adjustframe.setBounds(fulldim.width/2-fulldim.width/15, fulldim.height/2-fulldim.height/12, fulldim.width/8, fulldim.height/10);
+								adjustframe.setLayout(new FlowLayout(FlowLayout.CENTER,50,20));
 								JButton adjust = new JButton("수정");
+								adjust.setBorder(BorderFactory.createRaisedBevelBorder());
+								adjust.setFont(new Font(null, Font.BOLD, 17));
 								JButton delete = new JButton("삭제");
+								delete.setBorder(BorderFactory.createRaisedBevelBorder());
+								delete.setFont(new Font(null, Font.BOLD, 17));
+								JButton cancel = new JButton("취소");
+								cancel.setBorder(BorderFactory.createRaisedBevelBorder());
+								cancel.setFont(new Font(null, Font.BOLD, 17));
+
 
 								adjust.addActionListener(new ActionListener(){
 
@@ -188,13 +211,15 @@ public class ColdPanel extends JPanel{
 //										insert.setLayout(new BorderLayout());
 										adjustframe.remove(adjust);
 										adjustframe.remove(delete);
-										adjustframe.setBounds(fulldim.width/2-fulldim.width/13, fulldim.height/2-fulldim.height/5, fulldim.width/5, fulldim.height/5);
-										adjustframe.setLayout(new BorderLayout());
+										adjustframe.remove(cancel);
+
+										adjustframe.setBounds(fulldim.width/2-fulldim.width/10, fulldim.height/2-fulldim.height/10, fulldim.width/5, fulldim.height/7);
+										adjustframe.setLayout(new FlowLayout(FlowLayout.CENTER, 40,20));
 								
 										
-										JLabel info = new JLabel("변경할 수량을 선택 하세요");
+										JLabel info = new JLabel("<html><font color=#FFFFFFF>변경할 수량을 선택 하세요</font></html>");
 										info.setFont(new Font(null, Font.BOLD, 20));
-										adjustframe.add(info, BorderLayout.NORTH);
+										adjustframe.add(info);
 										JComboBox num = new JComboBox();
 										num.setBounds(x/10, y/3-y/24, x/13, 30);
 										num.setFont(new Font(null,Font.BOLD,30));
@@ -202,7 +227,7 @@ public class ColdPanel extends JPanel{
 										{
 											num.addItem(i);
 										}
-										adjustframe.add(num, BorderLayout.CENTER);
+										adjustframe.add(num);
 										
 										JButton yes = new JButton("확인");
 										yes.addActionListener(new ActionListener(){
@@ -223,10 +248,9 @@ public class ColdPanel extends JPanel{
 											}
 											
 										});
-										adjustframe.add(yes, BorderLayout.SOUTH);
+										adjustframe.add(yes);
 										
-//										insert.setVisible(true);
-										
+//										
 										
 									}
 									
@@ -252,23 +276,36 @@ public class ColdPanel extends JPanel{
 									
 								});
 								
+								cancel.addActionListener(new ActionListener(){
+
+									@Override
+									public void actionPerformed(ActionEvent arg0) {
+										// TODO Auto-generated method stub
+
+										mainframe.setEnabled(true);
+										adjustframe.dispose();
+									}	
+									
+								});
+								
 								adjustframe.add(adjust);
 								adjustframe.add(delete);
+								adjustframe.add(cancel);
 								
 								adjustframe.setVisible(true);
 								
 								
-							}
-						}, 500);
+//							}
+//						}, 300);
 					}
 					
 					public void mouseReleased(MouseEvent e)
 					{						
-						if(t != null)
-						{	
-							t.cancel();
-							t = null;
-						}
+//						if(t != null)
+//						{	
+//							t.cancel();
+//							t = null;
+//						}
 					}
 				});
 		
@@ -295,7 +332,7 @@ public class ColdPanel extends JPanel{
 				userdata.clear();
 			
 				ArrayList dataarray = fooddata.getcoldData();
-				
+								
 				DefaultListModel modeltemp = new DefaultListModel();
 
 //				model.removeAllElements();
@@ -344,7 +381,7 @@ public class ColdPanel extends JPanel{
 					whe = false;
 					
 				list.setModel(modeltemp);
-				
+								
 				try {
 					Thread.sleep(3000);
 				} catch (InterruptedException e) {
@@ -365,7 +402,7 @@ public class ColdPanel extends JPanel{
 			
 				try
 				{
-					Thread.sleep(60000);
+					Thread.sleep(30000);
 				}
 				catch(Exception e)
 				{
@@ -404,6 +441,18 @@ public class ColdPanel extends JPanel{
             super.paintComponent(g);
         }
 
+	}
+	
+	class ImagePanel extends JComponent {
+	    private Image image;
+	    public ImagePanel(Image image) {
+	        this.image = image;
+	    }
+	    @Override
+	    protected void paintComponent(Graphics g) {
+	        super.paintComponent(g);
+	        g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(),this);
+	    }
 	}
 	
 }

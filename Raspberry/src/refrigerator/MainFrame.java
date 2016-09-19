@@ -219,8 +219,8 @@ public class MainFrame extends JFrame{
 		 *	  Initial summary panels
 		 */
 		
-		s_freezepanel = new FreezePanel(fulldim, fooddata, this);
-		s_coldpanel = new ColdPanel(fulldim, fooddata, this);
+		s_freezepanel = new FreezePanel(fulldim, this);
+		s_coldpanel = new ColdPanel(fulldim, this);
 		s_presspanel = new PressPanel(fulldim);
 	
 	
@@ -255,8 +255,8 @@ public class MainFrame extends JFrame{
 		today += " "+day[date_object.getDay()];
 		date.setText("<html><font color = #FFFFFFF>"+today+"</font><html>");
 		
-		s_freezepanel = new FreezePanel(fulldim, fooddata, this);
-		s_coldpanel = new ColdPanel(fulldim, fooddata, this);
+		s_freezepanel = new FreezePanel(fulldim, this);
+		s_coldpanel = new ColdPanel(fulldim, this);
 		
 	}
 	

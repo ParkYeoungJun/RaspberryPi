@@ -63,7 +63,7 @@ public class FoodParsing {
 			}
 		}
 		
-		public  void update(int flag)
+		public void update(int flag)
 		{
 			freezedata.clear();
 			colddata.clear();

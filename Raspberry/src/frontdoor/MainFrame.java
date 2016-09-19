@@ -122,17 +122,40 @@ public class MainFrame extends JFrame{
 //		}
 		
 		
+		updateThread up = new updateThread();
+		up.start();
+		
 		
 		this.setVisible(true);
 	}
 	
+	class updateThread extends Thread
+	{
+		public void run()
+		{
+			while(true)
+			{
+				update();
+				
+				try {
+					Thread.sleep(60000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	
 	
 	public void update()
 	{
-//		// get date
-//		date_object = new Date();
-//		today = format.format(date_object);
-//		today += " "+day[date_object.getDay()];
+		// get date
+		date_object = new Date();
+		today = format.format(date_object);
+		today += " "+day[date_object.getDay()];
+		date_label.setText(today);
 //		
 //		weather_panel = new WeatherPanel(fulldim);
 	}

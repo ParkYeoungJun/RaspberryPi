@@ -96,7 +96,7 @@ class WeatherPanel extends JPanel{
 
 				try
 				{
-					ImageIcon background = new ImageIcon(new URL("http://i.imgur.com/v2Vh9Ku.png"));
+					ImageIcon background = new ImageIcon("icon/wheather_center_background.png");
 					img = background.getImage();
 
 					g.drawImage(img, 0,0,this.getWidth(),this.getHeight(),this);
@@ -108,8 +108,6 @@ class WeatherPanel extends JPanel{
 				}
 			}
 		};
-//		test.setBackground(new Color(91,90,255));
-//		test.setBackground(Color.WHITE);
 		test.setLayout(new BorderLayout());
 		current = new JLabel("",JLabel.CENTER);
 		test.add(current,BorderLayout.CENTER);
@@ -125,7 +123,7 @@ class WeatherPanel extends JPanel{
 
 				try
 				{
-					ImageIcon background = new ImageIcon(new URL("http://i.imgur.com/v2Vh9Ku.png"));
+					ImageIcon background = new ImageIcon("icon/wheather_center_background.png");
 					img = background.getImage();
 
 					g.drawImage(img, 0,0,this.getWidth(),this.getHeight(),this);
@@ -160,7 +158,7 @@ class WeatherPanel extends JPanel{
 
 				try
 				{
-					ImageIcon background = new ImageIcon(new URL("http://i.imgur.com/v2Vh9Ku.png"));
+					ImageIcon background = new ImageIcon("icon/wheather_center_background.png");
 					img = background.getImage();
 
 					g.drawImage(img, 0,0,this.getWidth(),this.getHeight(),this);
@@ -172,7 +170,6 @@ class WeatherPanel extends JPanel{
 				}
 			}
 		};
-//		dustpanel.setBackground(Color.WHITE);
 		dustpanel.setLayout(new BorderLayout());
 		dust_label = new JLabel("", JLabel.RIGHT);
 		dust_label.setFont(new Font(null, Font.BOLD,15));
@@ -181,7 +178,29 @@ class WeatherPanel extends JPanel{
 
 		this.add(test);
 
-		update();
+		updateThread up = new updateThread();
+		up.start();
+				
+		
+//		update();
+	}
+	
+	class updateThread extends Thread
+	{
+		public void run()
+		{
+			while(true)
+			{
+				update();
+				
+				try {
+					Thread.sleep(1800000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 	
 	public int update()
@@ -208,13 +227,13 @@ class WeatherPanel extends JPanel{
 		{	
 			img = rain.getImage();
 		
-			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/10, fulldim.height/8, Image.SCALE_SMOOTH)));
+			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/13, fulldim.height/8, Image.SCALE_SMOOTH)));
 		}
 		else if(current_weather[0].equals("´«"))
 		{
 			img = snow.getImage();
 			
-			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/10, fulldim.height/8, Image.SCALE_SMOOTH)));
+			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/13, fulldim.height/8, Image.SCALE_SMOOTH)));
 		
 			
 //			current.setIcon(snow);
@@ -223,7 +242,7 @@ class WeatherPanel extends JPanel{
 		{
 			img = snow.getImage();
 			
-			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/10, fulldim.height/8, Image.SCALE_SMOOTH)));
+			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/13, fulldim.height/8, Image.SCALE_SMOOTH)));
 
 			
 			//			current.setIcon(snow);
@@ -232,7 +251,7 @@ class WeatherPanel extends JPanel{
 		{
 			img = sunny.getImage();
 			
-			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/10, fulldim.height/8, Image.SCALE_SMOOTH)));
+			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/13, fulldim.height/8, Image.SCALE_SMOOTH)));
 
 			
 			
@@ -242,7 +261,7 @@ class WeatherPanel extends JPanel{
 		{
 			img = extrasunny.getImage();
 			
-			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/10, fulldim.height/8, Image.SCALE_SMOOTH)));
+			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/13, fulldim.height/8, Image.SCALE_SMOOTH)));
 
 			
 			//			current.setIcon(extrasunny);
@@ -317,7 +336,7 @@ class WeatherPanel extends JPanel{
 
 		try
 		{
-			ImageIcon background = new ImageIcon(new URL("http://i.imgur.com/NLr14Py.png"));
+			ImageIcon background = new ImageIcon("icon/wheather_panel_background.png");
 			img = background.getImage();
 
 			g.drawImage(img, 0,0,this.getWidth(),this.getHeight(),this);
