@@ -55,7 +55,7 @@ public class DairyPanel extends JPanel{
 		this.setLayout(null);
 
 		list = new ImageList(test);
-		list.setFont(new Font(null, 20, 100));
+		list.setFont(new Font(null, 20, 50));
 		list.setCellRenderer(new DefaultListCellRenderer(){
 			public int getHorizontalAlignment(){
 				return CENTER;
@@ -63,7 +63,7 @@ public class DairyPanel extends JPanel{
 		});
 		
 		scroll = new JScrollPane(list);		
-		scroll.setBounds(0, 0, x, y - y/8);
+		scroll.setBounds(0, 0, x, y - y/5);
 		scroll.setBorder(BorderFactory.createEmptyBorder());
 		scroll.getVerticalScrollBar().setPreferredSize(new Dimension(30,0));
 		
@@ -92,7 +92,7 @@ public class DairyPanel extends JPanel{
 			}
 		};
 		check_panel.setLayout(null);
-		check_panel.setBounds(0, y - y/8, x, y/8);
+		check_panel.setBounds(0, y - y/5, x, y/5);
 		yes_button = new JButton("»Æ¿Œ");
 		yes_button.setBounds(x/5,0, x/8,50);
 		yes_button.setBorder(BorderFactory.createRaisedBevelBorder());

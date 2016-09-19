@@ -222,7 +222,7 @@ public class MenuPanel extends JFrame{
 		{
 			super.paintComponent(g);
 			
-			g.drawImage(image, 0, 0, this.getWidth(), this.getHeight()+100,this);
+			g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(),this);
 		}
 	}
 }

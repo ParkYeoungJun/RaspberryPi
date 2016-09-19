@@ -91,12 +91,12 @@ public class FreezePanel extends JPanel{
 		// label
 		freeze.setBounds(0, 0, x, 30);
 		
-		freeze.setFont(new Font(null,Font.BOLD,30));
+		freeze.setFont(new Font(null,Font.BOLD,20));
 		this.add(freeze);
 
 	
 		list = new ImageList(listmodel);
-		list.setFont(new Font(null,Font.BOLD,30));
+		list.setFont(new Font(null,Font.BOLD,20));
 		list.addMouseListener(
 				new MouseAdapter(){
 					private java.util.Timer t;
