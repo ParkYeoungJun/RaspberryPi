@@ -6,11 +6,11 @@ public class processTest {
 	{
 		try
 		{
-				Process p = Runtime.getRuntime().exec("sudo tvservice -o");
+				Process p = Runtime.getRuntime().exec("xset dpms force off");
 		
 				Thread.sleep(60000);
 				
-				Process s = Runtime.getRuntime().exec("sudo tvservice -p");
+				Process s = Runtime.getRuntime().exec("xset dpms force on");
 		}
 		catch(Exception e)
 		{
