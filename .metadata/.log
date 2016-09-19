@@ -6318,3 +6318,596 @@ org.eclipse.recommenders.utils.Logs$LogTraceException
 	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
 	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
 	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY org.eclipse.recommenders.types.rcp 1 3 2016-09-19 22:14:24.457
+!MESSAGE Full project indexing required:
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\Header.jpg
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\PlusButton.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\beverage_icon.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\cloud.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\cloudsunny.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\dairy_icon.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\etc_icon.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\fish_icon.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\fruit_icon.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\hanul.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\hanul_big.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\meat_icon.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\menu_icon.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\menupanel_background.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\plus_background.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\plus_background_below.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\plus_background_up.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\post.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\rain.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\seafood_icon.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\shelf_life_data.xlsx
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\shelf_life_data.xml
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\snow.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\sun.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\umb.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\vegetable_icon.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\wheather_center_background.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\wheather_panel_background.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\icon\xicon.png
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\json-simple-1.1.1.jar
+
+!STACK 0
+org.eclipse.recommenders.utils.Logs$LogTraceException
+	at org.eclipse.recommenders.utils.Logs$LogTraceException.newTrace(Logs.java:381)
+	at org.eclipse.recommenders.utils.Logs.log(Logs.java:134)
+	at org.eclipse.recommenders.internal.types.rcp.ProjectTypesIndex.needsRebuild(ProjectTypesIndex.java:172)
+	at org.eclipse.recommenders.internal.types.rcp.ProjectTypesIndex.suggestRebuild(ProjectTypesIndex.java:456)
+	at org.eclipse.recommenders.internal.types.rcp.TypesIndexService.rebuildIndex(TypesIndexService.java:120)
+	at org.eclipse.recommenders.internal.types.rcp.TypesIndexService.process(TypesIndexService.java:57)
+	at org.eclipse.recommenders.internal.types.rcp.TypesIndexService.process(TypesIndexService.java:63)
+	at org.eclipse.recommenders.internal.types.rcp.TypesIndexService.elementChanged(TypesIndexService.java:49)
+	at org.eclipse.jdt.internal.core.DeltaProcessor$3.run(DeltaProcessor.java:1662)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.jdt.internal.core.DeltaProcessor.notifyListeners(DeltaProcessor.java:1652)
+	at org.eclipse.jdt.internal.core.DeltaProcessor.firePostChangeDelta(DeltaProcessor.java:1486)
+	at org.eclipse.jdt.internal.core.DeltaProcessor.fire(DeltaProcessor.java:1462)
+	at org.eclipse.jdt.internal.core.DeltaProcessor.resourceChanged(DeltaProcessor.java:2074)
+	at org.eclipse.jdt.internal.core.DeltaProcessingState.resourceChanged(DeltaProcessingState.java:477)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(NotificationManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:289)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:152)
+	at org.eclipse.core.internal.resources.Workspace.broadcastPostChange(Workspace.java:373)
+	at org.eclipse.core.internal.resources.Workspace.endOperation(Workspace.java:1470)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2250)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:794)
+	at org.eclipse.jdt.internal.core.JavaProject.setRawClasspath(JavaProject.java:3097)
+	at org.eclipse.jdt.internal.core.JavaProject.setRawClasspath(JavaProject.java:3059)
+	at org.eclipse.jdt.internal.core.JavaProject.setRawClasspath(JavaProject.java:3071)
+	at org.eclipse.jdt.internal.corext.buildpath.ClasspathModifier.commitClassPath(ClasspathModifier.java:1045)
+	at org.eclipse.jdt.internal.ui.wizards.buildpaths.newsourcepage.AddSelectedLibraryToBuildpathAction.addLibraryEntries(AddSelectedLibraryToBuildpathAction.java:138)
+	at org.eclipse.jdt.internal.ui.wizards.buildpaths.newsourcepage.AddSelectedLibraryToBuildpathAction.access$0(AddSelectedLibraryToBuildpathAction.java:126)
+	at org.eclipse.jdt.internal.ui.wizards.buildpaths.newsourcepage.AddSelectedLibraryToBuildpathAction$1.run(AddSelectedLibraryToBuildpathAction.java:108)
+	at org.eclipse.jface.operation.ModalContext.runInCurrentThread(ModalContext.java:463)
+	at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:371)
+	at org.eclipse.jface.dialogs.ProgressMonitorDialog.run(ProgressMonitorDialog.java:500)
+	at org.eclipse.ui.internal.progress.ProgressMonitorJobsDialog.run(ProgressMonitorJobsDialog.java:284)
+	at org.eclipse.ui.internal.progress.ProgressManager.run(ProgressManager.java:1204)
+	at org.eclipse.jdt.internal.ui.wizards.buildpaths.newsourcepage.AddSelectedLibraryToBuildpathAction.run(AddSelectedLibraryToBuildpathAction.java:115)
+	at org.eclipse.jface.action.Action.runWithEvent(Action.java:473)
+	at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:595)
+	at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:511)
+	at org.eclipse.jface.action.ActionContributionItem$5.handleEvent(ActionContributionItem.java:420)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4362)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1113)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4180)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3769)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:1127)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:337)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1018)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:156)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:694)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:337)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:606)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:139)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:380)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:235)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:669)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:608)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1515)
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:25.809
+!MESSAGE Invalid ZIP archive: icon/beverage_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:25.820
+!MESSAGE Invalid ZIP archive: icon/beverage_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:25.831
+!MESSAGE Invalid ZIP archive: icon/cloud.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:25.843
+!MESSAGE Invalid ZIP archive: icon/cloud.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:25.852
+!MESSAGE Invalid ZIP archive: icon/cloudsunny.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:25.861
+!MESSAGE Invalid ZIP archive: icon/dairy_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:25.870
+!MESSAGE Invalid ZIP archive: icon/cloudsunny.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:25.879
+!MESSAGE Invalid ZIP archive: icon/dairy_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:25.889
+!MESSAGE Invalid ZIP archive: icon/etc_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:25.897
+!MESSAGE Invalid ZIP archive: icon/etc_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:25.906
+!MESSAGE Invalid ZIP archive: icon/fish_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:25.914
+!MESSAGE Invalid ZIP archive: icon/fish_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:25.922
+!MESSAGE Invalid ZIP archive: icon/fruit_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:25.943
+!MESSAGE Invalid ZIP archive: icon/hanul_big.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:25.952
+!MESSAGE Invalid ZIP archive: icon/fruit_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:25.961
+!MESSAGE Invalid ZIP archive: icon/hanul.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:25.968
+!MESSAGE Invalid ZIP archive: icon/Header.jpg [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:25.981
+!MESSAGE Invalid ZIP archive: icon/meat_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:25.999
+!MESSAGE Invalid ZIP archive: icon/hanul_big.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.006
+!MESSAGE Invalid ZIP archive: icon/menu_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.014
+!MESSAGE Invalid ZIP archive: icon/beverage_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.022
+!MESSAGE Invalid ZIP archive: icon/cloud.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.031
+!MESSAGE Invalid ZIP archive: icon/cloudsunny.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.041
+!MESSAGE Invalid ZIP archive: icon/dairy_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.052
+!MESSAGE Invalid ZIP archive: icon/etc_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.059
+!MESSAGE Invalid ZIP archive: icon/menupanel_background.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.065
+!MESSAGE Invalid ZIP archive: icon/hanul.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.071
+!MESSAGE Invalid ZIP archive: icon/plus_background_below.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.077
+!MESSAGE Invalid ZIP archive: icon/fish_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.082
+!MESSAGE Invalid ZIP archive: icon/beverage_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.087
+!MESSAGE Invalid ZIP archive: icon/beverage_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.092
+!MESSAGE Invalid ZIP archive: icon/cloud.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.099
+!MESSAGE Invalid ZIP archive: icon/fruit_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.105
+!MESSAGE Invalid ZIP archive: icon/plus_background_up.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.110
+!MESSAGE Invalid ZIP archive: icon/Header.jpg [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.116
+!MESSAGE Invalid ZIP archive: icon/plus_background.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.121
+!MESSAGE Invalid ZIP archive: icon/hanul_big.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.127
+!MESSAGE Invalid ZIP archive: icon/cloudsunny.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.132
+!MESSAGE Invalid ZIP archive: icon/cloud.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.137
+!MESSAGE Invalid ZIP archive: icon/dairy_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.142
+!MESSAGE Invalid ZIP archive: icon/hanul.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.147
+!MESSAGE Invalid ZIP archive: icon/PlusButton.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.152
+!MESSAGE Invalid ZIP archive: icon/meat_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.157
+!MESSAGE Invalid ZIP archive: icon/post.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.162
+!MESSAGE Invalid ZIP archive: icon/Header.jpg [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.169
+!MESSAGE Invalid ZIP archive: icon/etc_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.177
+!MESSAGE Invalid ZIP archive: icon/cloudsunny.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.183
+!MESSAGE Invalid ZIP archive: icon/fish_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.188
+!MESSAGE Invalid ZIP archive: icon/meat_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.193
+!MESSAGE Invalid ZIP archive: icon/rain.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.197
+!MESSAGE Invalid ZIP archive: icon/menu_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.202
+!MESSAGE Invalid ZIP archive: icon/seafood_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.208
+!MESSAGE Invalid ZIP archive: icon/menu_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.213
+!MESSAGE Invalid ZIP archive: icon/fruit_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.217
+!MESSAGE Invalid ZIP archive: icon/dairy_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.223
+!MESSAGE Invalid ZIP archive: icon/hanul_big.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.227
+!MESSAGE Invalid ZIP archive: icon/menupanel_background.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.233
+!MESSAGE Invalid ZIP archive: icon/shelf_life_data.xml [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.238
+!MESSAGE Invalid ZIP archive: icon/menupanel_background.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.243
+!MESSAGE Invalid ZIP archive: icon/snow.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.248
+!MESSAGE Invalid ZIP archive: icon/plus_background_below.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.253
+!MESSAGE Invalid ZIP archive: icon/hanul.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.258
+!MESSAGE Invalid ZIP archive: icon/etc_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.263
+!MESSAGE Invalid ZIP archive: icon/Header.jpg [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.269
+!MESSAGE Invalid ZIP archive: icon/plus_background_up.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.273
+!MESSAGE Invalid ZIP archive: icon/sun.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.279
+!MESSAGE Invalid ZIP archive: icon/plus_background_below.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.284
+!MESSAGE Invalid ZIP archive: icon/umb.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.289
+!MESSAGE Invalid ZIP archive: icon/plus_background.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.294
+!MESSAGE Invalid ZIP archive: icon/meat_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.299
+!MESSAGE Invalid ZIP archive: icon/fish_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.304
+!MESSAGE Invalid ZIP archive: icon/menu_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.309
+!MESSAGE Invalid ZIP archive: icon/PlusButton.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.315
+!MESSAGE Invalid ZIP archive: icon/vegetable_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.320
+!MESSAGE Invalid ZIP archive: icon/plus_background_up.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.328
+!MESSAGE Invalid ZIP archive: icon/wheather_center_background.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.337
+!MESSAGE Invalid ZIP archive: icon/post.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.342
+!MESSAGE Invalid ZIP archive: icon/menupanel_background.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.347
+!MESSAGE Invalid ZIP archive: icon/fruit_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.353
+!MESSAGE Invalid ZIP archive: icon/plus_background_below.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.358
+!MESSAGE Invalid ZIP archive: icon/rain.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.365
+!MESSAGE Invalid ZIP archive: icon/wheather_panel_background.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.370
+!MESSAGE Invalid ZIP archive: icon/plus_background.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.375
+!MESSAGE Invalid ZIP archive: icon/xicon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.379
+!MESSAGE Invalid ZIP archive: icon/seafood_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.389
+!MESSAGE Invalid ZIP archive: icon/shelf_life_data.xml [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.397
+!MESSAGE Invalid ZIP archive: icon/snow.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.406
+!MESSAGE Invalid ZIP archive: icon/sun.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.421
+!MESSAGE Invalid ZIP archive: icon/plus_background_up.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.429
+!MESSAGE Invalid ZIP archive: icon/hanul_big.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.436
+!MESSAGE Invalid ZIP archive: icon/plus_background.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.444
+!MESSAGE Invalid ZIP archive: icon/PlusButton.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.453
+!MESSAGE Invalid ZIP archive: icon/umb.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.461
+!MESSAGE Invalid ZIP archive: icon/PlusButton.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.492
+!MESSAGE Invalid ZIP archive: icon/post.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.504
+!MESSAGE Invalid ZIP archive: icon/vegetable_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.509
+!MESSAGE Invalid ZIP archive: icon/post.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.515
+!MESSAGE Invalid ZIP archive: icon/hanul.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.521
+!MESSAGE Invalid ZIP archive: icon/rain.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.526
+!MESSAGE Invalid ZIP archive: icon/wheather_center_background.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.532
+!MESSAGE Invalid ZIP archive: icon/rain.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.538
+!MESSAGE Invalid ZIP archive: icon/wheather_panel_background.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.543
+!MESSAGE Invalid ZIP archive: icon/seafood_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.548
+!MESSAGE Invalid ZIP archive: icon/Header.jpg [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.553
+!MESSAGE Invalid ZIP archive: icon/shelf_life_data.xml [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.559
+!MESSAGE Invalid ZIP archive: icon/xicon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.565
+!MESSAGE Invalid ZIP archive: icon/seafood_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.574
+!MESSAGE Invalid ZIP archive: icon/shelf_life_data.xml [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.588
+!MESSAGE Invalid ZIP archive: icon/snow.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.594
+!MESSAGE Invalid ZIP archive: icon/snow.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.600
+!MESSAGE Invalid ZIP archive: icon/meat_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.606
+!MESSAGE Invalid ZIP archive: icon/sun.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.611
+!MESSAGE Invalid ZIP archive: icon/sun.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.617
+!MESSAGE Invalid ZIP archive: icon/umb.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.622
+!MESSAGE Invalid ZIP archive: icon/menu_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.628
+!MESSAGE Invalid ZIP archive: icon/vegetable_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.633
+!MESSAGE Invalid ZIP archive: icon/umb.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.638
+!MESSAGE Invalid ZIP archive: icon/wheather_center_background.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.644
+!MESSAGE Invalid ZIP archive: icon/menupanel_background.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.650
+!MESSAGE Invalid ZIP archive: icon/wheather_panel_background.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.655
+!MESSAGE Invalid ZIP archive: icon/vegetable_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.660
+!MESSAGE Invalid ZIP archive: icon/xicon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.665
+!MESSAGE Invalid ZIP archive: icon/plus_background_below.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.672
+!MESSAGE Invalid ZIP archive: icon/wheather_center_background.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.681
+!MESSAGE Invalid ZIP archive: icon/plus_background_up.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.692
+!MESSAGE Invalid ZIP archive: icon/wheather_panel_background.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.700
+!MESSAGE Invalid ZIP archive: icon/xicon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.723
+!MESSAGE Invalid ZIP archive: icon/plus_background.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.732
+!MESSAGE Invalid ZIP archive: icon/PlusButton.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.739
+!MESSAGE Invalid ZIP archive: icon/post.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.821
+!MESSAGE Invalid ZIP archive: icon/rain.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.829
+!MESSAGE Invalid ZIP archive: icon/seafood_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.838
+!MESSAGE Invalid ZIP archive: icon/shelf_life_data.xml [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.846
+!MESSAGE Invalid ZIP archive: icon/snow.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.852
+!MESSAGE Invalid ZIP archive: icon/sun.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.858
+!MESSAGE Invalid ZIP archive: icon/umb.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.863
+!MESSAGE Invalid ZIP archive: icon/vegetable_icon.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.869
+!MESSAGE Invalid ZIP archive: icon/wheather_center_background.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.876
+!MESSAGE Invalid ZIP archive: icon/wheather_panel_background.png [in Raspberry]
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-09-19 22:14:26.881
+!MESSAGE Invalid ZIP archive: icon/xicon.png [in Raspberry]
+
+!ENTRY org.eclipse.recommenders.types.rcp 1 3 2016-09-19 22:17:34.631
+!MESSAGE Full project indexing required:
+  [+] C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\json-simple-1.1.1.jar
+
+!STACK 0
+org.eclipse.recommenders.utils.Logs$LogTraceException
+	at org.eclipse.recommenders.utils.Logs$LogTraceException.newTrace(Logs.java:381)
+	at org.eclipse.recommenders.utils.Logs.log(Logs.java:134)
+	at org.eclipse.recommenders.internal.types.rcp.ProjectTypesIndex.needsRebuild(ProjectTypesIndex.java:172)
+	at org.eclipse.recommenders.internal.types.rcp.ProjectTypesIndex.suggestRebuild(ProjectTypesIndex.java:456)
+	at org.eclipse.recommenders.internal.types.rcp.TypesIndexService.rebuildIndex(TypesIndexService.java:120)
+	at org.eclipse.recommenders.internal.types.rcp.TypesIndexService.process(TypesIndexService.java:57)
+	at org.eclipse.recommenders.internal.types.rcp.TypesIndexService.process(TypesIndexService.java:63)
+	at org.eclipse.recommenders.internal.types.rcp.TypesIndexService.elementChanged(TypesIndexService.java:49)
+	at org.eclipse.jdt.internal.core.DeltaProcessor$3.run(DeltaProcessor.java:1662)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.jdt.internal.core.DeltaProcessor.notifyListeners(DeltaProcessor.java:1652)
+	at org.eclipse.jdt.internal.core.DeltaProcessor.firePostChangeDelta(DeltaProcessor.java:1486)
+	at org.eclipse.jdt.internal.core.DeltaProcessor.fire(DeltaProcessor.java:1462)
+	at org.eclipse.jdt.internal.core.DeltaProcessor.resourceChanged(DeltaProcessor.java:2074)
+	at org.eclipse.jdt.internal.core.DeltaProcessingState.resourceChanged(DeltaProcessingState.java:477)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(NotificationManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:289)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:152)
+	at org.eclipse.core.internal.resources.Workspace.broadcastPostChange(Workspace.java:373)
+	at org.eclipse.core.internal.resources.Workspace.endOperation(Workspace.java:1470)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2250)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:794)
+	at org.eclipse.jdt.internal.core.JavaProject.setRawClasspath(JavaProject.java:3097)
+	at org.eclipse.jdt.internal.core.JavaProject.setRawClasspath(JavaProject.java:3059)
+	at org.eclipse.jdt.internal.core.JavaProject.setRawClasspath(JavaProject.java:3071)
+	at org.eclipse.jdt.internal.corext.buildpath.ClasspathModifier.commitClassPath(ClasspathModifier.java:1068)
+	at org.eclipse.jdt.internal.ui.wizards.buildpaths.newsourcepage.RemoveFromBuildpathAction$1.run(RemoveFromBuildpathAction.java:156)
+	at org.eclipse.jface.operation.ModalContext.runInCurrentThread(ModalContext.java:463)
+	at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:371)
+	at org.eclipse.jface.dialogs.ProgressMonitorDialog.run(ProgressMonitorDialog.java:500)
+	at org.eclipse.ui.internal.progress.ProgressMonitorJobsDialog.run(ProgressMonitorJobsDialog.java:284)
+	at org.eclipse.ui.internal.progress.ProgressManager.run(ProgressManager.java:1204)
+	at org.eclipse.jdt.internal.ui.wizards.buildpaths.newsourcepage.RemoveFromBuildpathAction.run(RemoveFromBuildpathAction.java:176)
+	at org.eclipse.jface.action.Action.runWithEvent(Action.java:473)
+	at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:595)
+	at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:511)
+	at org.eclipse.jface.action.ActionContributionItem$5.handleEvent(ActionContributionItem.java:420)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4362)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1113)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4180)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3769)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:1127)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:337)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1018)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:156)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:694)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:337)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:606)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:139)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:380)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:235)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:669)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:608)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1515)
