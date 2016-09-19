@@ -85,10 +85,10 @@ public class LastPlusPanel extends JPanel{
 		this.add(name);
 		
 		num_label = new JLabel("<html><font color = #FFFFFFF>수량 : </font></html>", JLabel.LEFT);
-		num_label.setBounds(30, y/3-y/20, x/13, 50);
+		num_label.setBounds(30, y/3-y/20, x/8, 50);
 		num_label.setFont(new Font(null, Font.BOLD,20));
 		num = new JComboBox();
-		num.setBounds(x/10, y/3-y/24, x/13, 30);
+		num.setBounds(x/5, y/3-y/24, x/13, 30);
 		num.setFont(new Font(null,Font.BOLD,30));
 		for(int i = 1 ; i <= 200 ; ++i)
 		{
@@ -99,18 +99,18 @@ public class LastPlusPanel extends JPanel{
 		
 		date = new JLabel("", JLabel.LEFT);
 		date.setFont(new Font(null,Font.BOLD,20));
-		date.setBounds(30, y/3+y/8, x, 50);
+		date.setBounds(30, y/3+y/9, x, 50);
 		this.add(date);
 		
 		whe_c_f = new JLabel("<html><font color = #FFFFFFF>어디에 저장할지 선택하세요 : </font></html>");
 		whe_c_f.setFont(new Font(null, Font.BOLD, 20));
-		whe_c_f.setBounds(30, y/3+y/5, x/4, 50);
+		whe_c_f.setBounds(30, y/3+y/5, x/3, 50);
 		this.add(whe_c_f);
 
 		cold = new JRadioButton("<html><font color = #FFFFFFF>냉장실</font></html>");
 		freeze = new JRadioButton("<html><font color = #FFFFFFF>냉동실</font><html>");
-		cold.setBounds(x/4, y/3+y/5, x/10, 50);
-		freeze.setBounds(x/3+x/12, y/3+y/5, x/10, 50);
+		cold.setBounds(x/4, y/3+y/5, x/6, 50);
+		freeze.setBounds(x/3+x/12, y/3+y/5, x/6, 50);
 		cold.setFont(new Font(null, Font.BOLD, 20));
 		freeze.setFont(new Font(null, Font.BOLD, 20));
 		cold.setOpaque(false);
@@ -150,14 +150,14 @@ public class LastPlusPanel extends JPanel{
 		
 		question = new JLabel("<html><font color = #FFFFFFF>입력된 내용이 맞습니까?</font></html>", JLabel.CENTER);
 		question.setFont(new Font(null,Font.BOLD,20));
-		question.setBounds(0, (y*4)/5 , x, 30);
+		question.setBounds(0, (y*3)/4 , x, 30);
 		this.add(question);
 		
 		yes = new JButton("네");
-		yes.setBounds(x/4, (y*6)/7, x/10, 30);
+		yes.setBounds(x/4, (y*5)/6, x/10, 30);
 		yes.setBorder(BorderFactory.createRaisedBevelBorder());
 		no = new JButton("아니요");
-		no.setBounds(x/2+x/6, (y*6)/7, x/10, 30);
+		no.setBounds(x/2+x/6, (y*5)/6, x/10, 30);
 		no.setBorder(BorderFactory.createRaisedBevelBorder());
 		yes.addActionListener(new ActionListener(){
 

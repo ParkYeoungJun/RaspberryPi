@@ -140,8 +140,8 @@ public class MainFrame extends JFrame{
 			Image img;
 	
 			img = menuicon.getImage();
-			menulabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/30, fulldim.height/20, Image.SCALE_SMOOTH)));
-			menulabel.setBounds(0,10,fulldim.width/30,fulldim.height/20);
+			menulabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/30, fulldim.height/22, Image.SCALE_SMOOTH)));
+			menulabel.setBounds(0,10,fulldim.width/30,fulldim.height/22);
 			ceilingpanel.add(menulabel);
 			
 			// plus
