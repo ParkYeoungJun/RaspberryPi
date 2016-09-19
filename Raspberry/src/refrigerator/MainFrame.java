@@ -20,6 +20,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.Callable;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -29,6 +30,13 @@ import javax.swing.SwingWorker;
 import javax.swing.Timer;
 
 import org.json.simple.JSONObject;
+
+import com.pi4j.io.gpio.GpioController;
+import com.pi4j.io.gpio.GpioFactory;
+import com.pi4j.io.gpio.GpioPinDigitalInput;
+import com.pi4j.io.gpio.PinState;
+import com.pi4j.io.gpio.RaspiPin;
+import com.pi4j.io.gpio.trigger.GpioCallbackTrigger;
 
 public class MainFrame extends JFrame{
 
@@ -237,6 +245,9 @@ public class MainFrame extends JFrame{
 		
 		timeThread timethread = new timeThread();
 		timethread.start();
+		
+//		sensorThread sensor = new sensorThread();
+//		sensor.start();
 				
 		this.setVisible(true);
 
@@ -430,6 +441,51 @@ public class MainFrame extends JFrame{
 				catch(Exception e)
 				{
 					System.err.println(e);
+				}
+			}
+		}
+	}
+	
+	class sensorThread extends Thread 
+	{
+		public void run()
+		{
+		
+			while(true)
+			{
+				// create gpio controller
+				final GpioController gpio = GpioFactory.getInstance();
+	        
+				// provision gpio pin #29, (header pin 40) as an input pin with its internal pull down resistor enabled
+				final GpioPinDigitalInput pir = gpio.provisionDigitalInputPin(RaspiPin.GPIO_29);
+				System.out.printf("Ready\n");
+	 
+				// create a gpio callback trigger on the gpio pin
+				Callable<Void> callback = () -> {
+	        	
+					Process d = Runtime.getRuntime().exec("xset dpms force on");
+					            
+					return null;
+				};
+	        
+				// create a gpio callback trigger on the PIR device pin for when it's state goes high
+				pir.addTrigger(new GpioCallbackTrigger(PinState.HIGH, callback));
+	 
+				// stop all GPIO activity/threads by shutting down the GPIO controller
+				Runtime.getRuntime().addShutdownHook(new Thread() {
+					@Override
+					public void run() {
+						System.out.println("Interrupted, stopping...\n");
+						gpio.shutdown();
+					}
+				});
+	 
+				// keep program running until user aborts (CTRL-C)	
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		}

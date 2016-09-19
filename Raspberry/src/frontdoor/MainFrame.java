@@ -8,12 +8,21 @@ import java.awt.Frame;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.Callable;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import com.pi4j.io.gpio.GpioController;
+import com.pi4j.io.gpio.GpioFactory;
+import com.pi4j.io.gpio.GpioPinDigitalInput;
+import com.pi4j.io.gpio.PinState;
+import com.pi4j.io.gpio.RaspiPin;
+import com.pi4j.io.gpio.trigger.GpioCallbackTrigger;
 
 public class MainFrame extends JFrame{
 	
@@ -95,35 +104,11 @@ public class MainFrame extends JFrame{
 		note_panel = new NotePanel(fulldim);
 		this.add(note_panel);
 		
-		
-//		// dust
-//		dust_panel = new FinedustPanel(fulldim);
-//		this.add(dust_panel);
-	
-		
-//		if(PRI Sensor detect)
-//		{
-//			update();
-//			
-//			this.setVisible(true);
-//		}
-//		else
-//		{
-//			try {
-//				Thread.sleep(3000);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			
-//			this.setVisible(false);
-//			
-//			screensaver.setVisible(true);
-//		}
-		
-		
 		updateThread up = new updateThread();
 		up.start();
+		
+		sensorThread sensor = new sensorThread();
+		sensor.start();
 		
 		
 		this.setVisible(true);
@@ -139,6 +124,52 @@ public class MainFrame extends JFrame{
 				
 				try {
 					Thread.sleep(60000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	
+	class sensorThread extends Thread 
+	{
+		public void run()
+		{
+		
+			while(true)
+			{
+				// create gpio controller
+				final GpioController gpio = GpioFactory.getInstance();
+	        
+				// provision gpio pin #29, (header pin 40) as an input pin with its internal pull down resistor enabled
+				final GpioPinDigitalInput pir = gpio.provisionDigitalInputPin(RaspiPin.GPIO_29);
+				System.out.printf("Ready\n");
+	 
+				// create a gpio callback trigger on the gpio pin
+				Callable<Void> callback = () -> {
+	        	
+					Process d = Runtime.getRuntime().exec("xset dpms force on");
+					            
+					return null;
+				};
+	        
+				// create a gpio callback trigger on the PIR device pin for when it's state goes high
+				pir.addTrigger(new GpioCallbackTrigger(PinState.HIGH, callback));
+	 
+				// stop all GPIO activity/threads by shutting down the GPIO controller
+				Runtime.getRuntime().addShutdownHook(new Thread() {
+					@Override
+					public void run() {
+						System.out.println("Interrupted, stopping...\n");
+						gpio.shutdown();
+					}
+				});
+	 
+				// keep program running until user aborts (CTRL-C)	
+				try {
+					Thread.sleep(100);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

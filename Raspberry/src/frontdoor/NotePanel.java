@@ -60,11 +60,30 @@ public class NotePanel extends JPanel
 		
 		this.add(scroll);
 		
-		update();
+		updateThread up = new updateThread();
+		up.start();
+				
 		
 		this.setVisible(true);
 	}
 	
+	class updateThread extends Thread
+	{
+		public void run()
+		{
+			while(true)
+			{
+				update();
+			
+				try {
+					Thread.sleep(60000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 	
 	public void update()
 	{
@@ -74,12 +93,16 @@ public class NotePanel extends JPanel
 		
 		if(notedata.size() == 0)
 		{
+			note.setText("");
+			
 			note.append("금일 노트가 비었어요\n\n좋은하루 되세요~");
 		}
 		else
 		{
+			note.setText("");
+			
 			for(int i = 0 ; i < notedata.size() ; ++i)
-			{
+			{	
 				note.append(notedata.get(i).toString());
 			
 				if(notedata.size()-1 != i)
