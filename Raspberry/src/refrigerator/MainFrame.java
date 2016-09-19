@@ -191,6 +191,8 @@ public class MainFrame extends JFrame{
 						}
 						else
 						{
+							menupanel.setLocation(0, 0);
+
 							from = -fulldim.width/4;
 							to = 0;
 							
