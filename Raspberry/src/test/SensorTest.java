@@ -2,7 +2,8 @@ package test;
 
 import com.pi4j.io.gpio.*;
 import com.pi4j.io.gpio.trigger.GpioCallbackTrigger;
- 
+
+import java.io.IOException;
 import java.util.concurrent.Callable;
  
 /**
@@ -15,6 +16,14 @@ public class SensorTest {
  
         System.out.printf("PIR Module Test (CTRL+C to exit)\n");
  
+		try {
+			Process p = Runtime.getRuntime().exec("xset dpms force off");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+        
         // create gpio controller
         final GpioController gpio = GpioFactory.getInstance();
         
@@ -24,6 +33,9 @@ public class SensorTest {
  
         // create a gpio callback trigger on the gpio pin
         Callable<Void> callback = () -> {
+        	
+			Process d = Runtime.getRuntime().exec("xset dpms force on");
+			
             System.out.println(" --> GPIO TRIGGER CALLBACK RECEIVED ");
             return null;
         };
