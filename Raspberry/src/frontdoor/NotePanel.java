@@ -29,7 +29,7 @@ public class NotePanel extends JPanel
 	public NotePanel(Dimension fulldim)
 	{
 		this.fulldim = fulldim;
-		this.setBounds(30, fulldim.height/15, fulldim.width/3*2, fulldim.height-fulldim.height/15);
+		this.setBounds(0, fulldim.height/15, fulldim.width/3*2, fulldim.height-fulldim.height/15);
 		this.setLayout(null);
 				
 		Image tempimg = new ImageIcon("post.PNG").getImage();
@@ -53,11 +53,12 @@ public class NotePanel extends JPanel
 		note.setFont(new Font(null, Font.BOLD, 20));
 		note.setBackground(Color.WHITE);
 		note.setLineWrap(true);
+		note.setOpaque(false);
 		
 		scroll = new JScrollPane(note, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scroll.setBounds(0, 0, fulldim.width/3*2, fulldim.height-fulldim.height/15);
 //		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-		
+		scroll.setOpaque(false);
 		this.add(scroll);
 		
 		updateThread up = new updateThread();
