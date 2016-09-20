@@ -127,7 +127,7 @@ public class FreezePanel extends JPanel{
 								 */
 								int index = list.getSelectedIndex();
 								
-								mainframe.setEnabled(false);
+//								mainframe.setEnabled(false);
 								
 								JFrame adjustframe = new JFrame();
 								adjustframe.setResizable(false);
@@ -144,6 +144,7 @@ public class FreezePanel extends JPanel{
 									@Override
 									public void windowActivated(WindowEvent arg0) {
 										// TODO Auto-generated method stub
+										adjustframe.setState(JFrame.NORMAL);
 									}
 
 									@Override

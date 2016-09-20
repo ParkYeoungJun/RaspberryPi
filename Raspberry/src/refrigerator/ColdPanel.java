@@ -128,7 +128,7 @@ public class ColdPanel extends JPanel{
 								 */
 								int index = list.getSelectedIndex();
 								
-								mainframe.setEnabled(false);
+//								mainframe.setEnabled(false);
 								
 								
 								JFrame adjustframe = new JFrame();
