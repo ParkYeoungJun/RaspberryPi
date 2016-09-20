@@ -64,7 +64,6 @@ public class ColdPanel extends JPanel{
 	
 	updateThread update;
 	
-	
 	boolean paneflag = false;
 	boolean whe = true;
 	
@@ -76,7 +75,7 @@ public class ColdPanel extends JPanel{
 		this.fooddata = new FoodParsing();
 		
 		x = fulldim.width/2;
-		y = fulldim.height/2+fulldim.height/15;		
+		y = fulldim.height*4/5;		
 		
 		today = Calendar.getInstance();
 		
@@ -183,7 +182,7 @@ public class ColdPanel extends JPanel{
 									}
 									
 								});
-								adjustframe.setBounds(fulldim.width/2-fulldim.width/15, fulldim.height/2-fulldim.height/12, fulldim.width/8, fulldim.height/10);
+								adjustframe.setBounds(fulldim.width/2-fulldim.width/3, fulldim.height/2-fulldim.height/3, fulldim.width/2, fulldim.height/2);
 								adjustframe.setLayout(new FlowLayout(FlowLayout.CENTER,50,20));
 								JButton adjust = new JButton("¼öÁ¤");
 								adjust.setBorder(BorderFactory.createRaisedBevelBorder());
@@ -213,7 +212,7 @@ public class ColdPanel extends JPanel{
 										adjustframe.remove(delete);
 										adjustframe.remove(cancel);
 
-										adjustframe.setBounds(fulldim.width/2-fulldim.width/10, fulldim.height/2-fulldim.height/10, fulldim.width/5, fulldim.height/7);
+										adjustframe.setBounds(fulldim.width/2-fulldim.width/3, fulldim.height/2-fulldim.height/3, fulldim.width/2, fulldim.height/2);
 										adjustframe.setLayout(new FlowLayout(FlowLayout.CENTER, 40,20));
 								
 										
@@ -433,8 +432,6 @@ public class ColdPanel extends JPanel{
         protected void paintComponent(Graphics g) {
             if (background != null) {
                 Graphics2D g2d = (Graphics2D) g.create();
-//                int x = getWidth() - background.getWidth();
-//                int y = getHeight() - background.getHeight();
                 g2d.drawImage(background, 0, 0, this.getWidth(), this.getHeight() ,this);
                 g2d.dispose();
             }

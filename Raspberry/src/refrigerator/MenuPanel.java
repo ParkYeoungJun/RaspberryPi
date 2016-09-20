@@ -24,7 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class MenuPanel extends JFrame{
+public class MenuPanel extends JPanel{
 
 	Dimension fulldim;
 	
@@ -48,6 +48,8 @@ public class MenuPanel extends JFrame{
 	
 	JButton alarm;
 	
+	BufferedImage image;
+	
 	public MenuPanel(Dimension fulldim, MainFrame mainframe)
 	{
 		this.fulldim = fulldim;
@@ -56,16 +58,15 @@ public class MenuPanel extends JFrame{
 		from = 0;
 		to = -fulldim.width/4;
 		
-		this.setUndecorated(true);
+//		this.setUndecorated(true);
 		this.setLayout(null);
-		BufferedImage image = null;
 		try {
 			image = ImageIO.read(new File("icon/menupanel_background.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		this.setContentPane(new ImagePanel(image));
+//		this.setContentPane(new ImagePanel(image));
 
 		
 		try
@@ -210,19 +211,26 @@ public class MenuPanel extends JFrame{
 		this.setVisible(true);
 	}
 	
-	class ImagePanel extends JComponent
-	{
-		private Image image;
-		public ImagePanel(Image image)
-		{
-			this.image = image;
-		}
-		@Override
-		protected void paintComponent(Graphics g)
-		{
-			super.paintComponent(g);
-			
-			g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(),this);
-		}
-	}
+	@Override
+	 protected void paintComponent(Graphics g) {
+		 super.paintComponent(g);
+		 g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(),this);
+	 }
+
+	
+//	class ImagePanel extends JComponent
+//	{
+//		private Image image;
+//		public ImagePanel(Image image)
+//		{
+//			this.image = image;
+//		}
+//		@Override
+//		protected void paintComponent(Graphics g)
+//		{
+//			super.paintComponent(g);
+//			
+//			g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(),this);
+//		}
+//	}
 }
