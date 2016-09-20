@@ -147,8 +147,8 @@ public class MainFrame extends JFrame{
 			// plus
 			img = plusicon.getImage();
 			pluslabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/35, fulldim.height/20, Image.SCALE_SMOOTH)));
-			pluslabel.setBounds(fulldim.width-fulldim.width/21, fulldim.height-fulldim.height/6, fulldim.width/35, fulldim.height/15);
-			this.add(pluslabel);
+			pluslabel.setBounds(fulldim.width-fulldim.width/21, 0, fulldim.width/35, fulldim.height/15);
+			ceilingpanel.add(pluslabel);
 			
 		}
 		catch(Exception e)

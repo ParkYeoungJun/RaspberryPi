@@ -107,8 +107,8 @@ public class MainFrame extends JFrame{
 		updateThread up = new updateThread();
 		up.start();
 		
-		sensorThread sensor = new sensorThread();
-		sensor.start();
+//		sensorThread sensor = new sensorThread();
+//		sensor.start();
 		
 		
 		this.setVisible(true);

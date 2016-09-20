@@ -61,14 +61,14 @@ public class PlusPanel extends JFrame{
 	JLabel vegetablelabel = new JLabel("", JLabel.CENTER);
 	
 	// text JLabel
-	JLabel meat_tlabel = new JLabel("<html><font color = #FFFFFFF>Meat<br><br><br><br><br><br><br><br></font></html>", JLabel.CENTER);
-	JLabel beverage_tlabel = new JLabel("<html><font color = #FFFFFFF>Beverage<br><br><br><br><br><br><br><br></font></html>", JLabel.CENTER);
-	JLabel fish_tlabel = new JLabel("<html><font color = #FFFFFFF>Fish<br><br><br><br><br><br><br><br></font></html>", JLabel.CENTER);
-	JLabel marine_tlabel = new JLabel("<html><font color = #FFFFFFF>Marine<br><br><br><br><br><br><br><br></font></html>", JLabel.CENTER);
-	JLabel fruit_tlabel = new JLabel("<html><font color = #FFFFFFF>Fruit<br><br><br><br><br><br><br><br></font></html>", JLabel.CENTER);
-	JLabel dairy_tlabel = new JLabel("<html><font color = #FFFFFFF>Dairy<br><br><br><br><br><br><br><br></font></html>", JLabel.CENTER);
-	JLabel etc_tlabel = new JLabel("<html><font color = #FFFFFFF>Etc<br><br><br><br><br><br><br><br></font></html>", JLabel.CENTER);
-	JLabel vegetable_tlabel = new JLabel("<html><font color = #FFFFFFF>Vegetable<br><br><br><br><br><br><br><br></font></html>", JLabel.CENTER);
+	JLabel meat_tlabel = new JLabel("<html><font color = #FFFFFFF>Meat<br><br><br></font></html>", JLabel.CENTER);
+	JLabel beverage_tlabel = new JLabel("<html><font color = #FFFFFFF>Beverage<br><br><br></font></html>", JLabel.CENTER);
+	JLabel fish_tlabel = new JLabel("<html><font color = #FFFFFFF>Fish<br><br><br></font></html>", JLabel.CENTER);
+	JLabel marine_tlabel = new JLabel("<html><font color = #FFFFFFF>Marine<br><br><br></font></html>", JLabel.CENTER);
+	JLabel fruit_tlabel = new JLabel("<html><font color = #FFFFFFF>Fruit<br><br><br></font></html>", JLabel.CENTER);
+	JLabel dairy_tlabel = new JLabel("<html><font color = #FFFFFFF>Dairy<br><br><br></font></html>", JLabel.CENTER);
+	JLabel etc_tlabel = new JLabel("<html><font color = #FFFFFFF>Etc<br><br><br></font></html>", JLabel.CENTER);
+	JLabel vegetable_tlabel = new JLabel("<html><font color = #FFFFFFF>Vegetable<br><br><br></font></html>", JLabel.CENTER);
 	
 	
 	// Image URL
@@ -289,14 +289,14 @@ public class PlusPanel extends JFrame{
 			explain.setBounds(10, 0, fulldim.width/2+fulldim.width/4, 30);
 			this.add(explain);
 			
-			meat_tlabel.setFont(new Font(null,10,15));
-			beverage_tlabel.setFont(new Font(null,10,15));
-			fish_tlabel.setFont(new Font(null,10,15));
-			marine_tlabel.setFont(new Font(null,10,15));
-			fruit_tlabel.setFont(new Font(null,10,15));
-			dairy_tlabel.setFont(new Font(null,10,15));
-			etc_tlabel.setFont(new Font(null,10,15));
-			vegetable_tlabel.setFont(new Font(null,10,15));
+			meat_tlabel.setFont(new Font(null,Font.BOLD,20));
+			beverage_tlabel.setFont(new Font(null,Font.BOLD,20));
+			fish_tlabel.setFont(new Font(null,Font.BOLD,20));
+			marine_tlabel.setFont(new Font(null,Font.BOLD,20));
+			fruit_tlabel.setFont(new Font(null,Font.BOLD,20));
+			dairy_tlabel.setFont(new Font(null,Font.BOLD,20));
+			etc_tlabel.setFont(new Font(null,Font.BOLD,20));
+			vegetable_tlabel.setFont(new Font(null,Font.BOLD,20));
 			
 			
 			

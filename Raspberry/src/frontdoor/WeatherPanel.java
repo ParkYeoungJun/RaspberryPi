@@ -249,7 +249,7 @@ class WeatherPanel extends JPanel{
 		}
 		else if(current_weather[0].equals("구름 많음"))
 		{
-			img = sunny.getImage();
+			img = cloud.getImage();
 			
 			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/13, fulldim.height/8, Image.SCALE_SMOOTH)));
 
@@ -259,14 +259,20 @@ class WeatherPanel extends JPanel{
 		}
 		else if(current_weather[0].equals("구름 조금"))
 		{
-			img = extrasunny.getImage();
+			img = sunny.getImage();
 			
 			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/13, fulldim.height/8, Image.SCALE_SMOOTH)));
 
 			
 			//			current.setIcon(extrasunny);
 		}
-	
+		else if(current_weather[0].equals("맑음"))
+		{
+			img = extrasunny.getImage();
+			
+			current.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/13, fulldim.height/8, Image.SCALE_SMOOTH)));
+
+		}
 		
 		if(rain_or_snow.contains("비") || rain_or_snow.contains("눈"))
 		{

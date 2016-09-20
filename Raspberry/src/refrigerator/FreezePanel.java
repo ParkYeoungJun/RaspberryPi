@@ -138,20 +138,16 @@ public class FreezePanel extends JPanel{
 									@Override
 									public void windowActivated(WindowEvent arg0) {
 										// TODO Auto-generated method stub
-										mainframe.setEnabled(true);
-
 									}
 
 									@Override
 									public void windowClosed(WindowEvent arg0) {
 										// TODO Auto-generated method stub
-										mainframe.setEnabled(true);
 									}
 
 									@Override
 									public void windowClosing(WindowEvent arg0) {
 										// TODO Auto-generated method stub
-										mainframe.setEnabled(true);
 									}
 
 									@Override
@@ -169,10 +165,6 @@ public class FreezePanel extends JPanel{
 									@Override
 									public void windowIconified(WindowEvent arg0) {
 										// TODO Auto-generated method stub
-
-										mainframe.setEnabled(true);
-										adjustframe.setState(JFrame.NORMAL);
-										mainframe.setEnabled(false);
 									}
 
 									@Override
@@ -182,7 +174,7 @@ public class FreezePanel extends JPanel{
 									}
 									
 								});
-								adjustframe.setBounds(fulldim.width/2-fulldim.width/15, fulldim.height/2-fulldim.height/15, fulldim.width/8, fulldim.height/10);
+								adjustframe.setBounds(fulldim.width/2-fulldim.width/15, fulldim.height/2-fulldim.height/15, fulldim.width/5, fulldim.height/6);
 								adjustframe.setLayout(new FlowLayout(FlowLayout.CENTER,50,20));
 								JButton adjust = new JButton("수정");
 								adjust.setBorder(BorderFactory.createRaisedBevelBorder());
@@ -206,7 +198,7 @@ public class FreezePanel extends JPanel{
 										adjustframe.remove(delete);				
 										adjustframe.remove(cancel);
 //										adjustframe = new JFrame("수정");
-										adjustframe.setBounds(fulldim.width/2-fulldim.width/10, fulldim.height/2-fulldim.height/10, fulldim.width/5, fulldim.height/7);
+										adjustframe.setBounds(fulldim.width/2-fulldim.width/15, fulldim.height/2-fulldim.height/15, fulldim.width/5, fulldim.height/6);
 										adjustframe.setLayout(new FlowLayout(FlowLayout.CENTER,40,20));
 								
 										
@@ -334,6 +326,7 @@ public class FreezePanel extends JPanel{
 				DefaultListModel modeltemp = new DefaultListModel();
 				
 				ArrayList dataarray = fooddata.getfreezeData();
+				
 				for(int i = 0 ; i < dataarray.size() ; ++i)
 				{			
 					UserData temp = (UserData) dataarray.get(i);
@@ -379,7 +372,7 @@ public class FreezePanel extends JPanel{
 		
 				
 				try {
-					Thread.sleep(3000);
+					Thread.sleep(5000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

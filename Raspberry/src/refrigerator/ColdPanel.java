@@ -145,13 +145,11 @@ public class ColdPanel extends JPanel{
 									@Override
 									public void windowClosed(WindowEvent arg0) {
 										// TODO Auto-generated method stub
-										mainframe.setEnabled(true);
 									}
 
 									@Override
 									public void windowClosing(WindowEvent arg0) {
 										// TODO Auto-generated method stub
-										mainframe.setEnabled(true);
 									}
 
 									@Override
@@ -169,10 +167,7 @@ public class ColdPanel extends JPanel{
 									public void windowIconified(WindowEvent arg0) {
 										// TODO Auto-generated method stub
 										
-										mainframe.setEnabled(true);
-										adjustframe.setState(JFrame.NORMAL);
-										mainframe.setEnabled(false);
-
+			
 									}
 
 									@Override
@@ -182,7 +177,7 @@ public class ColdPanel extends JPanel{
 									}
 									
 								});
-								adjustframe.setBounds(fulldim.width/2-fulldim.width/3, fulldim.height/2-fulldim.height/3, fulldim.width/2, fulldim.height/2);
+								adjustframe.setBounds(fulldim.width/2-fulldim.width/15, fulldim.height/2-fulldim.height/15, fulldim.width/5, fulldim.height/6);
 								adjustframe.setLayout(new FlowLayout(FlowLayout.CENTER,50,20));
 								JButton adjust = new JButton("¼öÁ¤");
 								adjust.setBorder(BorderFactory.createRaisedBevelBorder());
@@ -212,7 +207,7 @@ public class ColdPanel extends JPanel{
 										adjustframe.remove(delete);
 										adjustframe.remove(cancel);
 
-										adjustframe.setBounds(fulldim.width/2-fulldim.width/3, fulldim.height/2-fulldim.height/3, fulldim.width/2, fulldim.height/2);
+										adjustframe.setBounds(fulldim.width/2-fulldim.width/15, fulldim.height/2-fulldim.height/15, fulldim.width/5, fulldim.height/6);
 										adjustframe.setLayout(new FlowLayout(FlowLayout.CENTER, 40,20));
 								
 										
@@ -382,7 +377,7 @@ public class ColdPanel extends JPanel{
 				list.setModel(modeltemp);
 								
 				try {
-					Thread.sleep(3000);
+					Thread.sleep(5000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
