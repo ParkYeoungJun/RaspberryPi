@@ -52,7 +52,7 @@ public class PressPanel extends JPanel{
 		for(int i = 0 ; i < 7 ; ++i)
 		{
 			JLabel temp = new JLabel("",JLabel.CENTER);
-			temp.setFont(new Font(null, Font.BOLD, 20));
+			temp.setFont(new Font(null, Font.BOLD, 15));
 			labellist.add(temp);
 		
 			this.add(temp);

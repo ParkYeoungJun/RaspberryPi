@@ -13,6 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -248,8 +249,15 @@ public class MainFrame extends JFrame{
 		timeThread timethread = new timeThread();
 		timethread.start();
 		
-//		sensorThread sensor = new sensorThread();
-//		sensor.start();
+		try {
+			Process d = Runtime.getRuntime().exec("xset dpms force off");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		sensorThread sensor = new sensorThread();
+		sensor.start();
 				
 		this.setVisible(true);
 
