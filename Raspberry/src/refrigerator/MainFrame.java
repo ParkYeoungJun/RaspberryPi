@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
@@ -11,8 +12,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -23,7 +26,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.Callable;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -89,6 +94,8 @@ public class MainFrame extends JFrame{
 
 	int k  = 0;
 	
+	BufferedImage img;
+	
 	public MainFrame()
 	{
 		this.setTitle("");
@@ -96,7 +103,16 @@ public class MainFrame extends JFrame{
 		this.setBounds(0, 0, fulldim.width, fulldim.height);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setResizable(false);
+		this.setBackground(Color.WHITE);
 //		this.setUndecorated(true);
+		
+//		try {
+//			img = ImageIO.read(new File("icon/totalbackground.png"));
+//		} catch (IOException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//		this.setContentPane(new ImagePanel(img));
 		
 		db = new Database();
 		fooddata = new FoodParsing();
@@ -249,12 +265,6 @@ public class MainFrame extends JFrame{
 		timeThread timethread = new timeThread();
 		timethread.start();
 		
-		try {
-			Process d = Runtime.getRuntime().exec("xset dpms force off");
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		
 		sensorThread sensor = new sensorThread();
 		sensor.start();
@@ -499,6 +509,18 @@ public class MainFrame extends JFrame{
 				}
 			}
 		}
+	}
+	
+	class ImagePanel extends JComponent {
+	    private Image image;
+	    public ImagePanel(Image image) {
+	        this.image = image;
+	    }
+	    @Override
+	    protected void paintComponent(Graphics g) {
+	        super.paintComponent(g);
+	        g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(),this);
+	    }
 	}
 
 	public static void main(String[] args)

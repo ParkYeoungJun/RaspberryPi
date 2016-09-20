@@ -45,7 +45,7 @@ public class ColdPanel extends JPanel{
 	
 	Calendar today;
 	
-	JLabel cold = new JLabel("≥√¿ÂΩ«",JLabel.CENTER);
+	JLabel cold = new JLabel("≥√¿ÂΩ«",JLabel.RIGHT);
 	
 	JList list;
 	JScrollPane scroll;
@@ -74,12 +74,12 @@ public class ColdPanel extends JPanel{
 		
 		this.fooddata = new FoodParsing();
 		
-		x = fulldim.width/2;
-		y = fulldim.height*4/5;		
+		x = fulldim.width/2-60;
+		y = fulldim.height*4/5-60;		
 		
 		today = Calendar.getInstance();
 		
-		this.setBounds(fulldim.width/2, fulldim.height/15, x, y);
+		this.setBounds(fulldim.width/2+30, fulldim.height/15+30, x,y);
 		
 		this.setBackground(Color.WHITE);
 		

@@ -5,14 +5,21 @@ import java.awt.Dimension;
 import java.awt.DisplayMode;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Graphics;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.Callable;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -58,6 +65,8 @@ public class MainFrame extends JFrame{
 //	Weather_Parsing weatherinfo = new Weather_Parsing();
 //	Finedust_Parsing dustinfo;
 
+	
+	BufferedImage img;
 
 	
 	@SuppressWarnings("deprecation")
@@ -65,13 +74,20 @@ public class MainFrame extends JFrame{
 	{
 		this.setTitle("");
 		this.setLayout(null);
-		this.setBounds(0,0,fulldim.width, fulldim.height);
-
-		
+		this.setBounds(0,0,fulldim.width, fulldim.height);	
 		// full Screen
 //		this.setUndecorated(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+		try {
+			img = ImageIO.read(new File("icon/frontbackground.png"));
+		
+			this.setContentPane(new ImagePanel(img));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		// screensave screen initial
 		screensaver.setBounds(0,0,fulldim.width,fulldim.height);
 		tempsaver.setBounds(0, 0, fulldim.width, fulldim.height);
@@ -89,7 +105,7 @@ public class MainFrame extends JFrame{
 		// Initial date panel
 		date = new JPanel();
 		date.setBounds(0, 0, fulldim.width, fulldim.height/15);
-		date.setBackground(Color.BLUE);
+		date.setOpaque(false);
 		date_label = new JLabel(today);
 		date_label.setBounds(fulldim.width/2-100, 20, fulldim.width, 30);
 		date_label.setFont(new Font(null,Font.BOLD,20));
@@ -191,6 +207,17 @@ public class MainFrame extends JFrame{
 //		weather_panel = new WeatherPanel(fulldim);
 	}
 	
+	class ImagePanel extends JComponent {
+	    private Image image;
+	    public ImagePanel(Image image) {
+	        this.image = image;
+	    }
+	    @Override
+	    protected void paintComponent(Graphics g) {
+	        super.paintComponent(g);
+	        g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(),this);
+	    }
+	}
 	
 	public static void main(String[] args)
 	{

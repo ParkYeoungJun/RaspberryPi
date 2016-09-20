@@ -44,7 +44,7 @@ public class FreezePanel extends JPanel{
 	
 	Calendar today;
 	
-	JLabel freeze = new JLabel("³Ãµ¿½Ç", JLabel.CENTER);
+	JLabel freeze = new JLabel("³Ãµ¿½Ç", JLabel.RIGHT);
 	
 	JList list;
 	JScrollPane scroll;
@@ -74,13 +74,12 @@ public class FreezePanel extends JPanel{
 		this.fulldim = fulldim;
 		this.mainframe = mainframe;
 		
-		x = fulldim.width/2;
-		y = fulldim.height*4/5
-				;
+		x = fulldim.width/2-60;
+		y = fulldim.height*4/5-60;
 		
 		this.fooddata = new FoodParsing();
 		
-		this.setBounds(0, fulldim.height/15, x, y);
+		this.setBounds(30, fulldim.height/15+30, x, y);
 		
 		this.setBackground(Color.WHITE);
 		

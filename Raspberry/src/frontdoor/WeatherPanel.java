@@ -61,8 +61,9 @@ class WeatherPanel extends JPanel{
 	public WeatherPanel(Dimension fulldim)
 	{
 		this.setBackground(Color.WHITE);
-		this.setBounds((fulldim.width/3)*2, fulldim.height/15, fulldim.width/3, fulldim.height-fulldim.height/15);
+		this.setBounds(40+(fulldim.width/3)*2, 40+fulldim.height/15, fulldim.width/3-80, fulldim.height-fulldim.height/15-80);
 		this.setLayout(new GridLayout(3,1));
+		this.setOpaque(false);
 		
 		this.fulldim = fulldim;
 		
@@ -87,54 +88,56 @@ class WeatherPanel extends JPanel{
 		locate_label.setFont(new Font(null, Font.BOLD, 15));
 		this.add(locate_label);
 	
-		JPanel test = new JPanel(){
-			@Override
-			protected void paintComponent(Graphics g){
-				super.paintComponent(g);
-				
-				Image img;
-
-				try
-				{
-					ImageIcon background = new ImageIcon("icon/wheather_center_background.png");
-					img = background.getImage();
-
-					g.drawImage(img, 0,0,this.getWidth(),this.getHeight(),this);
-
-				}
-				catch(Exception e)
-				{
-					System.err.println(e);
-				}
-			}
-		};
+		JPanel test = new JPanel();
+		test.setOpaque(false);
+//			@Override
+//			protected void paintComponent(Graphics g){
+//				super.paintComponent(g);
+//				
+//				Image img;
+//
+//				try
+//				{
+//					ImageIcon background = new ImageIcon("icon/wheather_center_background.png");
+//					img = background.getImage();
+//
+//					g.drawImage(img, 0,0,this.getWidth(),this.getHeight(),this);
+//
+//				}
+//				catch(Exception e)
+//				{
+//					System.err.println(e);
+//				}
+//			}
+//		};
 		test.setLayout(new BorderLayout());
 		current = new JLabel("",JLabel.CENTER);
 		test.add(current,BorderLayout.CENTER);
 	
 		
 		// umb panel
-		JPanel umb_minmax = new JPanel(){
-			@Override
-			protected void paintComponent(Graphics g){
-				super.paintComponent(g);
-				
-				Image img;
-
-				try
-				{
-					ImageIcon background = new ImageIcon("icon/wheather_center_background.png");
-					img = background.getImage();
-
-					g.drawImage(img, 0,0,this.getWidth(),this.getHeight(),this);
-
-				}
-				catch(Exception e)
-				{
-					System.err.println(e);
-				}
-			}
-		};
+		JPanel umb_minmax = new JPanel();
+		umb_minmax.setOpaque(false);
+//			@Override
+//			protected void paintComponent(Graphics g){
+//				super.paintComponent(g);
+//				
+//				Image img;
+//
+//				try
+//				{
+//					ImageIcon background = new ImageIcon("icon/wheather_center_background.png");
+//					img = background.getImage();
+//
+//					g.drawImage(img, 0,0,this.getWidth(),this.getHeight(),this);
+//
+//				}
+//				catch(Exception e)
+//				{
+//					System.err.println(e);
+//				}
+//			}
+//		};
 //		umb_minmax.setBackground(Color.WHITE);
 		umb_minmax.setLayout(new BorderLayout());
 		weather_label = new JLabel("");
@@ -149,27 +152,28 @@ class WeatherPanel extends JPanel{
 		test.add(umb_minmax, BorderLayout.EAST);
 
 		// dust
-		JPanel dustpanel = new JPanel(){
-			@Override
-			protected void paintComponent(Graphics g){
-				super.paintComponent(g);
-				
-				Image img;
-
-				try
-				{
-					ImageIcon background = new ImageIcon("icon/wheather_center_background.png");
-					img = background.getImage();
-
-					g.drawImage(img, 0,0,this.getWidth(),this.getHeight(),this);
-
-				}
-				catch(Exception e)
-				{
-					System.err.println(e);
-				}
-			}
-		};
+		JPanel dustpanel = new JPanel();
+//			@Override
+//			protected void paintComponent(Graphics g){
+//				super.paintComponent(g);
+//				
+//				Image img;
+//
+//				try
+//				{
+//					ImageIcon background = new ImageIcon("icon/wheather_center_background.png");
+//					img = background.getImage();
+//
+//					g.drawImage(img, 0,0,this.getWidth(),this.getHeight(),this);
+//
+//				}
+//				catch(Exception e)
+//				{
+//					System.err.println(e);
+//				}
+//			}
+//		};
+		dustpanel.setOpaque(false);
 		dustpanel.setLayout(new BorderLayout());
 		dust_label = new JLabel("", JLabel.RIGHT);
 		dust_label.setFont(new Font(null, Font.BOLD,15));
@@ -333,25 +337,25 @@ class WeatherPanel extends JPanel{
 		}
 	}
 	
-	@Override
-	protected void paintComponent(Graphics g)
-	{
-		super.paintComponent(g);
-		
-		Image img;
-
-		try
-		{
-			ImageIcon background = new ImageIcon("icon/wheather_panel_background.png");
-			img = background.getImage();
-
-			g.drawImage(img, 0,0,this.getWidth(),this.getHeight(),this);
-
-		}
-		catch(Exception e)
-		{
-			System.err.println(e);
-		}
-	}
+//	@Override
+//	protected void paintComponent(Graphics g)
+//	{
+//		super.paintComponent(g);
+//		
+//		Image img;
+//
+//		try
+//		{
+//			ImageIcon background = new ImageIcon("icon/wheather_panel_background.png");
+//			img = background.getImage();
+//
+//			g.drawImage(img, 0,0,this.getWidth(),this.getHeight(),this);
+//
+//		}
+//		catch(Exception e)
+//		{
+//			System.err.println(e);
+//		}
+//	}
 	
 }
