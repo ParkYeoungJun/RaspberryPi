@@ -129,10 +129,10 @@ public class MainFrame extends JFrame{
 		ceilingpanel = new JPanel();
 		ceilingpanel.setLayout(null);
 		ceilingpanel.setBounds(0, 0, fulldim.width, fulldim.height/15);
-		ceilingpanel.setBackground(Color.BLUE);
+		ceilingpanel.setBackground(Color.DARK_GRAY);
 		date = new JLabel("",JLabel.CENTER);
 		date.setBounds(0,0, fulldim.width-50, fulldim.height/15);
-		date.setFont(new Font(null,10,20));
+		date.setFont(new Font(null,Font.BOLD,20));
 		ceilingpanel.add(date);		
 		
 		/*
@@ -163,7 +163,7 @@ public class MainFrame extends JFrame{
 			
 			// plus
 			img = plusicon.getImage();
-			pluslabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/35, fulldim.height/20, Image.SCALE_SMOOTH)));
+			pluslabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/35, fulldim.height/15, Image.SCALE_SMOOTH)));
 			pluslabel.setBounds(fulldim.width-fulldim.width/21, 0, fulldim.width/35, fulldim.height/15);
 			ceilingpanel.add(pluslabel);
 			

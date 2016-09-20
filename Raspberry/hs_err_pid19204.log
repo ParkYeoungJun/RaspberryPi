@@ -1,0 +1,198 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 32744 bytes for ChunkPool::allocate
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (allocation.cpp:273), pid=19204, tid=19432
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_91-b15) (build 1.8.0_91-b15)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.91-b15 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000000176de000):  JavaThread "C1 CompilerThread2" daemon [_thread_in_native, id=19432, stack(0x00000000191f0000,0x00000000192f0000)]
+
+Stack: [0x00000000191f0000,0x00000000192f0000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+
+
+Current CompileTask:
+C1:    468  338   !   3       com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver::next (2323 bytes)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x0000000018dc6000 JavaThread "AWT-Windows" daemon [_thread_in_native, id=18412, stack(0x0000000019870000,0x0000000019970000)]
+  0x0000000018dc5000 JavaThread "AWT-Shutdown" [_thread_blocked, id=19404, stack(0x0000000019770000,0x0000000019870000)]
+  0x0000000018dc2800 JavaThread "Java2D Disposer" daemon [_thread_blocked, id=19444, stack(0x0000000019670000,0x0000000019770000)]
+  0x0000000018a69000 JavaThread "Service Thread" daemon [_thread_blocked, id=19424, stack(0x00000000192f0000,0x00000000193f0000)]
+=>0x00000000176de000 JavaThread "C1 CompilerThread2" daemon [_thread_in_native, id=19432, stack(0x00000000191f0000,0x00000000192f0000)]
+  0x000000001769e000 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=19408, stack(0x00000000190f0000,0x00000000191f0000)]
+  0x0000000017697800 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=19264, stack(0x0000000018ff0000,0x00000000190f0000)]
+  0x0000000017696800 JavaThread "Attach Listener" daemon [_thread_blocked, id=19272, stack(0x0000000018ef0000,0x0000000018ff0000)]
+  0x0000000018a33800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=19324, stack(0x0000000018df0000,0x0000000018ef0000)]
+  0x0000000002a5b000 JavaThread "Finalizer" daemon [_thread_blocked, id=19268, stack(0x00000000188f0000,0x00000000189f0000)]
+  0x0000000017648800 JavaThread "Reference Handler" daemon [_thread_blocked, id=19276, stack(0x00000000187f0000,0x00000000188f0000)]
+  0x0000000002b0d800 JavaThread "main" [_thread_in_Java, id=19316, stack(0x00000000024a0000,0x00000000025a0000)]
+
+Other Threads:
+  0x0000000017646800 VMThread [stack: 0x00000000186f0000,0x00000000187f0000] [id=19296]
+  0x0000000018a9b000 WatcherThread [stack: 0x00000000193f0000,0x00000000194f0000] [id=19380]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap:
+ PSYoungGen      total 38400K, used 5325K [0x00000000d5c00000, 0x00000000d8680000, 0x0000000100000000)
+  eden space 33280K, 16% used [0x00000000d5c00000,0x00000000d61334f8,0x00000000d7c80000)
+  from space 5120K, 0% used [0x00000000d8180000,0x00000000d8180000,0x00000000d8680000)
+  to   space 5120K, 0% used [0x00000000d7c80000,0x00000000d7c80000,0x00000000d8180000)
+ ParOldGen       total 87552K, used 0K [0x0000000081400000, 0x0000000086980000, 0x00000000d5c00000)
+  object space 87552K, 0% used [0x0000000081400000,0x0000000081400000,0x0000000086980000)
+ Metaspace       used 8290K, capacity 8528K, committed 8832K, reserved 1056768K
+  class space    used 968K, capacity 1030K, committed 1152K, reserved 1048576K
+
+Card table byte_map: [0x0000000011ed0000,0x00000000122d0000] byte_map_base: 0x0000000011ac6000
+
+Marking Bits: (ParMarkBitMap*) 0x000000005c2c2f70
+ Begin Bits: [0x0000000012980000, 0x0000000014930000)
+ End Bits:   [0x0000000014930000, 0x00000000168e0000)
+
+Polling page: 0x0000000000950000
+
+CodeCache: size=245760Kb used=1767Kb max_used=1767Kb free=243992Kb
+ bounds [0x0000000002b10000, 0x0000000002d80000, 0x0000000011b10000]
+ total_blobs=712 nmethods=338 adapters=287
+ compilation: enabled
+
+Compilation events (10 events):
+Event: 0.459 Thread 0x00000000176de000 nmethod 334 0x0000000002cc9290 code [0x0000000002cc9400, 0x0000000002cc95f0]
+Event: 0.459 Thread 0x00000000176de000  335       3       com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl::setScannerState (6 bytes)
+Event: 0.459 Thread 0x00000000176de000 nmethod 335 0x0000000002cc96d0 code [0x0000000002cc9820, 0x0000000002cc9970]
+Event: 0.459 Thread 0x00000000176de000  336       3       com.sun.org.apache.xerces.internal.util.XMLChar::isNameStart (22 bytes)
+Event: 0.459 Thread 0x00000000176de000 nmethod 336 0x0000000002cc99d0 code [0x0000000002cc9b40, 0x0000000002cc9d30]
+Event: 0.459 Thread 0x00000000176de000  337       3       com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl::next (10 bytes)
+Event: 0.459 Thread 0x00000000176de000 nmethod 337 0x0000000002cc9e10 code [0x0000000002cc9f80, 0x0000000002cca1a8]
+Event: 0.459 Thread 0x00000000176de000  340       3       com.sun.org.apache.xerces.internal.dom.DeferredDocumentImpl::getChunkIndex (16 bytes)
+Event: 0.460 Thread 0x00000000176de000 nmethod 340 0x0000000002cca250 code [0x0000000002cca3c0, 0x0000000002cca5b0]
+Event: 0.460 Thread 0x00000000176de000  338   !   3       com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver::next (2323 bytes)
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (10 events):
+Event: 0.031 Thread 0x0000000002b0d800 Exception <a 'java/lang/NoSuchMethodError': Method sun.misc.Unsafe.defineClass(Ljava/lang/String;[BII)Ljava/lang/Class; name or signature does not match> (0x00000000d5c07cc0) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u91\7017\hotspot\srižÏ¨TeŸ?
+Event: 0.031 Thread 0x0000000002b0d800 Exception <a 'java/lang/NoSuchMethodError': Method sun.misc.Unsafe.prefetchRead(Ljava/lang/Object;J)V name or signature does not match> (0x00000000d5c07fa8) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u91\7017\hotspot\src\share\vm\prims\jô2¦I/]Ä?
+Event: 0.159 Thread 0x0000000002b0d800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000d5cfe488) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u91\7017\hotspot\src\share\vm\prims\jvm.cpp, line 1386]
+Event: 0.159 Thread 0x0000000002b0d800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000d5cfe698) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u91\7017\hotspot\src\share\vm\prims\jvm.cpp, line 1386]
+Event: 0.161 Thread 0x0000000002b0d800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000d5d02240) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u91\7017\hotspot\src\share\vm\prims\jvm.cpp, line 1386]
+Event: 0.163 Thread 0x0000000002b0d800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000d5d02450) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u91\7017\hotspot\src\share\vm\prims\jvm.cpp, line 1386]
+Event: 0.174 Thread 0x0000000002b0d800 Exception <a 'java/io/FileNotFoundException'> (0x00000000d5d052c8) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u91\7017\hotspot\src\share\vm\prims\jni.cpp, line 709]
+Event: 0.265 Thread 0x0000000002b0d800 Exception <a 'java/lang/NoSuchFieldError': method resolution failed> (0x00000000d5e79d58) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u91\7017\hotspot\src\share\vm\prims\methodHandles.cpp, line 1146]
+Event: 0.268 Thread 0x0000000002b0d800 Exception <a 'java/lang/NoSuchFieldError': method resolution failed> (0x00000000d5e87128) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u91\7017\hotspot\src\share\vm\prims\methodHandles.cpp, line 1146]
+Event: 0.321 Thread 0x0000000002b0d800 Exception <a 'java/io/FileNotFoundException'> (0x00000000d5f1c528) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u91\7017\hotspot\src\share\vm\prims\jni.cpp, line 709]
+
+Events (10 events):
+Event: 0.454 loading class com/sun/org/apache/xerces/internal/dom/DeferredDocumentImpl$RefCount
+Event: 0.455 loading class com/sun/org/apache/xerces/internal/dom/DeferredDocumentImpl$RefCount done
+Event: 0.456 loading class com/sun/org/apache/xerces/internal/impl/Constants
+Event: 0.456 loading class com/sun/org/apache/xerces/internal/impl/Constants done
+Event: 0.456 loading class java/util/ArrayList$SubList
+Event: 0.456 loading class java/util/ArrayList$SubList done
+Event: 0.456 loading class java/util/ArrayList$SubList$1
+Event: 0.456 loading class java/util/ArrayList$SubList$1 done
+Event: 0.456 loading class com/sun/org/apache/xerces/internal/impl/Constants$ArrayEnumeration
+Event: 0.456 loading class com/sun/org/apache/xerces/internal/impl/Constants$ArrayEnumeration done
+
+
+Dynamic libraries:
+0x00007ff629280000 - 0x00007ff6292b7000 	C:\Program Files\Java\jre1.8.0_91\bin\javaw.exe
+0x00007ffb95030000 - 0x00007ffb951f1000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffb94e60000 - 0x00007ffb94f0d000 	C:\WINDOWS\system32\KERNEL32.DLL
+0x00007ffb91f50000 - 0x00007ffb92138000 	C:\WINDOWS\system32\KERNELBASE.dll
+0x00007ffb94260000 - 0x00007ffb94307000 	C:\WINDOWS\system32\ADVAPI32.dll
+0x00007ffb92570000 - 0x00007ffb9260d000 	C:\WINDOWS\system32\msvcrt.dll
+0x00007ffb92510000 - 0x00007ffb9256b000 	C:\WINDOWS\system32\sechost.dll
+0x00007ffb94f10000 - 0x00007ffb9502c000 	C:\WINDOWS\system32\RPCRT4.dll
+0x00007ffb93f60000 - 0x00007ffb940b6000 	C:\WINDOWS\system32\USER32.dll
+0x00007ffb94c60000 - 0x00007ffb94de6000 	C:\WINDOWS\system32\GDI32.dll
+0x00007ffb83f10000 - 0x00007ffb84184000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.10586.589_none_a2ddb3caa539acce\COMCTL32.dll
+0x00007ffb93cc0000 - 0x00007ffb93f3d000 	C:\WINDOWS\system32\combase.dll
+0x00007ffb91800000 - 0x00007ffb9186a000 	C:\WINDOWS\system32\bcryptPrimitives.dll
+0x00007ffb94220000 - 0x00007ffb9425b000 	C:\WINDOWS\system32\IMM32.DLL
+0x000000005b900000 - 0x000000005b9d2000 	C:\Program Files\Java\jre1.8.0_91\bin\msvcr100.dll
+0x000000005bab0000 - 0x000000005c343000 	C:\Program Files\Java\jre1.8.0_91\bin\server\jvm.dll
+0x00007ffb94e50000 - 0x00007ffb94e58000 	C:\WINDOWS\system32\PSAPI.DLL
+0x00007ffb8e480000 - 0x00007ffb8e489000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ffb8fd50000 - 0x00007ffb8fd73000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffb87c70000 - 0x00007ffb87c7a000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffb948c0000 - 0x00007ffb9492b000 	C:\WINDOWS\system32\WS2_32.dll
+0x00007ffb8fd20000 - 0x00007ffb8fd4c000 	C:\WINDOWS\SYSTEM32\WINMMBASE.dll
+0x00007ffb917b0000 - 0x00007ffb917f3000 	C:\WINDOWS\system32\cfgmgr32.dll
+0x000000005baa0000 - 0x000000005baaf000 	C:\Program Files\Java\jre1.8.0_91\bin\verify.dll
+0x000000005ba70000 - 0x000000005ba99000 	C:\Program Files\Java\jre1.8.0_91\bin\java.dll
+0x000000005ba50000 - 0x000000005ba66000 	C:\Program Files\Java\jre1.8.0_91\bin\zip.dll
+0x00007ffb92610000 - 0x00007ffb93b6c000 	C:\WINDOWS\system32\SHELL32.dll
+0x00007ffb91870000 - 0x00007ffb91eb5000 	C:\WINDOWS\system32\windows.storage.dll
+0x00007ffb94df0000 - 0x00007ffb94e42000 	C:\WINDOWS\system32\shlwapi.dll
+0x00007ffb91660000 - 0x00007ffb9166f000 	C:\WINDOWS\system32\kernel.appcore.dll
+0x00007ffb92310000 - 0x00007ffb923c5000 	C:\WINDOWS\system32\shcore.dll
+0x00007ffb91670000 - 0x00007ffb916bb000 	C:\WINDOWS\system32\powrprof.dll
+0x00007ffb916c0000 - 0x00007ffb916d4000 	C:\WINDOWS\system32\profapi.dll
+0x000000005b760000 - 0x000000005b8f8000 	C:\Program Files\Java\jre1.8.0_91\bin\awt.dll
+0x00007ffb92440000 - 0x00007ffb92506000 	C:\WINDOWS\system32\OLEAUT32.dll
+0x00007ffb8fe40000 - 0x00007ffb8feb9000 	C:\WINDOWS\system32\apphelp.dll
+0x00007ffb8e950000 - 0x00007ffb8e972000 	C:\WINDOWS\system32\DWMAPI.DLL
+0x00007ffb900b0000 - 0x00007ffb90146000 	C:\WINDOWS\system32\uxtheme.dll
+0x00007ffb940c0000 - 0x00007ffb9421a000 	C:\WINDOWS\system32\MSCTF.dll
+0x00007ffb93b70000 - 0x00007ffb93cb3000 	C:\WINDOWS\system32\ole32.dll
+
+VM Arguments:
+jvm_args: -Dfile.encoding=MS949 
+java_command: refrigerator.MainFrame
+java_class_path (initial): C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\bin;C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\json-simple-1.1.1.jar;C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\junit.jar;C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-core-javadoc.jar;C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-core-sources.jar;C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-core.jar;C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-device-javadoc.jar;C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-device-sources.jar;C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-device.jar;C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-example-javadoc.jar;C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-example-sources.jar;C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-example.jar;C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-gpio-extension-javadoc.jar;C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-gpio-extension-sources.jar;C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-gpio-extension.jar;C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-service-javadoc.jar;C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-service-sources.jar;C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\pi4j-service.jar;C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\poi-3.10.1-20140818.jar;C:\Users\Park\Documents\GitHub\RaspberryPi\Raspberry\lib\mysql-connector-java-5.1.13-bin.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk1.8.0_77
+PATH=C:/Program Files/Java/jre1.8.0_91/bin/server;C:/Program Files/Java/jre1.8.0_91/bin;C:/Program Files/Java/jre1.8.0_91/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\MinGW\bin\;C:\WINDOWS\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Java\jdk1.8.0_77bin;C:\Program Files (x86)\Skype\Phone\;C:\Users\Park\Desktop\Park\eclipse;
+USERNAME=Park
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 61 Stepping 4, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10.0 , 64 bit Build 10586 (10.0.10586.589)
+
+CPU:total 4 (2 cores per cpu, 2 threads per core) family 6 model 61 stepping 4, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx
+
+Memory: 4k page, physical 8301096k(2303824k free), swap 20501348k(844k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.91-b15) for windows-amd64 JRE (1.8.0_91-b15), built on May 20 2016 17:43:15 by "java_re" with MS VC++ 10.0 (VS2010)
+
+time: Wed Sep 21 02:18:12 2016
+elapsed time: 0 seconds (0d 0h 0m 0s)
+

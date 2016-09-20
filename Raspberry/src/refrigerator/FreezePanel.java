@@ -1,5 +1,6 @@
 package refrigerator;
 
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -8,12 +9,15 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -44,7 +48,7 @@ public class FreezePanel extends JPanel{
 	
 	Calendar today;
 	
-	JLabel freeze = new JLabel("³Ãµ¿½Ç", JLabel.RIGHT);
+	JLabel freeze = new JLabel("<html><font color=#FFFFFFF>³Ãµ¿½Ç</font></html>", JLabel.RIGHT);
 	
 	JList list;
 	JScrollPane scroll;
@@ -89,14 +93,17 @@ public class FreezePanel extends JPanel{
 		
 		
 		// label
-		freeze.setBounds(0, 0, x, 30);
+		freeze.setBounds(0, 0, x-10, 30);
+		freeze.setOpaque(false);
 		
 		freeze.setFont(new Font(null,Font.BOLD,20));
 		this.add(freeze);
 
 	
 		list = new ImageList(listmodel);
+		list.setOpaque(false);
 		list.setFont(new Font(null,Font.BOLD,20));
+		list.setForeground(Color.white);;
 		list.addMouseListener(
 				new MouseAdapter(){
 					private java.util.Timer t;
@@ -321,6 +328,8 @@ public class FreezePanel extends JPanel{
 		scroll.setBounds(0, 30, x, y-30);
 		scroll.setBorder(BorderFactory.createEmptyBorder());
 		scroll.getVerticalScrollBar().setPreferredSize(new Dimension(20,0));
+		scroll.getViewport().setOpaque(false);
+		scroll.setOpaque(false);
 		this.add(scroll);
 		
 		update = new updateThread();
@@ -440,17 +449,17 @@ public class FreezePanel extends JPanel{
         
   
 
-        @Override
-        protected void paintComponent(Graphics g) {
-            if (background != null) {
-                Graphics2D g2d = (Graphics2D) g.create();
-//                int x = getWidth() - background.getWidth();
-//                int y = getHeight() - background.getHeight();
-                g2d.drawImage(background, 0, 0, this.getWidth(), this.getHeight() ,this);
-                g2d.dispose();
-            }
-            super.paintComponent(g);
-        }
+//        @Override
+//        protected void paintComponent(Graphics g) {
+//            if (background != null) {
+//                Graphics2D g2d = (Graphics2D) g.create();
+////                int x = getWidth() - background.getWidth();
+////                int y = getHeight() - background.getHeight();
+//                g2d.drawImage(background, 0, 0, this.getWidth(), this.getHeight() ,this);
+//                g2d.dispose();
+//            }
+//            super.paintComponent(g);
+//        }
 
 	}
 	
@@ -466,4 +475,75 @@ public class FreezePanel extends JPanel{
 	    }
 	}
 	
+	 protected int strokeSize = 1;
+	    protected Color _shadowColor = Color.BLACK;
+	    protected boolean shadowed = true;
+	    protected boolean _highQuality = true;
+	    protected Dimension _arcs = new Dimension(30, 30);
+	    protected int _shadowGap = 5;
+	    protected int _shadowOffset = 4;
+	    protected int _shadowAlpha = 150;
+
+	    protected Color _backgroundColor = Color.LIGHT_GRAY;
+	    protected BufferedImage image = null;
+	   
+	
+	@Override
+    protected void paintComponent(Graphics g)
+    {
+        super.paintComponent(g);
+
+        int width = getWidth();
+        int height = getHeight();
+        int shadowGap = this._shadowGap;
+        
+        try {
+			image = ImageIO.read(new File("icon/winebackground.jpg"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        Color shadowColorA = new Color(_shadowColor.getRed(), _shadowColor.getGreen(), _shadowColor.getBlue(), _shadowAlpha);
+        Graphics2D graphics = (Graphics2D) g;
+
+        if(_highQuality)
+        {
+            graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        }
+
+        if(shadowed)
+        {
+            graphics.setColor(shadowColorA);
+            graphics.fillRoundRect(_shadowOffset, _shadowOffset, width - strokeSize - _shadowOffset,
+                    height - strokeSize - _shadowOffset, _arcs.width, _arcs.height);
+        }
+        else
+        {
+            _shadowGap = 1;
+        }
+
+        RoundRectangle2D.Float rr = new RoundRectangle2D.Float(0, 0, (width - shadowGap), (height - shadowGap), _arcs.width, _arcs.height);
+
+        Shape clipShape = graphics.getClip();
+
+        if(image == null)
+        {
+            graphics.setColor(_backgroundColor);
+            graphics.fill(rr);
+        }
+        else
+        {
+            RoundRectangle2D.Float rr2 =  new RoundRectangle2D.Float(0, 0, (width - strokeSize - shadowGap), (height - strokeSize - shadowGap), _arcs.width, _arcs.height);
+
+            graphics.setClip(rr2);
+            graphics.drawImage(this.image, 0, 0, this.getWidth(), this.getHeight(), null);
+            graphics.setClip(clipShape);
+        }
+
+        graphics.setColor(getForeground());
+        graphics.setStroke(new BasicStroke(strokeSize));
+        graphics.draw(rr);
+        graphics.setStroke(new BasicStroke());
+    }
 }
