@@ -123,6 +123,13 @@ public class MainFrame extends JFrame{
 		updateThread up = new updateThread();
 		up.start();
 		
+		try {
+			Process d = Runtime.getRuntime().exec("xset dpms force off");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		sensorThread sensor = new sensorThread();
 		sensor.start();
 		
