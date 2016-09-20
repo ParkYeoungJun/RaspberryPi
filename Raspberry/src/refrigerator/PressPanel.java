@@ -45,7 +45,7 @@ public class PressPanel extends JPanel{
 		
 		today = Calendar.getInstance();
 
-		this.setBounds(30, fulldim.height/15 + fulldim.height*4/5, fulldim.width-60, fulldim.height - fulldim.height/15-fulldim.height*4/5-60);
+		this.setBounds(30, fulldim.height/15 + fulldim.height*4/5, fulldim.width-60, fulldim.height - fulldim.height/15-fulldim.height*4/5-10);
 		this.setBackground(Color.GRAY);
 		this.setLayout(new GridLayout(1,7));
 		
