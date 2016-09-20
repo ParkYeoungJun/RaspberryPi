@@ -174,7 +174,7 @@ public class FreezePanel extends JPanel{
 									}
 									
 								});
-								adjustframe.setBounds(fulldim.width/2-fulldim.width/15, fulldim.height/2-fulldim.height/15, fulldim.width/5, fulldim.height/6);
+								adjustframe.setBounds(fulldim.width/2-fulldim.width/6, fulldim.height/2-fulldim.height/15, fulldim.width/3, fulldim.height/4);
 								adjustframe.setLayout(new FlowLayout(FlowLayout.CENTER,50,20));
 								JButton adjust = new JButton("수정");
 								adjust.setBorder(BorderFactory.createRaisedBevelBorder());
@@ -194,17 +194,35 @@ public class FreezePanel extends JPanel{
 										
 										UserData temp = (UserData) userdata.get(index);
 									
-										adjustframe.remove(adjust);
-										adjustframe.remove(delete);				
-										adjustframe.remove(cancel);
-//										adjustframe = new JFrame("수정");
-										adjustframe.setBounds(fulldim.width/2-fulldim.width/15, fulldim.height/2-fulldim.height/15, fulldim.width/5, fulldim.height/6);
-										adjustframe.setLayout(new FlowLayout(FlowLayout.CENTER,40,20));
-								
 										
+//										adjustframe.remove(adjust);
+//										adjustframe.remove(delete);				
+//										adjustframe.remove(cancel);
+//										adjustframe = new JFrame("수정");
+//										adjustframe.setBounds(fulldim.width/2-fulldim.width/15, fulldim.height/2-fulldim.height/15, fulldim.width/5, fulldim.height/6);
+//										adjustframe.setLayout(new FlowLayout(FlowLayout.CENTER,40,20));
+								
+										mainframe.setEnabled(true);
+										
+										adjustframe.dispose();
+										
+										JFrame insert = new JFrame();
+										BufferedImage im;
+										try {
+											im = ImageIO.read(new File("icon/adjust.png"));
+											insert.setContentPane(new ImagePanel(im));
+										} catch (IOException e1) {
+											// TODO Auto-generated catch block
+											e1.printStackTrace();
+										}
+										insert.setBounds(fulldim.width/2-fulldim.width/6, fulldim.height/2-fulldim.height/15, fulldim.width/3, fulldim.height/4);
+										insert.setLayout(new FlowLayout(FlowLayout.CENTER, 40,20));
+										insert.setUndecorated(true);
+									
 										JLabel info = new JLabel("<html><font color=#FFFFFFF>변경할 수량을 선택 하세요</font></html>");
 										info.setFont(new Font(null, Font.BOLD, 20));
-										adjustframe.add(info);
+										insert.add(info);
+										
 										JComboBox num = new JComboBox();
 										num.setBounds(x/10, y/3-y/24, x/13, 30);
 										num.setFont(new Font(null,Font.BOLD,30));
@@ -212,10 +230,9 @@ public class FreezePanel extends JPanel{
 										{
 											num.addItem(i);
 										}
-										adjustframe.add(num);
+										insert.add(num);
 										
 										JButton yes = new JButton("확인");
-										yes.setBorder(BorderFactory.createRaisedBevelBorder());
 										yes.addActionListener(new ActionListener(){
 
 											@Override
@@ -229,13 +246,18 @@ public class FreezePanel extends JPanel{
 														, Integer.parseInt(temp.getPosition()));
 												
 												adjustframe.dispose();
+												insert.dispose();
 												
 												JOptionPane.showMessageDialog(null, "수정이 완료되었습니다.");												
 											}
 											
 										});
-										adjustframe.add(yes);
+										insert.add(yes);
 										
+										insert.setVisible(true);
+										
+										mainframe.setEnabled(false);
+
 									}
 									
 								});

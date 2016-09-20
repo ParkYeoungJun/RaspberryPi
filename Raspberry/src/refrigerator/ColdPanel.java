@@ -177,8 +177,8 @@ public class ColdPanel extends JPanel{
 									}
 									
 								});
-								adjustframe.setBounds(fulldim.width/2-fulldim.width/15, fulldim.height/2-fulldim.height/15, fulldim.width/5, fulldim.height/6);
-								adjustframe.setLayout(new FlowLayout(FlowLayout.CENTER,50,20));
+								adjustframe.setBounds(fulldim.width/2-fulldim.width/6, fulldim.height/2-fulldim.height/15, fulldim.width/3, fulldim.height/4);
+								adjustframe.setLayout(new FlowLayout(FlowLayout.CENTER,40,20));
 								JButton adjust = new JButton("수정");
 								adjust.setBorder(BorderFactory.createRaisedBevelBorder());
 								adjust.setFont(new Font(null, Font.BOLD, 17));
@@ -198,22 +198,37 @@ public class ColdPanel extends JPanel{
 										
 										UserData temp = (UserData) userdata.get(index);
 										
-//										adjustframe.dispose();
+										mainframe.setEnabled(true);
 										
-//										JFrame insert = new JFrame();
-//										insert.setBounds(fulldim.width/2-fulldim.width/15, fulldim.height/2-fulldim.height/5, fulldim.width/5, fulldim.height/5);
+										adjustframe.dispose();
+										
+										JFrame insert = new JFrame();
+										BufferedImage im;
+										try {
+											im = ImageIO.read(new File("icon/adjust.png"));
+											insert.setContentPane(new ImagePanel(im));
+										} catch (IOException e1) {
+											// TODO Auto-generated catch block
+											e1.printStackTrace();
+										}
+										insert.setBounds(fulldim.width/2-fulldim.width/6, fulldim.height/2-fulldim.height/15, fulldim.width/3, fulldim.height/4);
+										insert.setLayout(new FlowLayout(FlowLayout.CENTER, 40,20));
+										insert.setUndecorated(true);
+										//										insert.setBounds(fulldim.width/2-fulldim.width/15, fulldim.height/2-fulldim.height/5, fulldim.width/5, fulldim.height/5);
 //										insert.setLayout(new BorderLayout());
-										adjustframe.remove(adjust);
-										adjustframe.remove(delete);
-										adjustframe.remove(cancel);
+//										adjustframe.remove(adjust);
+//										adjustframe.remove(delete);
+//										adjustframe.remove(cancel);
 
-										adjustframe.setBounds(fulldim.width/2-fulldim.width/15, fulldim.height/2-fulldim.height/15, fulldim.width/5, fulldim.height/6);
-										adjustframe.setLayout(new FlowLayout(FlowLayout.CENTER, 40,20));
+//										adjustframe.setBounds(fulldim.width/2-fulldim.width/15, fulldim.height/2-fulldim.height/15, fulldim.width/3, fulldim.height/6);
+//										adjustframe = new JFrame();
+//										adjustframe.setBounds(fulldim.width/2-fulldim.width/6, fulldim.height/2-fulldim.height/15, fulldim.width/3, fulldim.height/4);
+//										adjustframe.setLayout(new FlowLayout(FlowLayout.CENTER, 40,20));
 								
 										
 										JLabel info = new JLabel("<html><font color=#FFFFFFF>변경할 수량을 선택 하세요</font></html>");
 										info.setFont(new Font(null, Font.BOLD, 20));
-										adjustframe.add(info);
+										insert.add(info);
 										JComboBox num = new JComboBox();
 										num.setBounds(x/10, y/3-y/24, x/13, 30);
 										num.setFont(new Font(null,Font.BOLD,30));
@@ -221,7 +236,7 @@ public class ColdPanel extends JPanel{
 										{
 											num.addItem(i);
 										}
-										adjustframe.add(num);
+										insert.add(num);
 										
 										JButton yes = new JButton("확인");
 										yes.addActionListener(new ActionListener(){
@@ -236,15 +251,17 @@ public class ColdPanel extends JPanel{
 														temp.getPurchase(), temp.getName(), 0, temp.getShelf(), num.getSelectedIndex()+1
 														, Integer.parseInt(temp.getPosition()));
 												
-												adjustframe.dispose();
+												insert.dispose();
 												
 												JOptionPane.showMessageDialog(null, "수정이 완료되었습니다.");												
 											}
 											
 										});
-										adjustframe.add(yes);
+										insert.add(yes);
 										
-//										
+										insert.setVisible(true);
+										
+										mainframe.setEnabled(false);
 										
 									}
 									
