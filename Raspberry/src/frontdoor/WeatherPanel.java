@@ -61,7 +61,7 @@ class WeatherPanel extends JPanel{
 	public WeatherPanel(Dimension fulldim)
 	{
 		this.setBackground(Color.WHITE);
-		this.setBounds(40+(fulldim.width/3)*2, 40+fulldim.height/15, fulldim.width/3-80, fulldim.height-fulldim.height/15-80);
+		this.setBounds((fulldim.width/3)*2, fulldim.height/15, fulldim.width/3, fulldim.height-fulldim.height/15);
 		this.setLayout(new GridLayout(3,1));
 		this.setOpaque(false);
 		

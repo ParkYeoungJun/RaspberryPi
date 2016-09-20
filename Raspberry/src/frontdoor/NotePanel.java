@@ -29,7 +29,7 @@ public class NotePanel extends JPanel
 	public NotePanel(Dimension fulldim)
 	{
 		this.fulldim = fulldim;
-		this.setBounds(40, fulldim.height/15+40, fulldim.width/3*2-80, fulldim.height-fulldim.height/15-80);
+		this.setBounds(30, fulldim.height/15, fulldim.width/3*2, fulldim.height-fulldim.height/15);
 		this.setLayout(null);
 				
 		Image tempimg = new ImageIcon("post.PNG").getImage();
