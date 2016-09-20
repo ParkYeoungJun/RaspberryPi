@@ -47,7 +47,7 @@ public class PressPanel extends JPanel{
 		this.setLayout(null);
 		
 		sumlabel = new JLabel("",JLabel.CENTER);
-		sumlabel.setFont(new Font(null,Font.BOLD,30));
+		sumlabel.setFont(new Font(null,Font.BOLD,20));
 		sumlabel.setBounds(0, 0, fulldim.width, (fulldim.height - fulldim.height/15-fulldim.height*4/5)/2);
 		this.add(sumlabel);
 		
