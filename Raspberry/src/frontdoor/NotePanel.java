@@ -64,6 +64,7 @@ public class NotePanel extends JPanel
 //		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scroll.setOpaque(false);
 		scroll.getViewport().setOpaque(false);
+		scroll.setBorder(BorderFactory.createEmptyBorder());
 		this.add(scroll);
 		
 		updateThread up = new updateThread();
