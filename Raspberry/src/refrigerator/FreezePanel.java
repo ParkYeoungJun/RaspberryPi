@@ -79,11 +79,11 @@ public class FreezePanel extends JPanel{
 		this.mainframe = mainframe;
 		
 		x = fulldim.width/2-60;
-		y = fulldim.height*4/5-60;
+		y = fulldim.height*4/5-20;
 		
 		this.fooddata = new FoodParsing();
 		
-		this.setBounds(30, fulldim.height/15+30, x, y);
+		this.setBounds(30, fulldim.height/15+10, x, y);
 		
 		this.setBackground(Color.WHITE);
 		

@@ -103,16 +103,15 @@ public class MainFrame extends JFrame{
 		this.setBounds(0, 0, fulldim.width, fulldim.height);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setResizable(false);
-		this.setBackground(Color.WHITE);
 //		this.setUndecorated(true);
 		
-//		try {
-//			img = ImageIO.read(new File("icon/totalbackground.png"));
-//		} catch (IOException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//		this.setContentPane(new ImagePanel(img));
+		try {
+			img = ImageIO.read(new File("icon/white.png"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		this.setContentPane(new ImagePanel(img));
 		
 		db = new Database();
 		fooddata = new FoodParsing();
