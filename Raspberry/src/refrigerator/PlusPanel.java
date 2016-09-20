@@ -109,14 +109,14 @@ public class PlusPanel extends JFrame{
 			 *  group
 			 */
 			// Initial Image
-			meat = new ImageIcon("icon/meat_icon.png");
-			beverage = new ImageIcon("icon/beverage_icon.png");
-			fish = new ImageIcon("icon/fish_icon.png");
-			marine = new ImageIcon("icon/seafood_icon.png");
-			fruit = new ImageIcon("icon/fruit_icon.png");
-			dairy = new ImageIcon("icon/dairy_icon.png");
-			etc = new ImageIcon("icon/etc_icon.png");
-			vegetable = new ImageIcon("icon/vegetable_icon.png");
+			meat = new ImageIcon("icon/meat_icon.jpg");
+			beverage = new ImageIcon("icon/beverage_icon.jpg");
+			fish = new ImageIcon("icon/fish_icon.jpg");
+			marine = new ImageIcon("icon/seafood_icon.jpg");
+			fruit = new ImageIcon("icon/fruit_icon.jpg");
+			dairy = new ImageIcon("icon/dairy_icon.jpg");
+			etc = new ImageIcon("icon/etc_icon.jpg");
+			vegetable = new ImageIcon("icon/vegetable_icon.jpg");
 		
 			
 			// Initial Image Label
