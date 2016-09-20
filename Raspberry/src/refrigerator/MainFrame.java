@@ -103,7 +103,7 @@ public class MainFrame extends JFrame{
 		this.setBounds(0, 0, fulldim.width, fulldim.height);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setResizable(false);
-//		this.setUndecorated(true);
+		this.setUndecorated(true);
 		
 		try {
 			img = ImageIO.read(new File("icon/white.png"));

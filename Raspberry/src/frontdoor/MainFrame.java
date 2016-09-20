@@ -76,7 +76,7 @@ public class MainFrame extends JFrame{
 		this.setLayout(null);
 		this.setBounds(0,0,fulldim.width, fulldim.height);	
 		// full Screen
-//		this.setUndecorated(true);
+		this.setUndecorated(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		try {
