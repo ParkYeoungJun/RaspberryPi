@@ -159,6 +159,8 @@ public class MainFrame extends JFrame{
 		}
 	}
 	
+	Calendar temp;
+	
 	class dropthis extends Thread
 	{
 		public void run()
@@ -167,10 +169,8 @@ public class MainFrame extends JFrame{
 			while(true)
 			{
 				
-				Calendar temp = Calendar.getInstance();
-			
-				System.out.println(temp.getTime());
-			
+				temp = Calendar.getInstance();
+						
 				if(temp.getTimeInMillis() - current.getTimeInMillis() > 10000)
 				{
 					try {
@@ -206,8 +206,6 @@ public class MainFrame extends JFrame{
 			final GpioPinDigitalInput pir = gpio.provisionDigitalInputPin(RaspiPin.GPIO_29);
 			final GpioPinDigitalInput off = gpio.provisionDigitalInputPin(RaspiPin.GPIO_28);
 		
-		
-	
 			// create a gpio callback trigger on the gpio pin
 			Callable<Void> callback = () -> {
 	        	
@@ -226,6 +224,7 @@ public class MainFrame extends JFrame{
 					dp.start();
 					running = true;
 				}
+				
 				return null;
 					
 			};
