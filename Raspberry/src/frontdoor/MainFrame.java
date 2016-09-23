@@ -172,7 +172,8 @@ public class MainFrame extends JFrame{
 	        
 				// provision gpio pin #29, (header pin 40) as an input pin with its internal pull down resistor enabled
 				final GpioPinDigitalInput pir = gpio.provisionDigitalInputPin(RaspiPin.GPIO_29);
-				System.out.printf("Ready\n");
+				final GpioPinDigitalInput off = gpio.provisionDigitalInputPin(RaspiPin.GPIO_29);
+				
 	 
 				// create a gpio callback trigger on the gpio pin
 				Callable<Void> callback = () -> {
@@ -182,6 +183,7 @@ public class MainFrame extends JFrame{
 					current = Calendar.getInstance();
 					            
 					return null;
+					
 				};
 				
 				Callable<Void> turnoff = () ->{
@@ -198,11 +200,12 @@ public class MainFrame extends JFrame{
 					return null;
 					
 				};
+				
 	        
 				// create a gpio callback trigger on the PIR device pin for when it's state goes high
 				pir.addTrigger(new GpioCallbackTrigger(PinState.HIGH, callback));
 				
-				pir.addTrigger(new GpioCallbackTrigger(PinState.LOW, turnoff));
+				off.addTrigger(new GpioCallbackTrigger(PinState.LOW, turnoff));
 
 	 
 				// stop all GPIO activity/threads by shutting down the GPIO controller
