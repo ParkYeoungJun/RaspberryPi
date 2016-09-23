@@ -23,6 +23,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.Callable;
 
@@ -472,50 +473,107 @@ public class MainFrame extends JFrame{
 		}
 	}
 	
-	class sensorThread extends Thread 
+	
+	Calendar current;
+	Calendar temp;
+	
+	class dropthis extends Thread
 	{
 		public void run()
 		{
-		
+			
 			while(true)
 			{
-				// create gpio controller
-				final GpioController gpio = GpioFactory.getInstance();
-	        
-				// provision gpio pin #29, (header pin 40) as an input pin with its internal pull down resistor enabled
-				final GpioPinDigitalInput pir = gpio.provisionDigitalInputPin(RaspiPin.GPIO_29);
-				System.out.printf("Ready\n");
-	 
-				// create a gpio callback trigger on the gpio pin
-				Callable<Void> callback = () -> {
-	        	
-					Process d = Runtime.getRuntime().exec("xset dpms force on");
-					            
-					return null;
-				};
-	        
-				// create a gpio callback trigger on the PIR device pin for when it's state goes high
-				pir.addTrigger(new GpioCallbackTrigger(PinState.HIGH, callback));
-	 
-				// stop all GPIO activity/threads by shutting down the GPIO controller
-				Runtime.getRuntime().addShutdownHook(new Thread() {
-					@Override
-					public void run() {
-						System.out.println("Interrupted, stopping...\n");
-						gpio.shutdown();
-					}
-				});
-	 
-				// keep program running until user aborts (CTRL-C)	
+				
+				temp = Calendar.getInstance();
+						
+				if(temp.getTimeInMillis() - current.getTimeInMillis() > 10000)
+				{
+					try {
+						Process d = Runtime.getRuntime().exec("xset dpms force off");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}	
+				}
+				
 				try {
-					Thread.sleep(100);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
 			}
 		}
 	}
+	
+	dropthis dp = new dropthis();
+	
+	boolean running;
+	
+	
+	class sensorThread extends Thread 
+	{
+		public void run()
+		{
+			running = false;
+			
+			final GpioController gpio = GpioFactory.getInstance();
+			
+			final GpioPinDigitalInput pir = gpio.provisionDigitalInputPin(RaspiPin.GPIO_29);
+			final GpioPinDigitalInput off = gpio.provisionDigitalInputPin(RaspiPin.GPIO_28);
+		
+			// create a gpio callback trigger on the gpio pin
+			Callable<Void> callback = () -> {
+	        	
+				Process d = Runtime.getRuntime().exec("xset dpms force on");
+				
+				current = Calendar.getInstance();
+						 
+				return null;
+					
+			};
+				
+			Callable<Void> turnoff = () ->{
+				
+				if(!running)
+				{
+					dp.start();
+					running = true;
+				}
+				
+				return null;
+					
+			};
+				
+	        
+			// create a gpio callback trigger on the PIR device pin for when it's state goes high
+			pir.addTrigger(new GpioCallbackTrigger(PinState.HIGH, callback));
+				
+			off.addTrigger(new GpioCallbackTrigger(PinState.LOW, turnoff));
+
+	 
+			// stop all GPIO activity/threads by shutting down the GPIO controller
+			Runtime.getRuntime().addShutdownHook(new Thread() {
+				@Override
+				public void run() {
+					System.out.println("Interrupted, stopping...\n");
+					gpio.shutdown();
+				}
+			});
+	 
+			// keep program running until user aborts (CTRL-C)	
+			try {
+				while(true)
+				{
+					Thread.sleep(100);
+				}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	
 	class ImagePanel extends JComponent {
 	    private Image image;
