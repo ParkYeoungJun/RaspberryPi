@@ -164,66 +164,63 @@ public class MainFrame extends JFrame{
 	{
 		public void run()
 		{
+			final GpioController gpio = GpioFactory.getInstance();
+			
+			final GpioPinDigitalInput pir = gpio.provisionDigitalInputPin(RaspiPin.GPIO_29);
+			final GpioPinDigitalInput off = gpio.provisionDigitalInputPin(RaspiPin.GPIO_28);
 		
-			while(true)
-			{
-				// create gpio controller
-				final GpioController gpio = GpioFactory.getInstance();
-	        
-				// provision gpio pin #29, (header pin 40) as an input pin with its internal pull down resistor enabled
-				final GpioPinDigitalInput pir = gpio.provisionDigitalInputPin(RaspiPin.GPIO_29);
-				final GpioPinDigitalInput off = gpio.provisionDigitalInputPin(RaspiPin.GPIO_28);
-				
-	 
-				// create a gpio callback trigger on the gpio pin
-				Callable<Void> callback = () -> {
+	
+			// create a gpio callback trigger on the gpio pin
+			Callable<Void> callback = () -> {
 	        	
-					Process d = Runtime.getRuntime().exec("xset dpms force on");
+				Process d = Runtime.getRuntime().exec("xset dpms force on");
 					
-					current = Calendar.getInstance();
+				current = Calendar.getInstance();
 					            
-					return null;
+				return null;
 					
-				};
+			};
 				
-				Callable<Void> turnoff = () ->{
+			Callable<Void> turnoff = () ->{
 					
-					Calendar temp = Calendar.getInstance();
+				Calendar temp = Calendar.getInstance();
 										
-					if(temp.getTimeInMillis()-current.getTimeInMillis() > 5000)
-					{
-						Process d = Runtime.getRuntime().exec("xset dpms force off");	
+				if(temp.getTimeInMillis()-current.getTimeInMillis() > 5000)
+				{
+					Process d = Runtime.getRuntime().exec("xset dpms force off");	
 						
-						System.out.println(temp.getTimeInMillis()-current.getTimeInMillis());
-					}
+					System.out.println(temp.getTimeInMillis()-current.getTimeInMillis());
+				}
 					
-					return null;
+				return null;
 					
-				};
+			};
 				
 	        
-				// create a gpio callback trigger on the PIR device pin for when it's state goes high
-				pir.addTrigger(new GpioCallbackTrigger(PinState.HIGH, callback));
+			// create a gpio callback trigger on the PIR device pin for when it's state goes high
+			pir.addTrigger(new GpioCallbackTrigger(PinState.HIGH, callback));
 				
-				off.addTrigger(new GpioCallbackTrigger(PinState.LOW, turnoff));
+			off.addTrigger(new GpioCallbackTrigger(PinState.LOW, turnoff));
 
 	 
-				// stop all GPIO activity/threads by shutting down the GPIO controller
-				Runtime.getRuntime().addShutdownHook(new Thread() {
-					@Override
-					public void run() {
-						System.out.println("Interrupted, stopping...\n");
-						gpio.shutdown();
-					}
-				});
-	 
-				// keep program running until user aborts (CTRL-C)	
-				try {
-					Thread.sleep(100);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			// stop all GPIO activity/threads by shutting down the GPIO controller
+			Runtime.getRuntime().addShutdownHook(new Thread() {
+				@Override
+				public void run() {
+					System.out.println("Interrupted, stopping...\n");
+					gpio.shutdown();
 				}
+			});
+	 
+			// keep program running until user aborts (CTRL-C)	
+			try {
+				while(true)
+				{
+					Thread.sleep(100);
+				}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 	}
