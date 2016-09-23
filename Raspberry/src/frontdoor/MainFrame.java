@@ -191,6 +191,8 @@ public class MainFrame extends JFrame{
 					if(temp.getTimeInMillis()-current.getTimeInMillis() > 5000)
 					{
 						Process d = Runtime.getRuntime().exec("xset dpms force off");	
+						
+						System.out.println(temp.getTimeInMillis()-current.getTimeInMillis());
 					}
 					
 					return null;
