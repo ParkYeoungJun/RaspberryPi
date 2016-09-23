@@ -14,6 +14,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.Callable;
 
@@ -64,14 +65,17 @@ public class MainFrame extends JFrame{
 	// weather and Finedust parsing object
 //	Weather_Parsing weatherinfo = new Weather_Parsing();
 //	Finedust_Parsing dustinfo;
-
 	
 	BufferedImage img;
+	
+	Calendar current;
 
 	
 	@SuppressWarnings("deprecation")
 	public MainFrame()
 	{
+		current = Calendar.getInstance();
+		
 		this.setTitle("");
 		this.setLayout(null);
 		this.setBounds(0,0,fulldim.width, fulldim.height);	
@@ -174,12 +178,30 @@ public class MainFrame extends JFrame{
 				Callable<Void> callback = () -> {
 	        	
 					Process d = Runtime.getRuntime().exec("xset dpms force on");
+					
+					current = Calendar.getInstance();
 					            
 					return null;
+				};
+				
+				Callable<Void> turnoff = () ->{
+					
+					Calendar temp = Calendar.getInstance();
+										
+					if(temp.getTimeInMillis()-current.getTimeInMillis() > 5000)
+					{
+						Process d = Runtime.getRuntime().exec("xset dpms force off");	
+					}
+					
+					return null;
+					
 				};
 	        
 				// create a gpio callback trigger on the PIR device pin for when it's state goes high
 				pir.addTrigger(new GpioCallbackTrigger(PinState.HIGH, callback));
+				
+				pir.addTrigger(new GpioCallbackTrigger(PinState.LOW, turnoff));
+
 	 
 				// stop all GPIO activity/threads by shutting down the GPIO controller
 				Runtime.getRuntime().addShutdownHook(new Thread() {
