@@ -183,18 +183,13 @@ public class MainFrame extends JFrame{
 				
 			Callable<Void> turnoff = () ->{
 					
-				Calendar temp = Calendar.getInstance();
-										
-				if(temp.getTimeInMillis()-current.getTimeInMillis() > 5000)
-				{
+//				Calendar temp = Calendar.getInstance();
+//										
+//				if(temp.getTimeInMillis()-current.getTimeInMillis() > 5000)
+//				{
 					Process d = Runtime.getRuntime().exec("xset dpms force off");	
-						
-					System.out.println(temp.getTimeInMillis()-current.getTimeInMillis());
-				}
 				
-				System.out.println(temp.getTimeInMillis()-current.getTimeInMillis());
-					
-				return null;
+					return null;
 					
 			};
 				
