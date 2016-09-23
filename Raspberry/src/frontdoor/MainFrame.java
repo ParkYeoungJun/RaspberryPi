@@ -159,6 +159,34 @@ public class MainFrame extends JFrame{
 		}
 	}
 	
+	public void turnitup(boolean flag)
+	{
+		try
+		{
+			if(flag)
+			{
+				Process d = Runtime.getRuntime().exec("xset dpms force on");
+				
+				current = Calendar.getInstance();
+			}
+			else
+			{
+				Calendar temp = Calendar.getInstance();
+				
+				
+				if(temp.getTimeInMillis() - current.getTimeInMillis() > 10000)
+				{
+					Process d = Runtime.getRuntime().exec("xset dpms force off");	
+				}
+			}
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+			
+	}
+	
 	
 	class sensorThread extends Thread 
 	{
@@ -173,26 +201,16 @@ public class MainFrame extends JFrame{
 			// create a gpio callback trigger on the gpio pin
 			Callable<Void> callback = () -> {
 	        	
-				Process d = Runtime.getRuntime().exec("xset dpms force on");
-					
-				current = Calendar.getInstance();
-				
-				Thread.sleep(30000);
+				turnitup(true);
 					            
 				return null;
 					
 			};
 				
 			Callable<Void> turnoff = () ->{
-					
-//				Calendar temp = Calendar.getInstance();
-//										
-//				if(temp.getTimeInMillis()-current.getTimeInMillis() > 5000)
-//				{
-				Thread.sleep(30000);
 				
-				Process d = Runtime.getRuntime().exec("xset dpms force off");	
-//				}
+				turnitup(false);
+				
 				return null;
 					
 			};
