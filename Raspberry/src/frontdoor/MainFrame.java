@@ -159,30 +159,6 @@ public class MainFrame extends JFrame{
 		}
 	}
 	
-	public void turnitup(boolean flag)
-	{
-		try
-		{
-			if(flag)
-			{
-				Process d = Runtime.getRuntime().exec("xset dpms force on");
-				
-				current = Calendar.getInstance();
-				
-				System.out.println(current.getTime());
-			}
-			else
-			{
-				
-			}
-		}
-		catch(Exception e)
-		{
-			System.out.println(e);
-		}
-			
-	}
-	
 	class dropthis extends Thread
 	{
 		public void run()
@@ -209,7 +185,6 @@ public class MainFrame extends JFrame{
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
 			}
 		}
@@ -217,11 +192,15 @@ public class MainFrame extends JFrame{
 	
 	dropthis dp = new dropthis();
 	
+	boolean running;
+	
 	
 	class sensorThread extends Thread 
 	{
 		public void run()
 		{
+			running = false;
+			
 			final GpioController gpio = GpioFactory.getInstance();
 			
 			final GpioPinDigitalInput pir = gpio.provisionDigitalInputPin(RaspiPin.GPIO_29);
@@ -232,18 +211,21 @@ public class MainFrame extends JFrame{
 			// create a gpio callback trigger on the gpio pin
 			Callable<Void> callback = () -> {
 	        	
-				turnitup(true);
+				Process d = Runtime.getRuntime().exec("xset dpms force on");
 				
-				dp.interrupt();
-					            
+				current = Calendar.getInstance();
+						 
 				return null;
 					
 			};
 				
 			Callable<Void> turnoff = () ->{
 				
-				dp.start();
-				
+				if(!running)
+				{
+					dp.start();
+					running = true;
+				}
 				return null;
 					
 			};
