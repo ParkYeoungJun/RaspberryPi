@@ -176,6 +176,8 @@ public class MainFrame extends JFrame{
 				Process d = Runtime.getRuntime().exec("xset dpms force on");
 					
 				current = Calendar.getInstance();
+				
+				Thread.sleep(30000);
 					            
 				return null;
 					
@@ -187,9 +189,11 @@ public class MainFrame extends JFrame{
 //										
 //				if(temp.getTimeInMillis()-current.getTimeInMillis() > 5000)
 //				{
-					Process d = Runtime.getRuntime().exec("xset dpms force off");	
+				Thread.sleep(30000);
 				
-					return null;
+				Process d = Runtime.getRuntime().exec("xset dpms force off");	
+//				}
+				return null;
 					
 			};
 				
