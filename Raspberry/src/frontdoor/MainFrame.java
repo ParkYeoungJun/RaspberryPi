@@ -172,7 +172,7 @@ public class MainFrame extends JFrame{
 	        
 				// provision gpio pin #29, (header pin 40) as an input pin with its internal pull down resistor enabled
 				final GpioPinDigitalInput pir = gpio.provisionDigitalInputPin(RaspiPin.GPIO_29);
-				final GpioPinDigitalInput off = gpio.provisionDigitalInputPin(RaspiPin.GPIO_29);
+				final GpioPinDigitalInput off = gpio.provisionDigitalInputPin(RaspiPin.GPIO_28);
 				
 	 
 				// create a gpio callback trigger on the gpio pin
