@@ -168,11 +168,15 @@ public class MainFrame extends JFrame{
 				Process d = Runtime.getRuntime().exec("xset dpms force on");
 				
 				current = Calendar.getInstance();
+				
+				System.out.println(current.getTime());
 			}
 			else
 			{
 				Calendar temp = Calendar.getInstance();
 				
+				
+				System.out.println(temp.getTime());
 				
 				if(temp.getTimeInMillis() - current.getTimeInMillis() > 10000)
 				{
