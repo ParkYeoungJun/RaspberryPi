@@ -191,6 +191,8 @@ public class MainFrame extends JFrame{
 						
 					System.out.println(temp.getTimeInMillis()-current.getTimeInMillis());
 				}
+				
+				System.out.println(temp.getTimeInMillis()-current.getTimeInMillis());
 					
 				return null;
 					
