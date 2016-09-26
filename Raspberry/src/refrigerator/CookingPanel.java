@@ -94,6 +94,7 @@ public class CookingPanel extends JFrame{
 						JOptionPane.showMessageDialog(null, "Àç·á : "+temp.getMaterial());
 						
 						CookingPanel.this.setState(JFrame.NORMAL);
+						CookingPanel.this.setVisible(true);;
 					}
 					
 				});

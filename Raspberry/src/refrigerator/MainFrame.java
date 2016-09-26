@@ -440,7 +440,6 @@ public class MainFrame extends JFrame{
 			                String line=null;
 			                while((line=reader.readLine())!=null){
 			                    //서버응답값을 String 형태로 추가함
-			                	System.out.println(line);
 			                }
 			           
 			                return sb.toString().trim();
@@ -613,9 +612,7 @@ public class MainFrame extends JFrame{
 				Process d = Runtime.getRuntime().exec("xset dpms force on");
 				
 				current = Calendar.getInstance();
-				
-				System.out.println("out");
-						 
+										 
 				return null;
 					
 			};

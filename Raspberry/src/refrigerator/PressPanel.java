@@ -132,9 +132,7 @@ public class PressPanel extends JPanel{
 						JLabel temp = (JLabel)labellist.get(i);
 						gettime(temp, 6-i);
 					}
-					
-					System.out.println("adsfadf");
-				
+								
 					Thread.sleep(10000);
 				}
 			}
