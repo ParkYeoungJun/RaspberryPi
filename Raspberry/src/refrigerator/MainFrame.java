@@ -189,18 +189,18 @@ public class MainFrame extends JFrame{
 			ceilingpanel.add(pluslabel);
 			
 			img = fronticon.getImage();
-			frontlabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/30, fulldim.height/22, Image.SCALE_SMOOTH)));
-			frontlabel.setBounds(5,12,fulldim.width/30,fulldim.height/22);
+			frontlabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/30, fulldim.height/20, Image.SCALE_SMOOTH)));
+			frontlabel.setBounds(5,5,fulldim.width/30,fulldim.height/20);
 			ceilingpanel.add(frontlabel);
 			
 			img = cookicon.getImage();
-			cooklabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/30, fulldim.height/22, Image.SCALE_SMOOTH)));
-			cooklabel.setBounds(fulldim.width/30+20,10,fulldim.width/30,fulldim.height/22);
+			cooklabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/30, fulldim.height/20, Image.SCALE_SMOOTH)));
+			cooklabel.setBounds(fulldim.width/30+20,5,fulldim.width/30,fulldim.height/20);
 			ceilingpanel.add(cooklabel);	
 			
 			img = alarmicon.getImage();
-			alarmlabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/50, fulldim.height/30, Image.SCALE_SMOOTH)));
-			alarmlabel.setBounds(fulldim.width/30+fulldim.width/30+40,13,fulldim.width/50,fulldim.height/30);
+			alarmlabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/40, fulldim.height/22, Image.SCALE_SMOOTH)));
+			alarmlabel.setBounds(fulldim.width/30+fulldim.width/30+40,5,fulldim.width/40,fulldim.height/22);
 			ceilingpanel.add(alarmlabel);	
 		}
 		catch(Exception e)

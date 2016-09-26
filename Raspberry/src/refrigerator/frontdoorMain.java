@@ -145,8 +145,8 @@ public class frontdoorMain extends JFrame{
 		Image img;
 		
 		img = mainicon.getImage();
-		mainlabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/30, fulldim.height/22, Image.SCALE_SMOOTH)));
-		mainlabel.setBounds(0,10,fulldim.width/30,fulldim.height/22);
+		mainlabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/28, fulldim.height/20, Image.SCALE_SMOOTH)));
+		mainlabel.setBounds(0,0,fulldim.width/28,fulldim.height/20);
 		
 		
 		mainlabel.addMouseListener(new MouseAdapter(){

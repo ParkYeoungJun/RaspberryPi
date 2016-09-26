@@ -130,6 +130,8 @@ public class PressPanel extends JPanel{
 					gettime(temp, 6-i);
 				}
 				
+				Thread.sleep(60000);
+				
 			}
 			catch(Exception e)
 			{
