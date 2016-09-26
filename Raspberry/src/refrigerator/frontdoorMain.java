@@ -332,10 +332,4 @@ public class frontdoorMain extends JFrame{
 	        g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(),this);
 	    }
 	}
-	
-	public static void main(String[] args)
-	{
-		MainFrame main = new MainFrame();
-	}
-
 }
