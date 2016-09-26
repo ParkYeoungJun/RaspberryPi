@@ -124,14 +124,16 @@ public class PressPanel extends JPanel{
 		{						
 			try
 			{
-				for(int i = 0; i < 7 ; ++i)
+				while(true)
 				{
-					JLabel temp = (JLabel)labellist.get(i);
-					gettime(temp, 6-i);
+					for(int i = 0; i < 7 ; ++i)
+					{
+						JLabel temp = (JLabel)labellist.get(i);
+						gettime(temp, 6-i);
+					}
+				
+					Thread.sleep(10000);
 				}
-				
-				Thread.sleep(10000);
-				
 			}
 			catch(Exception e)
 			{
