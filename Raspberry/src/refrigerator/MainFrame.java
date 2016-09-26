@@ -107,8 +107,7 @@ public class MainFrame extends JFrame{
 	ImageIcon cookicon;
 	JLabel cooklabel;
 	
-	dropthis dp = new dropthis();
-
+	dropthis dp;
 	
 	public MainFrame()
 	{
@@ -359,6 +358,9 @@ public class MainFrame extends JFrame{
 		}
 		
 		
+		dp = new dropthis();
+		
+		
 		sensorThread sensor = new sensorThread();
 		sensor.start();
 				
@@ -560,17 +562,14 @@ public class MainFrame extends JFrame{
 	}
 	
 	
-	Calendar current;
-	Calendar temp;
-	
 	class dropthis extends Thread
 	{
 		public void run()
 		{
+			Calendar temp;
 			
 			while(true)
 			{
-				
 				temp = Calendar.getInstance();
 						
 				if(temp.getTimeInMillis() - current.getTimeInMillis() > 10000)
@@ -594,12 +593,14 @@ public class MainFrame extends JFrame{
 		
 	boolean running;
 	
-	
+	Calendar current;
+
 	class sensorThread extends Thread 
 	{
 		public void run()
 		{
 			running = false;
+			
 			
 			final GpioController gpio = GpioFactory.getInstance();
 			
@@ -624,7 +625,6 @@ public class MainFrame extends JFrame{
 				if(!running)
 				{
 					current = Calendar.getInstance();
-					dp = new dropthis();
 					dp.start();
 					running = true;
 				}
@@ -653,7 +653,7 @@ public class MainFrame extends JFrame{
 			try {
 				while(true)
 				{
-					Thread.sleep(100);
+					Thread.sleep(500);
 				}
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
