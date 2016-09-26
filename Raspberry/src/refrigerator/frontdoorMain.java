@@ -134,7 +134,7 @@ public class frontdoorMain extends JFrame{
 		date.setOpaque(false);
 		date.setLayout(null);
 		date_label = new JLabel(today);
-		date_label.setBounds(fulldim.width/2-100, 20, fulldim.width, 30);
+		date_label.setBounds(fulldim.width/2-100, 0, fulldim.width, fulldim.height/15);
 		date_label.setFont(new Font(null,Font.BOLD,20));
 		date_label.setForeground(Color.white);;
 		date.add(date_label);

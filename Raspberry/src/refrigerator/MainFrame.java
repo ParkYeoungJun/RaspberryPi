@@ -195,12 +195,12 @@ public class MainFrame extends JFrame{
 			
 			img = cookicon.getImage();
 			cooklabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/30, fulldim.height/22, Image.SCALE_SMOOTH)));
-			cooklabel.setBounds(fulldim.width/30,10,fulldim.width/30,fulldim.height/22);
+			cooklabel.setBounds(fulldim.width/30+20,10,fulldim.width/30,fulldim.height/22);
 			ceilingpanel.add(cooklabel);	
 			
 			img = alarmicon.getImage();
 			alarmlabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/50, fulldim.height/30, Image.SCALE_SMOOTH)));
-			alarmlabel.setBounds(fulldim.width/30+fulldim.width/30,13,fulldim.width/50,fulldim.height/30);
+			alarmlabel.setBounds(fulldim.width/30+fulldim.width/30+40,13,fulldim.width/50,fulldim.height/30);
 			ceilingpanel.add(alarmlabel);	
 		}
 		catch(Exception e)
