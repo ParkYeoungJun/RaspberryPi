@@ -92,6 +92,8 @@ public class CookingPanel extends JFrame{
 						Cookdata temp = (Cookdata)data.get(index);
 						
 						JOptionPane.showMessageDialog(null, "Àç·á : "+temp.getMaterial());
+						
+						CookingPanel.this.setState(JFrame.NORMAL);
 					}
 					
 				});
