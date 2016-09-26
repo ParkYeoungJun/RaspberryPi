@@ -624,6 +624,7 @@ public class MainFrame extends JFrame{
 				if(!running)
 				{
 					current = Calendar.getInstance();
+					dp = new dropthis();
 					dp.start();
 					running = true;
 				}
