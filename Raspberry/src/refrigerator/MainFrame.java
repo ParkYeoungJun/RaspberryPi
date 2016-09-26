@@ -1,12 +1,10 @@
 package refrigerator;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,6 +44,7 @@ import com.pi4j.io.gpio.RaspiPin;
 import com.pi4j.io.gpio.trigger.GpioCallbackTrigger;
 
 public class MainFrame extends JFrame{
+
 
 	Dimension fulldim = Toolkit.getDefaultToolkit().getScreenSize();
 	
@@ -96,6 +95,17 @@ public class MainFrame extends JFrame{
 	int k  = 0;
 	
 	BufferedImage img;
+
+	frontdoorMain frontdoor;
+
+	ImageIcon fronticon;
+	JLabel frontlabel;
+	
+	ImageIcon alarmicon;
+	JLabel alarmlabel;
+
+	ImageIcon cookicon;
+	JLabel cooklabel;
 	
 	public MainFrame()
 	{
@@ -105,6 +115,9 @@ public class MainFrame extends JFrame{
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setResizable(false);
 		this.setUndecorated(true);
+		
+		frontdoor = new frontdoorMain(this);
+		frontdoor.setVisible(false);
 		
 		try {
 			img = ImageIO.read(new File("icon/white.png"));
@@ -117,8 +130,8 @@ public class MainFrame extends JFrame{
 		db = new Database();
 		fooddata = new FoodParsing();
 		
-		menupanel = new MenuPanel(fulldim, MainFrame.this);
-		menupanel.setVisible(false);
+//		menupanel = new MenuPanel(fulldim, MainFrame.this, frontdoor);
+//		menupanel.setVisible(false);
 //		this.add(menupanel);
 		
 		
@@ -146,20 +159,28 @@ public class MainFrame extends JFrame{
 		
 		try
 		{
-			menuicon = new ImageIcon("icon/menu_icon.png");
-			menulabel = new JLabel();
+//			menuicon = new ImageIcon("icon/menu_icon.png");
+//			menulabel = new JLabel();
 			
 			plusicon = new ImageIcon("icon/PlusButton.png");
 			pluslabel = new JLabel();
 			
+			fronticon = new ImageIcon("icon/frontdoor.png");
+			frontlabel = new JLabel();
+			
+			alarmicon = new ImageIcon("icon/alarmon.png");
+			alarmlabel = new JLabel();
+
+			cookicon = new ImageIcon("icon/cooking.png");
+			cooklabel = new JLabel();
 			
 			// menu
 			Image img;
 	
-			img = menuicon.getImage();
-			menulabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/30, fulldim.height/22, Image.SCALE_SMOOTH)));
-			menulabel.setBounds(0,10,fulldim.width/30,fulldim.height/22);
-			ceilingpanel.add(menulabel);
+//			img = menuicon.getImage();
+//			menulabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/30, fulldim.height/22, Image.SCALE_SMOOTH)));
+//			menulabel.setBounds(0,10,fulldim.width/30,fulldim.height/22);
+//			ceilingpanel.add(menulabel);
 			
 			// plus
 			img = plusicon.getImage();
@@ -167,6 +188,20 @@ public class MainFrame extends JFrame{
 			pluslabel.setBounds(fulldim.width-fulldim.width/21, 0, fulldim.width/35, fulldim.height/15);
 			ceilingpanel.add(pluslabel);
 			
+			img = fronticon.getImage();
+			frontlabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/30, fulldim.height/22, Image.SCALE_SMOOTH)));
+			frontlabel.setBounds(5,12,fulldim.width/30,fulldim.height/22);
+			ceilingpanel.add(frontlabel);
+			
+			img = cookicon.getImage();
+			cooklabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/30, fulldim.height/22, Image.SCALE_SMOOTH)));
+			cooklabel.setBounds(fulldim.width/30,10,fulldim.width/30,fulldim.height/22);
+			ceilingpanel.add(cooklabel);	
+			
+			img = alarmicon.getImage();
+			alarmlabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/50, fulldim.height/30, Image.SCALE_SMOOTH)));
+			alarmlabel.setBounds(fulldim.width/30+fulldim.width/30,13,fulldim.width/50,fulldim.height/30);
+			ceilingpanel.add(alarmlabel);	
 		}
 		catch(Exception e)
 		{
@@ -182,45 +217,93 @@ public class MainFrame extends JFrame{
 		 *  listeners
 		 */
 		
-		menulabel.addMouseListener(new MouseAdapter(){
+		frontlabel.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
-				
-				menupanel.setVisible(true);
-
-				MainFrame.this.setEnabled(false);
-				
-				panels_enable(false);
-				
-				menupanel.setLocation(from, 0);
-				
-				menupanel.setSize(fulldim.width/4, fulldim.height);
-				
-				timer = new Timer(5, new ActionListener(){
-					public void actionPerformed(ActionEvent ae){
-						
-						if(from < to)
-						{
-							from = from+10;
-							menupanel.setLocation(from, 0);
-							menupanel.repaint();
-						}
-						else
-						{
-							menupanel.setLocation(0, 0);
-
-							from = -fulldim.width/4;
-							to = 0;
-							
-							timer.stop();
-						}
-					}
-				});
-				
-				timer.start();
+				MainFrame.this.setVisible(false);
+				frontdoor.setVisible(true);
 			}
 		});
+		
+		cooklabel.addMouseListener(new MouseAdapter(){
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				CookingPanel cook = new CookingPanel(fulldim, MainFrame.this);
+			}
+		});
+		
+		alarmlabel.addMouseListener(new MouseAdapter(){
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				if(alarmflag)
+				{
+					alarmicon = new ImageIcon("icon/alarmoff.png");
+					
+					Image img;
+					
+					img = alarmicon.getImage();
+					alarmlabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/50, fulldim.height/30, Image.SCALE_SMOOTH)));
+					
+					setalarmflag(false);
+				}
+				else
+				{
+					alarmicon = new ImageIcon("icon/alarmon.png");
+					
+					Image img;
+					
+					img = alarmicon.getImage();
+					alarmlabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/50, fulldim.height/30, Image.SCALE_SMOOTH)));
+					
+					setalarmflag(true);
+				}
+			}
+		});
+		
+//		menulabel.addMouseListener(new MouseAdapter(){
+//			@Override
+//			public void mouseClicked(MouseEvent e)
+//			{
+//				
+//				menupanel.setVisible(true);
+//
+//				MainFrame.this.setEnabled(false);
+//				
+//				panels_enable(false);
+//								
+//				
+////				menupanel.setLocation(from, 0);
+//
+//				
+//				timer = new Timer(1, new ActionListener(){
+//					public void actionPerformed(ActionEvent ae){
+//						
+//						if(from < to)
+//						{
+//							from = from+30;
+//							menupanel.setLocation(from, 0);
+//							menupanel.repaint();
+//							
+//						}
+//						else
+//						{
+//							menupanel.setLocation(0, 0);
+//							menupanel.repaint();
+//
+//							from = -fulldim.width/4;
+//							to = 0;
+//							
+//							timer.stop();
+//						}
+//					}
+//				});
+//				
+//				timer.start();
+//			}
+//		});
 		
 		pluslabel.addMouseListener(new MouseAdapter(){
 			@Override

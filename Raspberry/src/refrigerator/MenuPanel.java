@@ -39,7 +39,8 @@ public class MenuPanel extends JFrame{
 	JLabel settingbutton;
 	JLabel profile_icon;
 	JLabel profile_text;
-	
+	JLabel frontdoor;
+//	JLabel 
 	
 	Timer timer;
 	
@@ -48,13 +49,19 @@ public class MenuPanel extends JFrame{
 	
 	JButton alarm;
 	
-	BufferedImage image;
+	frontdoorMain frontframe;
 	
-	public MenuPanel(Dimension fulldim, MainFrame mainframe)
+	BufferedImage image;
+
+	
+	public MenuPanel(Dimension fulldim, MainFrame mainframe, frontdoorMain frontframe)
 	{
 		this.fulldim = fulldim;
 		this.mainframe = mainframe;
+		this.setBounds(-fulldim.width/4, 0, fulldim.width/4, fulldim.height);
 				
+		this.frontframe = frontframe;
+		
 		from = 0;
 		to = -fulldim.width/4;
 		
@@ -88,15 +95,14 @@ public class MenuPanel extends JFrame{
 				@Override
 				public void mouseClicked(MouseEvent e)
 				{
-					mainframe.panels_enable(true);
 					mainframe.setEnabled(true);
 					
-					timer = new Timer(5, new ActionListener(){
+					timer = new Timer(1, new ActionListener(){
 						public void actionPerformed(ActionEvent ae){
 
 							if(from > to)
 							{
-								from = from-10;
+								from = from-30;
 								MenuPanel.this.setLocation(from, 0);
 								MenuPanel.this.repaint();
 							}
@@ -104,8 +110,10 @@ public class MenuPanel extends JFrame{
 							{
 								from = 0;
 								to = -fulldim.width/4;
-													
-								MenuPanel.this.setVisible(false);
+								
+								MenuPanel.this.setLocation(-fulldim.width/4, 0);
+								MenuPanel.this.repaint();
+
 								timer.stop();
 							}							
 						}

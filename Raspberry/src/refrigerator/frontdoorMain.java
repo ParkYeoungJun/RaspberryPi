@@ -1,4 +1,4 @@
-package frontdoor;
+package refrigerator;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -37,7 +37,9 @@ import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.RaspiPin;
 import com.pi4j.io.gpio.trigger.GpioCallbackTrigger;
 
-public class MainFrame extends JFrame{
+import refrigerator.MainFrame;
+
+public class frontdoorMain extends JFrame{
 	
 	// get screen size
 	private Dimension fulldim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -79,17 +81,27 @@ public class MainFrame extends JFrame{
 	
 	int from = -fulldim.width/4;
     int to = 0;
+    
+    MenuPanel menupanel;
+    Timer timer;
 	
+    MainFrame mainframe;
+    
+    JLabel mainlabel;
+    ImageIcon mainicon;
+    
 	@SuppressWarnings("deprecation")
-	public MainFrame()
+	public frontdoorMain(MainFrame mainframe)
 	{
+		this.mainframe = mainframe;
+		
 		current = Calendar.getInstance();
 		
 		this.setTitle("");
 		this.setLayout(null);
 		this.setBounds(0,0,fulldim.width, fulldim.height);	
 		// full Screen
-//		this.setUndecorated(true);
+		this.setUndecorated(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		try {
@@ -127,21 +139,32 @@ public class MainFrame extends JFrame{
 		date_label.setForeground(Color.white);;
 		date.add(date_label);
 		
-		menuicon = new ImageIcon("icon/menu_icon.png");
-		menulabel = new JLabel();
+		mainicon = new ImageIcon("icon/refrigerator.png");
+		mainlabel = new JLabel();
+		
+		Image img;
+		
+		img = mainicon.getImage();
+		mainlabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/30, fulldim.height/22, Image.SCALE_SMOOTH)));
+		mainlabel.setBounds(0,10,fulldim.width/30,fulldim.height/22);
+		
+		
+		mainlabel.addMouseListener(new MouseAdapter(){
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				frontdoorMain.this.setVisible(false);
+				mainframe.setVisible(true);
+			}
+		});
+		
+		
+		date.add(mainlabel);
+		
+		
 		
 		// menu
-		Image img;
-
-		img = menuicon.getImage();
-		menulabel.setIcon(new ImageIcon(img.getScaledInstance(fulldim.width/30, fulldim.height/22, Image.SCALE_SMOOTH)));
-		menulabel.setBounds(0,10,fulldim.width/30,fulldim.height/22);
-		
-		
-		
-		
-		date.add(menulabel);
-		
+				
 		this.add(date);
 		
 		// weather
@@ -161,8 +184,8 @@ public class MainFrame extends JFrame{
 			e.printStackTrace();
 		}
 		
-		sensorThread sensor = new sensorThread();
-		sensor.start();
+//		sensorThread sensor = new sensorThread();
+//		sensor.start();
 		
 		
 		this.setVisible(true);
@@ -310,9 +333,9 @@ public class MainFrame extends JFrame{
 	    }
 	}
 	
-//	public static void main(String[] args)
-//	{
-//		MainFrame main = new MainFrame();
-//	}
+	public static void main(String[] args)
+	{
+		MainFrame main = new MainFrame();
+	}
 
 }

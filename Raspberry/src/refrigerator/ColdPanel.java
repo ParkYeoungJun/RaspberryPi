@@ -72,6 +72,8 @@ public class ColdPanel extends JPanel{
 	boolean paneflag = false;
 	boolean whe = true;
 	
+	boolean blockflag = false;
+	
 	public ColdPanel(Dimension fulldim, MainFrame mainframe)
 	{
 		this.fulldim = fulldim;
@@ -126,7 +128,10 @@ public class ColdPanel extends JPanel{
 								/*
 								 * Run
 								 */
-								int index = list.getSelectedIndex();
+						if(!blockflag)
+						{
+														
+							int index = list.getSelectedIndex();
 								
 //								mainframe.setEnabled(false);
 								
@@ -314,6 +319,7 @@ public class ColdPanel extends JPanel{
 								
 //							}
 //						}, 300);
+						}
 					}
 					
 					public void mouseReleased(MouseEvent e)
@@ -334,12 +340,15 @@ public class ColdPanel extends JPanel{
 		scroll.setOpaque(false);
 		this.add(scroll);
 		
-		
 		update = new updateThread();
 		update.start();
-				
-				
+		
 		this.setVisible(true);
+	}
+	
+	public void setflag(boolean flag)
+	{
+		blockflag = flag;
 	}
 
 	class updateThread extends Thread
@@ -376,7 +385,6 @@ public class ColdPanel extends JPanel{
 						{
 							if(whe)
 							{
-						
 								if(today.getTimeInMillis()-instance.getTimeInMillis() > 0)
 								{
 									JOptionPane.showMessageDialog(null, "냉장실에 있는 "+temp.getName()+"의 유통기한이 다 되었습니다.");
