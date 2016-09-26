@@ -101,7 +101,7 @@ public class frontdoorMain extends JFrame{
 		this.setLayout(null);
 		this.setBounds(0,0,fulldim.width, fulldim.height);	
 		// full Screen
-		this.setUndecorated(true);
+//		this.setUndecorated(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		try {
@@ -262,6 +262,8 @@ public class frontdoorMain extends JFrame{
 				Process d = Runtime.getRuntime().exec("xset dpms force on");
 				
 				current = Calendar.getInstance();
+				
+				System.out.println("out");
 						 
 				return null;
 					

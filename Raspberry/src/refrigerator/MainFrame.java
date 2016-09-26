@@ -114,7 +114,7 @@ public class MainFrame extends JFrame{
 		this.setBounds(0, 0, fulldim.width, fulldim.height);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setResizable(false);
-		this.setUndecorated(true);
+//		this.setUndecorated(true);
 		
 		frontdoor = new frontdoorMain(this);
 		frontdoor.setVisible(false);
@@ -611,6 +611,8 @@ public class MainFrame extends JFrame{
 				Process d = Runtime.getRuntime().exec("xset dpms force on");
 				
 				current = Calendar.getInstance();
+				
+				System.out.println("out");
 						 
 				return null;
 					
