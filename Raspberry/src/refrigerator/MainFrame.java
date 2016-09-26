@@ -107,6 +107,9 @@ public class MainFrame extends JFrame{
 	ImageIcon cookicon;
 	JLabel cooklabel;
 	
+	dropthis dp = new dropthis();
+
+	
 	public MainFrame()
 	{
 		this.setTitle("");
@@ -588,9 +591,7 @@ public class MainFrame extends JFrame{
 			}
 		}
 	}
-	
-	dropthis dp = new dropthis();
-	
+		
 	boolean running;
 	
 	
@@ -622,6 +623,7 @@ public class MainFrame extends JFrame{
 				
 				if(!running)
 				{
+					current = Calendar.getInstance();
 					dp.start();
 					running = true;
 				}
