@@ -76,6 +76,7 @@ public class PressPanel extends JPanel{
 			today = Calendar.getInstance();
 
 			today.add(Calendar.DATE, -beforeday);
+			
 			// initial
 			URL funurl = new URL("http://52.78.88.182/getSecond.php?date="+format.format(today.getTime()));
 		
@@ -131,6 +132,8 @@ public class PressPanel extends JPanel{
 						JLabel temp = (JLabel)labellist.get(i);
 						gettime(temp, 6-i);
 					}
+					
+					System.out.println("adsfadf");
 				
 					Thread.sleep(10000);
 				}

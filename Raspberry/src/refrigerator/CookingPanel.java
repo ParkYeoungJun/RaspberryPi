@@ -20,6 +20,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
 import refrigerator.ColdPanel.ImageList;
@@ -86,7 +87,11 @@ public class CookingPanel extends JFrame{
 					
 					public void mousePressed(MouseEvent e)
 					{
+						int index = list.getSelectedIndex();
 						
+						Cookdata temp = (Cookdata)data.get(index);
+						
+						JOptionPane.showMessageDialog(null, "Àç·á : "+temp.getMaterial());
 					}
 					
 				});
