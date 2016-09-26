@@ -99,6 +99,23 @@ public class Database {
 			}
 	}
 	
+	public ArrayList getArray()
+	{
+		ArrayList array = new ArrayList<ArrayList<Data> >();
+		
+		array.add(meat);
+		array.add(fish);
+		array.add(seafood);
+		array.add(vegetable);
+		array.add(fruit);
+		array.add(dairy);
+		array.add(beverage);
+		array.add(etc);
+	
+		return array;
+	}
+	
+	
 	public Data getShelflife(String group, String name)
 	{
 		
